@@ -351,6 +351,23 @@ section{padding:6rem 1.5rem;position:relative}
 #financiera .fin-gasto-value{font-family:'Montserrat',sans-serif;font-size:1.45rem;font-weight:800;color:var(--negro);margin-bottom:10px;}
 #financiera .fin-gasto-sub{font-size:0.78rem;color:#aaa;}
 
+/* FINANCIERA · COMPLEMENTOS 2027 */
+#financiera .fin-chart-canvas{position:relative;height:320px;width:100%;}
+#financiera .fin-sub-list{display:grid;gap:12px;margin-top:6px;}
+#financiera .fin-sub-row{display:flex;justify-content:space-between;gap:12px;font-size:.78rem;color:#555;}
+#financiera .fin-sub-row strong{font-family:'Montserrat',sans-serif;font-weight:700;color:var(--negro);white-space:nowrap;}
+#financiera .fin-bar-fill.neg{background:linear-gradient(90deg,#c40073,var(--fucsia));}
+#financiera .fin-bar-pct{min-width:48px;text-align:right;}
+#financiera .fin-bar-pct.neg{color:var(--fucsia);}
+#financiera .fin-bar-pct.pos{color:var(--verde);}
+#financiera .fin-part-bar{min-width:150px;}
+#financiera td.yr{font-family:'Montserrat',sans-serif;font-weight:800;}
+#financiera tr.proj td{background:rgba(255,7,147,.04);}
+#financiera .fin-tag-proj{display:inline-block;margin-left:8px;padding:2px 8px;border-radius:100px;font-size:.62rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:rgba(255,7,147,.1);color:var(--fucsia);}
+#financiera .fin-note{font-size:.75rem;color:#888;margin-top:-32px;margin-bottom:8px;}
+@media (max-width:980px){#financiera .fin-charts-grid,#financiera .fin-gastos-grid{grid-template-columns:1fr;}}
+@media (max-width:720px){#financiera .fin-gasto-card{flex-direction:column;} #financiera .fin-gasto-value{font-size:1.2rem;} #financiera .fin-chart-canvas{height:280px;} #financiera .fin-note{margin-top:-24px;}}
+
 /* OTROS CAMPAÑAS SCOPED */
 .oc-section-header{margin-bottom:20px;border-bottom:2px solid var(--linea-divisoria);padding-bottom:10px;margin-top:50px;}
 .oc-section-header h2{font-size:1.4rem;color:var(--negro);} .oc-section-header span{font-family:'Poppins',sans-serif;font-weight:400;color:var(--texto-secundario);font-size:1rem;}
@@ -1670,7 +1687,8 @@ footer{background:var(--negro);color:rgba(255,255,255,.7);padding:4rem 1.5rem 2r
       <a href="#PDD">2. La Gestión: PDD 2024-2027</a>
       <a href="#vision">3. La Visión</a>
       <a href="#contravencional">4. La Desición Difícil</a>
-      <a href="#COMPROMISO">5. El Compromiso</a>
+      <a href="#financiera">5. Proyección 2027</a>
+      <a href="#COMPROMISO">6. El Compromiso</a>
       <a href="https://transitocesar.gov.co" target="_blank" rel="noopener" class="nav-cta">Portal ↗</a>
     </div>
     <button class="menu-toggle" id="menuToggle" aria-label="Menú"><span></span></button>
@@ -2525,14 +2543,158 @@ footer{background:var(--negro);color:rgba(255,255,255,.7);padding:4rem 1.5rem 2r
       <div class="cv-chart-full reveal" style="grid-column: 1 / -1;"><div class="cv-chart-title">Distribución por Tipo de Infracción (Top 7)</div><div class="cv-chart-sub">Número de comparendos por código de infracción</div><div class="cv-chart-container tall"><canvas id="chartInfracciones"></canvas></div></div>
     </div>
     
-      </div>
-    </div>
-    
   </div>
 </section>
 
+<!-- ============================================================
+     05 · PROYECCIÓN FINANCIERA 2027
+     Fuente: Anexos Presupuesto de Gastos 2027 - IDTRACESAR (xlsx)
+     ============================================================ -->
+<section id="financiera" style="background:var(--gris-100); padding: 6rem 1.5rem;">
+  <div class="container">
+
+    <div class="section-head reveal">
+      <div class="eyebrow">05 · Proyección Financiera 2027</div>
+      <h2>Recursos para una movilidad <em style="font-style:normal;color:var(--verde)">más segura</em>.</h2>
+      <p class="lead">Presupuesto de ingresos y gastos proyectado para la vigencia 2027: <strong>$23.624.900.610</strong> con equilibrio entre recaudo y apropiación, y el <strong>93,2%</strong> orientado a inversión en seguridad vial.</p>
+    </div>
+
+    <!-- FILA 1 · Ingresos / Gastos -->
+    <div class="fin-gastos-grid">
+
+      <div class="fin-gasto-card reveal" data-delay="100">
+        <div class="fin-gasto-icon verde">📈</div>
+        <div class="fin-gasto-info">
+          <div class="fin-gasto-label">Ingresos Proyectados 2027</div>
+          <div class="fin-gasto-value">$23.624.900.610</div>
+          <div class="fin-sub-list">
+            <div>
+              <div class="fin-sub-row"><span>Multas de tránsito</span><strong>$20.009.612.274</strong></div>
+              <div class="fin-part-bar"><div class="fin-bar-track"><div class="fin-bar-fill" data-width="84.7" style="width:0"></div></div><span class="fin-bar-pct">84,7%</span></div>
+            </div>
+            <div>
+              <div class="fin-sub-row"><span>Derechos de tránsito</span><strong>$2.167.823.863</strong></div>
+              <div class="fin-part-bar"><div class="fin-bar-track"><div class="fin-bar-fill" data-width="9.2" style="width:0"></div></div><span class="fin-bar-pct">9,2%</span></div>
+            </div>
+            <div>
+              <div class="fin-sub-row"><span>Transferencias para funcionamiento</span><strong>$1.447.464.473</strong></div>
+              <div class="fin-part-bar"><div class="fin-bar-track"><div class="fin-bar-fill" data-width="6.1" style="width:0"></div></div><span class="fin-bar-pct">6,1%</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fin-gasto-card reveal" data-delay="200">
+        <div class="fin-gasto-icon fucsia">🏗️</div>
+        <div class="fin-gasto-info">
+          <div class="fin-gasto-label">Gastos Proyectados 2027</div>
+          <div class="fin-gasto-value">$23.624.900.610</div>
+          <div class="fin-sub-list">
+            <div>
+              <div class="fin-sub-row"><span>Inversión (Multas + Trámites)</span><strong>$22.022.176.987</strong></div>
+              <div class="fin-part-bar"><div class="fin-bar-track"><div class="fin-bar-fill neg" data-width="93.2" style="width:0"></div></div><span class="fin-bar-pct">93,2%</span></div>
+            </div>
+            <div>
+              <div class="fin-sub-row"><span>Gastos de funcionamiento</span><strong>$1.602.723.623</strong></div>
+              <div class="fin-part-bar"><div class="fin-bar-track"><div class="fin-bar-fill" data-width="6.8" style="width:0"></div></div><span class="fin-bar-pct">6,8%</span></div>
+            </div>
+          </div>
+          <div class="fin-gasto-sub" style="margin-top:12px;">Funcionamiento: personal + bienes y servicios + tributos. Inversión: multas $20.001.825.270 · trámites $2.020.351.717.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- FILA 2 · Gráficos -->
+    <div class="fin-charts-grid" style="margin-bottom:32px;">
+
+      <div class="fin-chart-card reveal" data-delay="100">
+        <div class="fin-chart-title">Composición de Ingresos 2027</div>
+        <div class="fin-chart-sub">Participación por fuente sobre $23.624.900.610</div>
+        <div class="fin-chart-canvas"><canvas id="chartIngresos2027"></canvas></div>
+      </div>
+
+      <div class="fin-chart-card reveal" data-delay="200">
+        <div class="fin-chart-title">Histórico de Recaudo por Multas</div>
+        <div class="fin-chart-sub">Millones de pesos (COP) · 2022–2027 · 2027 proyectado</div>
+        <div class="fin-chart-canvas"><canvas id="chartHistoricoRecaudo"></canvas></div>
+      </div>
+
+    </div>
+
+    <!-- FILA 3 · Tabla Trámites vs Multas -->
+    <div class="fin-tabla-container reveal">
+      <table>
+        <thead>
+          <tr>
+            <th>Año</th>
+            <th>Trámites</th>
+            <th>Var. Trámites</th>
+            <th>Multas</th>
+            <th>Var. Multas</th>
+            <th>Total recaudo</th>
+            <th>Var. Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="yr">2024</td>
+            <td>$820.803.926</td>
+            <td><div class="fin-part-bar"><div class="fin-bar-track"><div class="fin-bar-fill" data-width="72.7" style="width:0"></div></div><span class="fin-bar-pct pos">+36,3%</span></div></td>
+            <td>$15.548.243.904</td>
+            <td><div class="fin-part-bar"><div class="fin-bar-track"><div class="fin-bar-fill" data-width="41.3" style="width:0"></div></div><span class="fin-bar-pct pos">+20,6%</span></div></td>
+            <td>$16.369.047.830</td>
+            <td><span class="fin-pill pos">▲ 21,3%</span></td>
+          </tr>
+          <tr>
+            <td class="yr">2025</td>
+            <td>$1.088.143.572</td>
+            <td><div class="fin-part-bar"><div class="fin-bar-track"><div class="fin-bar-fill" data-width="65.1" style="width:0"></div></div><span class="fin-bar-pct pos">+32,6%</span></div></td>
+            <td>$17.753.287.684</td>
+            <td><div class="fin-part-bar"><div class="fin-bar-track"><div class="fin-bar-fill" data-width="28.4" style="width:0"></div></div><span class="fin-bar-pct pos">+14,2%</span></div></td>
+            <td>$18.841.431.256</td>
+            <td><span class="fin-pill pos">▲ 15,1%</span></td>
+          </tr>
+          <tr>
+            <td class="yr">2026</td>
+            <td>$1.570.886.858</td>
+            <td><div class="fin-part-bar"><div class="fin-bar-track"><div class="fin-bar-fill" data-width="88.7" style="width:0"></div></div><span class="fin-bar-pct pos">+44,4%</span></div></td>
+            <td>$14.135.097.471</td>
+            <td><div class="fin-part-bar"><div class="fin-bar-track"><div class="fin-bar-fill neg" data-width="40.8" style="width:0"></div></div><span class="fin-bar-pct neg">−20,4%</span></div></td>
+            <td>$15.705.984.329</td>
+            <td><span class="fin-pill neg">▼ 16,6%</span></td>
+          </tr>
+          <tr class="proj">
+            <td class="yr">2027<span class="fin-tag-proj">Proyectado</span></td>
+            <td>$2.167.823.863</td>
+            <td><div class="fin-part-bar"><div class="fin-bar-track"><div class="fin-bar-fill" data-width="76" style="width:0"></div></div><span class="fin-bar-pct pos">+38,0%</span></div></td>
+            <td>$20.009.612.274</td>
+            <td><div class="fin-part-bar"><div class="fin-bar-track"><div class="fin-bar-fill" data-width="83.1" style="width:0"></div></div><span class="fin-bar-pct pos">+41,6%</span></div></td>
+            <td>$22.177.436.137</td>
+            <td><span class="fin-pill pos">▲ 41,2%</span></td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td>Acumulado 2024–2027</td>
+            <td>$5.647.658.219</td>
+            <td><span class="fin-pill pos">TCAC 38,2%</span></td>
+            <td>$67.446.241.333</td>
+            <td><span class="fin-pill pos">TCAC 8,8%</span></td>
+            <td>$73.093.899.552</td>
+            <td><span class="fin-pill pos">TCAC 10,7%</span></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <p class="fin-note">Var. = variación porcentual frente al año anterior. TCAC = tasa de crecimiento anual compuesta 2024→2027. Fuente: Anexos Presupuesto de Gastos 2027, IDTRACESAR.</p>
+
+  </div>
+</section>
+
+
 <section id="COMPROMISO">
-<h3 class="reveal" style="text-align:center;margin-bottom:2rem;">5.  EL COMPROMISO - ¿Qué debe asumir cada territorio desde mañana?</h3#co>
+<h3 class="reveal" style="text-align:center;margin-bottom:2rem;">6.  EL COMPROMISO - ¿Qué debe asumir cada territorio desde mañana?</h3>
   <div class="video-thumb-card reveal video-trigger" data-video-id="MkTZDS5W2pU" data-delay="300">
   <div class="vt-img-wrap">
     <img src="Imagenes/Campañas de Seguridad Vial/Meta Cero/Copia de IMG_2998.JPG" alt="Video reporte de siniestralidad">
@@ -2668,7 +2830,7 @@ function initAllCharts() {
     new Chart(document.getElementById('chartMeses'), { type: 'bar', data: { labels: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'], datasets: [{ type: 'bar', label: 'Comparendos', data: [6488, 3782, 3607, 4357, 3072, 2163, 1705, 1685, 1336, 1147, 1070, 3703], backgroundColor: ctx=>{const v=ctx.raw; if(v===6488)return COL.verde; if(v===1070)return COL.fucsia; return COL.verdeClaro+'cc';}, borderRadius: 8, order: 2 },{ type: 'line', label: 'Tendencia', data: [6488, 3782, 3607, 4357, 3072, 2163, 1705, 1685, 1336, 1147, 1070, 3703], borderColor: COL.fucsia, borderWidth: 2.5, pointBackgroundColor: COL.fucsia, fill: false, order: 1, datalabels:{display:false} }] }, options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false},datalabels:{display:ctx=>ctx.datasetIndex===0,anchor:'end',align:'top',formatter:v=>v.toLocaleString('es-CO'),font:{family:'Montserrat',weight:'700',size:10},color:COL.negro}}, scales:{x:{grid:{display:false}},y:{beginAtZero:true}} } });
   }
 
-  /* --- Financiera --- */
+  /* --- Financiera (legado) --- */
   if(document.getElementById('chartEvolucion')){
     new Chart(document.getElementById('chartEvolucion'), { type: 'bar', data: { labels: ['2022', '2023', '2024', '2025'], datasets: [{ type: 'bar', data: [9407.9, 14194.4, 18004.6, 20315.1], backgroundColor: ['#61d97e', '#61d97e', '#3cae59', COL.verde], borderRadius: {topLeft:12,topRight:12}, order: 2 },{ type: 'line', data: [9407.9, 14194.4, 18004.6, 20315.1], borderColor: COL.fucsia, borderDash: [6,4], borderWidth: 2.5, pointBackgroundColor: COL.fucsia, fill: false, order: 1 }] }, options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false},datalabels:{display:false}}, scales:{x:{grid:{display:false}},y:{display:false,max:25000}} }, plugins: [{ id:'cdl', afterDatasetsDraw(chart){ const {ctx,data}=chart; const ds=chart.getDatasetMeta(1); ds.data.forEach((p,i)=>{ let lbl=''; if(i===0)lbl='$ 9.407'; else{ const prev=data.datasets[1].data[i-1]; const curr=data.datasets[1].data[i]; lbl='↑ '+((curr-prev)/prev*100).toFixed(0)+'%'; } ctx.save(); ctx.font='700 13px Montserrat, sans-serif'; ctx.fillStyle=COL.negro; ctx.textAlign='center'; ctx.fillText(lbl,p.x,p.y-14); ctx.restore(); }); } }] });
   }
@@ -2752,13 +2914,11 @@ function initAllCharts() {
             beginAtZero:true,
             max:200,
             grid:{color:'rgba(0,0,0,.06)'},
-            // 👇 Subimos el tamaño de los números del eje Y (de 11 a 14)
             ticks:{callback:v=>v+'%', font:{family:'Poppins',size:10}},
             border:{display:false}
           },
           x:{
             grid:{display:false},
-            // 👇 AQUÍ ESTÁ LA MAGIA. Sube el size de las etiquetas del eje X (ej: de 10 a 14 o 16)
             ticks:{maxRotation:0, minRotation:0, font:{family:'Poppins',size:10}}, 
             border:{display:false}
           }
@@ -2842,50 +3002,25 @@ if(document.readyState === 'loading'){ document.addEventListener('DOMContentLoad
 
 // --- FUNCIONALIDAD DE AVANCE PAULATINO ---
 document.addEventListener('DOMContentLoaded', () => {
-  
-  // 1. Definimos cuánto queremos avanzar por cada clic.
-  // window.innerHeight equivale al 100% de la altura de la pantalla visible.
-  // Multiplicarlo por 0.8 (80%) es un "truco" de UX para que siempre quede 
-  // un poco del contenido anterior visible y el usuario no pierda el contexto.
-  // Si prefieres una medida fija (tipo "15 cm"), puedes cambiar esto por un número como 400.
   const getScrollStep = () => window.innerHeight * 0.93; 
 
-  // 2. Eventos para los botones flotantes
   document.getElementById('nextSlide').addEventListener('click', () => {
-    window.scrollBy({ 
-      top: getScrollStep(), 
-      left: 0, 
-      behavior: 'smooth' 
-    });
+    window.scrollBy({ top: getScrollStep(), left: 0, behavior: 'smooth' });
   });
 
   document.getElementById('prevSlide').addEventListener('click', () => {
-    window.scrollBy({ 
-      top: -getScrollStep(), 
-      left: 0, 
-      behavior: 'smooth' 
-    });
+    window.scrollBy({ top: -getScrollStep(), left: 0, behavior: 'smooth' });
   });
 
-  // 3. Soporte para avanzar/retroceder con las flechas del teclado
   document.addEventListener('keydown', (e) => {
-    // Si la pantalla tiene campos de texto, evitamos bloquearlos
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
 
     if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
-      e.preventDefault(); // Evita el salto brusco nativo del navegador
-      window.scrollBy({ 
-        top: getScrollStep(), 
-        left: 0, 
-        behavior: 'smooth' 
-      });
+      e.preventDefault();
+      window.scrollBy({ top: getScrollStep(), left: 0, behavior: 'smooth' });
     } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
       e.preventDefault();
-      window.scrollBy({ 
-        top: -getScrollStep(), 
-        left: 0, 
-        behavior: 'smooth' 
-      });
+      window.scrollBy({ top: -getScrollStep(), left: 0, behavior: 'smooth' });
     }
   });
 });
@@ -2922,7 +3057,7 @@ document.addEventListener('DOMContentLoaded', () => {
             maintainAspectRatio:false,
             plugins:{
               legend:{display:false},
-              datalabels: labelsConfig // Aquí aplicamos la configuración
+              datalabels: labelsConfig
             },
             scales:{
               x:{display:false, max:55},
@@ -2960,7 +3095,7 @@ document.addEventListener('DOMContentLoaded', () => {
             maintainAspectRatio:false,
             plugins:{
               legend:{display:false},
-              datalabels: labelsConfig // Aquí aplicamos la configuración
+              datalabels: labelsConfig
             },
             scales:{
               x:{display:false, max:20},
@@ -2987,13 +3122,11 @@ const ytModal = document.getElementById('ytModal');
 const ytContainer = document.getElementById('ytContainer');
 const ytClose = document.getElementById('ytClose');
 
-// Función para cerrar y limpiar iframe
 const closeVideo = () => {
   ytModal.classList.remove('active');
   setTimeout(() => { ytContainer.innerHTML = ''; }, 300);
 };
 
-// Asignar eventos a las tarjetas de video
 document.querySelectorAll('.video-trigger').forEach(trigger => {
   trigger.addEventListener('click', () => {
     const videoId = trigger.getAttribute('data-video-id');
@@ -3002,7 +3135,6 @@ document.querySelectorAll('.video-trigger').forEach(trigger => {
   });
 });
 
-// Eventos de cierre
 ytClose.addEventListener('click', closeVideo);
 ytModal.addEventListener('click', (e) => {
   if (e.target === ytModal) closeVideo();
@@ -3010,9 +3142,104 @@ ytModal.addEventListener('click', (e) => {
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && ytModal.classList.contains('active')) closeVideo();
 });
+</script>
 
+<!-- ============================================================
+     CHART.JS · PROYECCIÓN FINANCIERA 2027
+     ============================================================ -->
+<script>
+(function initFinanciera2027(){
+  if (typeof Chart === 'undefined') { return setTimeout(initFinanciera2027, 150); }
+  if (typeof ChartDataLabels !== 'undefined') Chart.register(ChartDataLabels);
 
+  const css = getComputedStyle(document.documentElement);
+  const C = {
+    verde:      css.getPropertyValue('--verde').trim()       || '#009027',
+    verdeClaro: css.getPropertyValue('--verde-claro').trim() || '#00B029',
+    fucsia:     css.getPropertyValue('--fucsia').trim()      || '#FF0793',
+    negro:      css.getPropertyValue('--negro').trim()       || '#0A0A0A',
+    grid:       '#f0f0f0'
+  };
+  const fmtCOP = n => '$' + Math.round(n).toLocaleString('es-CO');
 
+  /* ---------- Dona: composición de ingresos 2027 ---------- */
+  const elDona = document.getElementById('chartIngresos2027');
+  if (elDona) {
+    const ingresos = [20009612274, 2167823863, 1447464473];
+    const total = ingresos.reduce((a, b) => a + b, 0);
+    new Chart(elDona, {
+      type: 'doughnut',
+      data: {
+        labels: ['Multas de tránsito', 'Derechos de tránsito', 'Transferencias funcionamiento'],
+        datasets: [{ data: ingresos, backgroundColor: [C.fucsia, C.verde, C.verdeClaro], borderWidth: 0, hoverOffset: 8 }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false, cutout: '62%',
+        plugins: {
+          legend: { position: 'bottom', labels: { usePointStyle: true, font: { family: 'Poppins', size: 11 } } },
+          tooltip: {
+            backgroundColor: 'rgba(10,10,10,.92)', padding: 10, cornerRadius: 8,
+            callbacks: { label: ctx => ` ${fmtCOP(ctx.raw)} (${(ctx.raw / total * 100).toFixed(1).replace('.', ',')}%)` }
+          },
+          datalabels: {
+            color: '#fff', font: { family: 'Montserrat', weight: '800', size: 14 },
+            formatter: v => { const p = v / total * 100; return p >= 5 ? p.toFixed(1).replace('.', ',') + '%' : ''; }
+          }
+        }
+      }
+    });
+  }
+
+  /* ---------- Barras + línea: histórico de recaudo por multas (M COP) ---------- */
+  const elHist = document.getElementById('chartHistoricoRecaudo');
+  if (elHist) {
+    const years = ['2022', '2023', '2024', '2025', '2026', '2027 (Proy.)'];
+    const multasM = [8226.173, 12889.366, 15548.244, 17753.288, 14135.097, 20009.612];
+    const barColors = multasM.map((_, i) => i === multasM.length - 1 ? C.fucsia : C.verde);
+    new Chart(elHist, {
+      data: {
+        labels: years,
+        datasets: [
+          {
+            type: 'bar', label: 'Recaudo multas', data: multasM,
+            backgroundColor: barColors, borderRadius: 10, maxBarThickness: 64, order: 2
+          },
+          {
+            type: 'line', label: 'Tendencia', data: multasM,
+            borderColor: C.negro, borderWidth: 2, borderDash: [6, 4], tension: .3,
+            pointBackgroundColor: C.negro, pointRadius: 4, fill: false, order: 1,
+            datalabels: { display: false }
+          }
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        layout: { padding: { top: 28 } },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: 'rgba(10,10,10,.92)', padding: 10, cornerRadius: 8,
+            callbacks: { label: ctx => ` $${Math.round(ctx.raw).toLocaleString('es-CO')} M` }
+          },
+          datalabels: {
+            display: ctx => ctx.datasetIndex === 0,
+            anchor: 'end', align: 'top', color: C.negro,
+            font: { family: 'Montserrat', weight: '800', size: 11 },
+            formatter: v => '$' + Math.round(v).toLocaleString('es-CO') + ' M'
+          }
+        },
+        scales: {
+          x: { grid: { display: false }, ticks: { font: { family: 'Poppins', size: 11 } } },
+          y: {
+            beginAtZero: true, grid: { color: C.grid }, border: { display: false },
+            ticks: { font: { family: 'Poppins', size: 10 }, callback: v => '$' + v.toLocaleString('es-CO') }
+          }
+        },
+        animation: { duration: 1000, easing: 'easeOutQuart' }
+      }
+    });
+  }
+})();
 </script>
 
 <img src="Imagenes/MarcaAgua.jpg" class="watermark-global" alt="Logo Rendición de Cuentas">
