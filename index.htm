@@ -27,7 +27,7 @@ nav .in{max-width:1200px;margin:auto;padding:.8rem 1.5rem;display:flex;justify-c
 .links a{font-size:.82rem;font-weight:500;color:var(--gris-700);padding:.45rem .75rem;border-radius:8px;text-decoration:none}
 .links a:hover{color:var(--verde);background:#00902712}
 @media(max-width:820px){.links a{font-size:.7rem;padding:.3rem .45rem}.logo{display:none}}
-.hero{min-height:100vh;display:flex;align-items:center;padding:7rem 1.5rem 4rem;background:radial-gradient(circle at 85% 20%,#FF079316,transparent 50%),radial-gradient(circle at 15% 80%,#00B02920,transparent 55%),linear-gradient(180deg,#fff,#FAFBF9)}
+.hero{min-height:100vh;display:flex;align-items:center;padding:7rem 1.5rem 4rem;--hero-img:url('Imagenes/Portada/_MG_9712 (1).jpg');background:linear-gradient(90deg,#fffffff2 0%,#ffffffd9 45%,#ffffff59 100%),radial-gradient(circle at 85% 20%,#FF079326,transparent 50%),radial-gradient(circle at 15% 80%,#00B02926,transparent 55%),var(--hero-img) center/cover no-repeat}
 .hero h1 .a{color:var(--fucsia)}.hero p.l{font-size:1.2rem;color:var(--gris-700);max-width:640px;margin:1.4rem 0 2rem}
 .btn{display:inline-block;padding:.9rem 1.6rem;border-radius:99px;background:var(--verde);color:#fff;font:700 .9rem 'Montserrat';text-decoration:none;transition:.25s}
 .btn:hover{background:var(--fucsia);transform:translateY(-2px)}
@@ -361,8 +361,8 @@ document.querySelectorAll('[data-yt]').forEach(v=>v.onclick=()=>{mb.innerHTML=`<
 const cl=()=>{m.classList.remove('on');mb.innerHTML=''};
 document.getElementById('x').onclick=cl;m.onclick=e=>{if(e.target===m)cl()};document.onkeydown=e=>{if(e.key==='Escape')cl()};
 
-/* Carrusel indicadoresCesar · 5 s */
-const IND=['indicadoresCesar/1.jpg','indicadoresCesar/2.jpg','indicadoresCesar/3.jpg'];
+/* Carrusel · 5 s */
+const IND=['Imagenes/Portada/siniestralidadCesar 1.jpg','Imagenes/Portada/siniestralidadCesar 2.jpg','Imagenes/Portada/siniestralidadCesar 1.jpg'];
 (()=>{const c=document.getElementById('car'),d=document.getElementById('cdots'),b=document.getElementById('cbar');let i=0,t;
 const im=IND.map((s,k)=>{const e=new Image();e.src=encodeURI(s);e.alt='Indicadores del Cesar '+(k+1);if(!k)e.className='on';c.insertBefore(e,d);return e});
 const ds=IND.map((_,k)=>{const x=document.createElement('button');x.setAttribute('aria-label','Imagen '+(k+1));x.onclick=()=>{go(k);play()};d.appendChild(x);return x});
