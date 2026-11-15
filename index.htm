@@ -388,7 +388,7 @@ const cl=()=>{m.classList.remove('on');mb.innerHTML=''};
 document.getElementById('x').onclick=cl;m.onclick=e=>{if(e.target===m)cl()};document.onkeydown=e=>{if(e.key==='Escape')cl()};
 
 /* Carrusel · 5 s */
-const IND=['Imagenes/Portada/siniestralidadCesar1.jpg','Imagenes/Portada/siniestralidadCesar2.jpg','Imagenes/Portada/siniestralidadCesar1.jpg'];
+const IND=['Imagenes/Portada/sineistralidadCesar1.jpg','Imagenes/Portada/sineistralidadCesar2.jpg','Imagenes/Portada/sineistralidadCesar1.jpg'];
 (()=>{const c=document.getElementById('car'),d=document.getElementById('cdots'),b=document.getElementById('cbar');let i=0,t;
 const im=IND.map((s,k)=>{const e=new Image();e.src=encodeURI(s);e.alt='Indicadores del Cesar '+(k+1);if(!k)e.className='on';c.insertBefore(e,d);return e});
 const ds=IND.map((_,k)=>{const x=document.createElement('button');x.setAttribute('aria-label','Imagen '+(k+1));x.onclick=()=>{go(k);play()};d.appendChild(x);return x});
