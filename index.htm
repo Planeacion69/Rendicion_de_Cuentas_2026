@@ -67,16 +67,16 @@ footer{background:var(--negro);color:#fff9;text-align:center;padding:2.5rem 1.5r
 .rev{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s}.rev.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.rev{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
 
-/* CARRUSEL INDICADORES */
-.car{position:relative;max-width:1100px;margin:auto;aspect-ratio:16/9;border-radius:var(--r);overflow:hidden;background:var(--negro);box-shadow:var(--shm)}
-.car img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity 1s ease}
-.car img.on{opacity:1}
-.car .bar{position:absolute;left:0;bottom:0;height:4px;width:0;background:var(--fucsia)}
-.car .bar.run{width:100%;transition:width 5s linear}
-.car .dots{position:absolute;bottom:14px;left:0;right:0;display:flex;justify-content:center;gap:8px}
-.car .dots button{width:10px;height:10px;border-radius:50%;border:0;background:#fff8;cursor:pointer;transition:.3s}
-.car .dots button.on{background:var(--fucsia);transform:scale(1.35)}
-@media(prefers-reduced-motion:reduce){.car img{transition:none}}
+/* INDICADORES · grilla con zoom */
+.ind-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:1.4rem}
+.ind-grid figure:first-child{grid-column:1/-1}
+.ind-grid figure{position:relative;margin:0;border-radius:var(--r);overflow:hidden;background:#fff;box-shadow:var(--sh);border:1px solid #0000000d;cursor:zoom-in;transition:box-shadow .3s,border-color .3s}
+.ind-grid figure:hover,.ind-grid figure:focus-visible{box-shadow:var(--shm);border-color:var(--verde);outline:none}
+.ind-grid img{width:100%;height:auto}
+.ind-grid .zm{position:absolute;right:14px;bottom:14px;display:flex;align-items:center;gap:.4rem;padding:.4rem .8rem;border-radius:99px;background:#000a;color:#fff;font:600 .72rem 'Montserrat';opacity:0;transform:translateY(6px);transition:.25s}
+.ind-grid figure:hover .zm,.ind-grid figure:focus-visible .zm{opacity:1;transform:none}
+@media(hover:none){.ind-grid .zm{opacity:1;transform:none}}
+.ind-empty{padding:2rem;text-align:center;color:#777;font-size:.9rem}
 /* POAI · TECNOLOGÍA Y GALERÍA */
 .sh3{margin:3.5rem 0 1.2rem;font-size:1.4rem}
 .card a.go{display:inline-block;margin-top:.8rem;font:700 .78rem 'Montserrat';color:var(--verde);text-decoration:none}
@@ -289,6 +289,8 @@ footer{background:var(--negro);color:#fff9;text-align:center;padding:2.5rem 1.5r
 <div class="collage-heroe"><div class="img-grande"><img src="Imagenes/Campañas de Seguridad Vial/Meta Cero/Copia de IMG_2998.JPG" alt="Meta Cero"></div><div><img src="Imagenes/Campañas de Seguridad Vial/Meta Cero/IMG_2981.JPG" alt=""></div><div><img src="Imagenes/Campañas de Seguridad Vial/Meta Cero/IMG_2989.JPG" alt=""></div></div></div></details>
 <details><summary>⭐ En Festival Vallenato Marcha Bacano y Seguro</summary><div class="acc"><p>Prevención del alcohol al volante y control de la fatiga durante la máxima festividad del departamento.</p>
 <div class="collage-heroe"><div class="img-grande"><img src="Imagenes/Campañas de Seguridad Vial/En Festival Vallenato Marcha Bacano y Seguro/Copia de IMG_1405.JPG" alt=""></div><div><img src="Imagenes/Campañas de Seguridad Vial/En Festival Vallenato Marcha Bacano y Seguro/Copia de DVNE7327.JPG" alt=""></div><div><img src="Imagenes/Campañas de Seguridad Vial/En Festival Vallenato Marcha Bacano y Seguro/Copia de IMG_1043.JPG" alt=""></div></div></div></details>
+<details><summary>⭐ Alguien espera por ti</summary><div class="acc"><p>Campaña transversal para fomentar el cuidado constante y la autoprotección en las vías.</p>
+<div class="collage-heroe"><div class="img-grande"><img src="Imagenes/Campañas de Seguridad Vial/Alguien espera por ti/IMG_2477.JPG" alt=""></div><div><img src="Imagenes/Campañas de Seguridad Vial/Alguien espera por ti/IMG_4395.JPG" alt=""></div><div><img src="Imagenes/Campañas de Seguridad Vial/Alguien espera por ti/IMG_4433.JPG" alt=""></div></div></div></details>
 <details><summary>⭐ Patrulleritos Escolares</summary><div class="acc"><p>16 instituciones educativas fortalecidas en sus Planes de Movilidad Escolar.</p>
 <div class="collage-heroe"><div class="img-grande"><img src="Imagenes/Campañas de Seguridad Vial/Patrulleritos Escolares/IMG_2839.JPG" alt=""></div><div><img src="Imagenes/Campañas de Seguridad Vial/Patrulleritos Escolares/IMG_1237.JPG" alt=""></div><div><img src="Imagenes/Campañas de Seguridad Vial/Patrulleritos Escolares/IMG_2990.JPG" alt=""></div></div></div></details>
 
@@ -307,8 +309,8 @@ footer{background:var(--negro);color:#fff9;text-align:center;padding:2.5rem 1.5r
 <div class="card rev"><div class="ic f"><i class="ph-fill ph-motorcycle"></i></div><div class="num f">63%</div><div class="lbl">Motocicletas, línea de mayor volumen</div><div class="sub">1.302 motos · 583 autos · 760 otros</div></div>
 </div>
 <div class="grid g2" style="margin-top:1.4rem">
-<div class="card rev"><h4>Tasa de Mercado · Motos</h4><p class="sub" style="margin-bottom:1rem">Matrículas en el Cesar 2025</p><div class="chartbox"><canvas id="cMo"></canvas></div></div>
-<div class="card rev"><h4>Tasa de Mercado · Autos</h4><p class="sub" style="margin-bottom:1rem">Matrículas en el Cesar 2025</p><div class="chartbox"><canvas id="cAu"></canvas></div></div>
+<div class="card rev"><h4>Market Share · Motos</h4><p class="sub" style="margin-bottom:1rem">Matrículas en el Cesar 2025</p><div class="chartbox"><canvas id="cMo"></canvas></div></div>
+<div class="card rev"><h4>Market Share · Autos</h4><p class="sub" style="margin-bottom:1rem">Matrículas en el Cesar 2025</p><div class="chartbox"><canvas id="cAu"></canvas></div></div>
 </div></div></section>
 
 <section id="ppto2027" class="alt"><div class="wrap">
@@ -362,13 +364,15 @@ footer{background:var(--negro);color:#fff9;text-align:center;padding:2.5rem 1.5r
 <tr><td class="yr">2026</td><td>$1.570.886.858</td><td><div class="fin-part-bar"><div class="fin-bar-track"><div class="fin-bar-fill" data-width="88.7" style="width:0"></div></div><span class="fin-bar-pct pos">+44,4%</span></div></td><td>$14.135.097.471</td><td><div class="fin-part-bar"><div class="fin-bar-track"><div class="fin-bar-fill neg" data-width="40.8" style="width:0"></div></div><span class="fin-bar-pct neg">−20,4%</span></div></td><td>$15.705.984.329</td><td><span class="fin-pill neg">▼ 16,6%</span></td></tr>
 <tr class="proj"><td class="yr">2027<span class="fin-tag-proj">Proyectado</span></td><td>$2.167.823.863</td><td><div class="fin-part-bar"><div class="fin-bar-track"><div class="fin-bar-fill" data-width="76" style="width:0"></div></div><span class="fin-bar-pct pos">+38,0%</span></div></td><td>$20.009.612.274</td><td><div class="fin-part-bar"><div class="fin-bar-track"><div class="fin-bar-fill" data-width="83.1" style="width:0"></div></div><span class="fin-bar-pct pos">+41,6%</span></div></td><td>$22.177.436.137</td><td><span class="fin-pill pos">▲ 41,2%</span></td></tr>
 </tbody>
+<tfoot><tr><td>Acumulado 2024–2027</td><td>$5.647.658.219</td><td><span class="fin-pill pos">TCAC 38,2%</span></td><td>$67.446.241.333</td><td><span class="fin-pill pos">TCAC 8,8%</span></td><td>$73.093.899.552</td><td><span class="fin-pill pos">TCAC 10,7%</span></td></tr></tfoot>
 </table>
 </div>
+<p class="fin-note">Var. = variación porcentual frente al año anterior. TCAC = tasa de crecimiento anual compuesta 2024→2027. Fuente: Anexos Presupuesto de Gastos 2027, IDTRACESAR.</p>
 </div></section>
 
 <section id="indicadores" class="alt"><div class="wrap">
 <div class="head rev"><div class="eyebrow">Indicadores del Cesar</div><h2>El territorio en <span class="v">cifras</span>.</h2></div>
-<div class="car rev" id="car"><div class="dots" id="cdots"></div><div class="bar" id="cbar"></div></div>
+<div class="ind-grid" id="ind"></div>
 </div></section>
 
 <section id="poai"><div class="wrap">
@@ -382,8 +386,8 @@ footer{background:var(--negro);color:#fff9;text-align:center;padding:2.5rem 1.5r
 
 <!-- TECNOLOGÍA Y CONTROL · JUSTIFICACIÓN -->
 <div id="tecno">
-<h3 class="sh3 rev">Panorama Nacional de Inversión en: <span class="v">Tecnología y Control</span></h3>
-<p class="sub rev" style="max-width:760px;margin:-.6rem 0 1.4rem">Sistemas Automáticos, Semiautomáticos y Otros Medios Tecnológicos (SAST).</p>
+<h3 class="sh3 rev">Tecnología y Control: <span class="v">justificación de la inversión</span></h3>
+<p class="sub rev" style="max-width:760px;margin:-.6rem 0 1.4rem">Sistemas Automáticos, Semiautomáticos y Otros Medios Tecnológicos (SAST) · IDTRACESAR.</p>
 
 <div class="grid g4">
 <div class="card rev"><div class="ic"><i class="ph-fill ph-shield-check"></i></div><div class="num" data-c="804">0</div><div class="lbl">Total autorizadas</div><div class="sub">Registro global de la ANSV</div></div>
@@ -411,14 +415,22 @@ footer{background:var(--negro);color:#fff9;text-align:center;padding:2.5rem 1.5r
 <div class="card rev"><span class="ptag">SAST en San Alberto</span><h4>2 puntos (4 equipos) · Ruta Nacional 4514</h4><p class="sub">Tramo vial San Alberto – La Mata. En estos puntos operaron SAST entre noviembre de 2020 y febrero de 2026.</p>
 <div class="chips"><span class="chip">Exceso de velocidad: 90 km/h</span><span class="chip v">SOAT y Revisión Tecnicomecánica</span><span class="chip"><b data-c="7">0</b> víctimas ene–ago 2026</span></div>
 <ul class="tl"><li class="ok"><b>12 FEB 2026</b>Radicación ANSV (SOL0000015204, SOL0000015205)</li><li class="ok"><b>06 MAR 2026</b>Resolución 208 de 2026 (aceptada 2 SAST)</li><li class="ok"><b>30 MAR 2026</b>Resolución 294 de 2026 (aceptada 2 SAST)</li><li><b>16 ABR 2026</b>Inicio solicitud permiso ANI · ocupación franja de retiro</li><li><b>13 AGO 2026</b>Remisión concepto técnico favorable Concesión e interventoría</li><li><b>31 AGO 2026</b>Solicitud aclaración concepto técnico ANI</li><li><b>18 SEP 2026</b>Remisión concepto técnico favorable ajustado</li></ul>
-<p class="sub"><strong>Pasos pendientes:</strong> Resolución autorización ANI → Aprobación pólizas → Instalación de señales → Autorizar cambio de estado ANSV a “operando”.</p></div>
+<p class="sub"><strong>Pasos pendientes:</strong> 1 · Resolución autorización ANI → 2 · Aprobación pólizas → 3 · Instalación de señales → 4 · Autorizar cambio de estado ANSV a “operando”.</p></div>
 
 <div class="card rev"><span class="ptag f">SAST en El Copey</span><h4>2 puntos (4 equipos) · Ruta Nacional 4517</h4><p class="sub">Tramo vial Bosconia – Río Ariguaní · PR 14+930 y PR 33+237.</p>
 <div class="chips"><span class="chip">Exceso de velocidad: 90 km/h</span><span class="chip v">SOAT y Revisión Tecnicomecánica</span></div>
 <ul class="tl"><li class="ok"><b>12 FEB 2026</b>Radicación ANSV</li><li class="ok"><b>17 MAR 2026</b>Resolución 242 de 2026 (aceptada PR 14+930)</li><li class="ok"><b>19 MAR 2026</b>Resolución 255 de 2026 (aceptada PR 33+237)</li><li><b>28 ABR 2026</b>Inicio solicitud permiso ANI · ocupación franja de retiro</li><li><b>28 JUL 2026</b>Remisión concepto técnico favorable Concesión Yuma e Interventoría</li><li class="ok"><b>06 AGO 2026</b>Resolución 20263040010625 · autorización ANI para instalar señales</li><li><b>07 OCT 2026</b>Radicación pólizas ante la ANI</li></ul>
-<p class="sub"><strong>Pasos pendientes:</strong> Aprobación pólizas → Instalación señales → Autorizar cambio a “operando”.</p></div>
+<p class="sub"><strong>Pasos pendientes:</strong> 1 · Aprobación pólizas → 2 · Instalación señales → 3 · Autorizar cambio a “operando”.</p></div>
 </div>
 <p class="sub rev" style="margin-top:1rem">Límite de velocidad determinado mediante la Metodología para establecimiento de velocidad límite según Resolución 20233040025995 de 2023.</p>
+
+<div class="grid g2" style="margin-top:1.4rem">
+<div class="card rev"><div class="ic f"><i class="ph-fill ph-road-horizon"></i></div><div class="num f">855,27 km</div><div class="lbl">Red vial de primer orden en el Cesar</div><div class="sub">Corredores estratégicos nacionales administrados por INVIAS o por la ANI, a cargo de la Nación.</div></div>
+<div class="card rev"><h4>Principales tramos</h4>
+<ul class="tl"><li><b>RN 45 · 278,50 km</b>San Alberto – El Copey</li><li><b>RN 8003 · 103,40 km</b>Valledupar – Bosconia</li><li><b>RN 4516 · 85,50 km</b>Bosconia – Cuatro Vientos – S. Roque</li><li><b>RN 4901 · 72,30 + 72,50 km</b>San Roque – La Jagua – Becerril · Becerril – Codazzi – La Paz</li><li><b>RN 45CS09 · 88,37 km</b>Codazzi – 4 Vientos – Arjona</li></ul>
+<p class="sub">Otros 6 tramos: RN 8004A, RN 8004 (×2), RN 43, RN 70.</p></div>
+</div>
+</div>
 
 <!-- GALERÍA -->
 <div id="galeria">
@@ -540,15 +552,23 @@ document.querySelectorAll('[data-yt]').forEach(v=>v.onclick=()=>{mb.innerHTML=`<
 const cl=()=>{m.classList.remove('on');mb.innerHTML=''};
 document.getElementById('x').onclick=cl;m.onclick=e=>{if(e.target===m)cl()};document.onkeydown=e=>{if(e.key==='Escape')cl()};
 
-/* Carrusel · 5 s */
-const IND=['/Imagenes/Portada/SineistralidadCesar1.jpg','/Imagenes/Portada/SineistralidadCesar2.jpg','/Imagenes/Portada/SineistralidadCesar3.jpg'];
-(()=>{const c=document.getElementById('car'),d=document.getElementById('cdots'),b=document.getElementById('cbar');let i=0,t;
-const im=IND.map((s,k)=>{const e=new Image();e.src=encodeURI(s);e.alt='Indicadores del Cesar '+(k+1);if(!k)e.className='on';c.insertBefore(e,d);return e});
-const ds=IND.map((_,k)=>{const x=document.createElement('button');x.setAttribute('aria-label','Imagen '+(k+1));x.onclick=()=>{go(k);play()};d.appendChild(x);return x});
-function go(k){i=k;im.forEach((e,j)=>e.classList.toggle('on',j===k));ds.forEach((e,j)=>e.classList.toggle('on',j===k));b.classList.remove('run');void b.offsetWidth;b.classList.add('run')}
-function play(){clearInterval(t);t=setInterval(()=>go((i+1)%IND.length),5000)}
-c.onmouseenter=()=>{clearInterval(t);b.classList.remove('run')};c.onmouseleave=()=>{go(i);play()};
-go(0);play()})();
+/* Indicadores · grilla con zoom (omite imágenes inexistentes) */
+const IND=[
+ ['Imagenes/Portada/SineistralidadCesar1.jpg','Imagenes/Portada/SiniestralidadCesar1.jpg','Imagenes/Portada/sineistralidadCesar1.jpg','Imagenes/Portada/siniestralidadCesar1.jpg'],
+ ['Imagenes/Portada/SineistralidadCesar2.jpg','Imagenes/Portada/SiniestralidadCesar2.jpg','Imagenes/Portada/sineistralidadCesar2.jpg','Imagenes/Portada/siniestralidadCesar2.jpg'],
+ ['Imagenes/Portada/SineistralidadCesar3.jpg','Imagenes/Portada/SiniestralidadCesar3.jpg','Imagenes/Portada/sineistralidadCesar3.jpg','Imagenes/Portada/siniestralidadCesar3.jpg']
+];
+(()=>{
+const g=document.getElementById('ind');
+const probe=cands=>new Promise(res=>{let n=0;const e=new Image();e.onload=()=>res(e.src);e.onerror=()=>{++n<cands.length?e.src=encodeURI(cands[n]):res(null)};e.src=encodeURI(cands[0])});
+Promise.all(IND.map(probe)).then(urls=>{
+ const ok=urls.filter(Boolean);
+ if(!ok.length){console.warn('Indicadores: no se encontró ninguna imagen. Rutas probadas:',IND);g.innerHTML='<p class="ind-empty">No se encontraron las imágenes de indicadores (Imagenes/Portada/).</p>';return}
+ g.innerHTML=ok.map((s,k)=>`<figure class="rev" tabindex="0" role="button" aria-label="Ampliar indicador ${k+1}"><img loading="lazy" src="${s}" alt="Indicadores del Cesar ${k+1}"><span class="zm"><i class="ph-fill ph-arrows-out"></i> Ampliar</span></figure>`).join('');
+ const open=f=>{mb.innerHTML=`<img src="${f.querySelector('img').src}" alt="${f.querySelector('img').alt}">`;m.classList.add('on')};
+ g.querySelectorAll('figure').forEach(f=>{io.observe(f);f.onclick=()=>open(f);f.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open(f)}}});
+});
+})();
 
 /* Ranking SAST */
 new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('i').forEach(b=>b.style.width=b.dataset.w/91*100*.78+'%');o.unobserve(e.target)}}),{threshold:.3}).observe(document.getElementById('rank'));
@@ -561,6 +581,7 @@ const G=[
 ['Ingeniería de Tránsito','Intervención Pueblo Bello',BI+'Pueblo Bello/TimePhoto_20251126_121939.jpg'],
 ...['Copia de IMG_2998.JPG','IMG_2981.JPG','IMG_2989.JPG'].map(f=>['Meta Cero','Meta Cero',BC+'Meta Cero/'+f]),
 ...['Copia de IMG_1405.JPG','Copia de DVNE7327.JPG','Copia de IMG_1043.JPG'].map(f=>['Festival Vallenato','En Festival Vallenato Marcha Bacano y Seguro',BC+'En Festival Vallenato Marcha Bacano y Seguro/'+f]),
+...['IMG_2477.JPG','IMG_4395.JPG','IMG_4433.JPG'].map(f=>['Alguien espera por ti','Alguien espera por ti',BC+'Alguien espera por ti/'+f]),
 ...['IMG_2839.JPG','IMG_1237.JPG','IMG_2990.JPG'].map(f=>['Patrulleritos Escolares','Patrulleritos Escolares',BC+'Patrulleritos Escolares/'+f])];
 const gal=document.getElementById('gal'),flt=document.getElementById('flt');
 gal.innerHTML=G.map(([c,t,s])=>`<figure data-c2="${c}"><img loading="lazy" src="${encodeURI(s)}" alt="${t}"><figcaption>${t}</figcaption></figure>`).join('');
