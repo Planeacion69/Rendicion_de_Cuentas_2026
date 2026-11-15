@@ -27,7 +27,6 @@ nav .in{max-width:1200px;margin:auto;padding:.8rem 1.5rem;display:flex;justify-c
 .links a{font-size:.82rem;font-weight:500;color:var(--gris-700);padding:.45rem .75rem;border-radius:8px;text-decoration:none}
 .links a:hover{color:var(--verde);background:#00902712}
 @media(max-width:820px){.links a{font-size:.7rem;padding:.3rem .45rem}.logo{display:none}}
-.hero{min-height:100vh;display:flex;align-items:center;padding:7rem 1.5rem 4rem;--hero-img:url('Imagenes/Portada/_MG_9712 (1).jpg');background:linear-gradient(90deg,#fffffff2 0%,#ffffffd9 45%,#ffffff59 100%),radial-gradient(circle at 85% 20%,#FF079326,transparent 50%),radial-gradient(circle at 15% 80%,#00B02926,transparent 55%),var(--hero-img) center/cover no-repeat}
 .hero h1 .a{color:var(--fucsia)}.hero p.l{font-size:1.2rem;color:var(--gris-700);max-width:640px;margin:1.4rem 0 2rem}
 .btn{display:inline-block;padding:.9rem 1.6rem;border-radius:99px;background:var(--verde);color:#fff;font:700 .9rem 'Montserrat';text-decoration:none;transition:.25s}
 .btn:hover{background:var(--fucsia);transform:translateY(-2px)}
@@ -155,6 +154,75 @@ footer{background:var(--negro);color:#fff9;text-align:center;padding:2.5rem 1.5r
 #financiera .fin-note{font-size:.75rem;color:#888;margin-top:-32px;margin-bottom:8px;}
 @media (max-width:980px){#financiera .fin-charts-grid,#financiera .fin-gastos-grid{grid-template-columns:1fr;}}
 @media (max-width:720px){#financiera .fin-gasto-card{flex-direction:column;} #financiera .fin-gasto-value{font-size:1.2rem;} #financiera .fin-chart-canvas{height:280px;} #financiera .fin-note{margin-top:-24px;}}
+
+/* ===== DETALLE TERRITORIAL · adscrito a #galeria ===== */
+#muniDet{--gris-500:#777;--tf:.25s cubic-bezier(.4,0,.2,1);margin-top:3.5rem}
+#muniDet.hide{display:none}
+#muniDet .muni-detail-head{max-width:680px;margin-bottom:2rem}
+#muniDet .eyebrow{display:inline-flex;align-items:center;gap:.6rem}
+#muniDet .eyebrow::before{content:"";width:32px;height:2px;background:var(--verde)}
+#muniDet .muni-detail-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;align-items:stretch}
+#muniDet .muni-detail{display:flex;flex-direction:column;background:#fff;border:1px solid var(--gris-300);border-radius:var(--r);padding:1.6rem;box-shadow:var(--sh);transition:opacity .7s,transform .7s,box-shadow var(--tf),border-color var(--tf)}
+#muniDet .muni-detail:hover{box-shadow:var(--shm);border-color:var(--verde)}
+#muniDet .md-img-container{height:180px;margin-bottom:1.3rem;border-radius:12px;overflow:hidden;background:var(--gris-100);cursor:zoom-in}
+#muniDet .md-img-container img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+#muniDet .muni-detail:hover .md-img-container img{transform:scale(1.05)}
+#muniDet .md-head{display:flex;align-items:center;gap:1rem;margin-bottom:1.2rem}
+#muniDet .md-flag{width:6px;height:44px;border-radius:3px;flex-shrink:0}
+#muniDet .md-head h4{font-size:1.3rem;margin-bottom:.15rem}
+#muniDet .md-sub{font-size:.78rem;color:var(--gris-500);font-weight:500}
+#muniDet .md-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(92px,1fr));gap:.7rem;margin-bottom:1.3rem}
+#muniDet .md-st{background:var(--gris-100);border-radius:10px;padding:.8rem .5rem;text-align:center}
+#muniDet .md-v{font:900 1.35rem/1 'Montserrat',sans-serif;letter-spacing:-.02em;color:var(--negro)}
+#muniDet .md-l{font-size:.68rem;font-weight:600;color:var(--gris-700);margin-top:.35rem}
+#muniDet .md-ie{margin-top:auto}
+#muniDet .md-ie strong{display:block;margin-bottom:.7rem;font:700 .78rem 'Montserrat',sans-serif;letter-spacing:.05em;text-transform:uppercase;color:var(--verde)}
+#muniDet .md-ie ul{list-style:none;display:grid;gap:.45rem}
+#muniDet .md-ie li{position:relative;padding-left:1rem;font-size:.85rem;line-height:1.5;color:var(--gris-700)}
+#muniDet .md-ie li::before{content:"";position:absolute;left:0;top:.5rem;width:6px;height:6px;border-radius:50%;background:var(--verde)}
+@media(max-width:820px){#muniDet .muni-detail-grid{grid-template-columns:1fr}}
+@media(max-width:480px){#muniDet .md-stats{grid-template-columns:repeat(2,1fr)}}
+
+/* ===== HERO (restaurado) ===== */
+.hero{--t-fast:.25s cubic-bezier(.4,0,.2,1);--gris-500:#777;min-height:100vh;position:relative;display:flex;align-items:center;padding:120px 1.5rem 80px;background-image:radial-gradient(circle at 85% 20%,rgba(255,7,147,.12) 0%,transparent 50%),radial-gradient(circle at 15% 80%,rgba(0,176,41,.15) 0%,transparent 55%),linear-gradient(rgba(255,255,255,.15),rgba(255,255,255,.85)),url('Imagenes/Portada/IMG_2686.JPG');background-size:cover;background-position:center;background-attachment:fixed;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(0,144,39,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,144,39,.04) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse at center,#000 30%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse at center,#000 30%,transparent 80%);pointer-events:none}
+.hero-content{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.2fr .8fr;gap:4rem;align-items:center;position:relative;z-index:2;width:100%}
+.hero .year-badge{display:inline-flex;align-items:center;gap:.6rem;background:#fff;border:1px solid var(--gris-300);padding:.45rem 1rem;border-radius:999px;font-size:.8rem;font-weight:600;color:var(--gris-700);box-shadow:var(--sh);margin-bottom:1.4rem}
+.year-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--verde);box-shadow:0 0 0 4px rgba(0,144,39,.18)}
+.hero h1{margin-bottom:1.4rem;font-size:clamp(2.4rem,6vw,4.8rem);line-height:1.1}
+.hero h1 .accent{color:var(--fucsia);position:relative;display:inline-block}
+.hero h1 .accent::after{content:"";position:absolute;left:0;right:0;bottom:.05em;height:.16em;background:rgba(255,7,147,.35);z-index:-1;border-radius:4px}
+.hero-lead{max-width:560px;margin-bottom:2rem}
+.hero-cta{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:3rem}
+.hero .btn{display:inline-flex;align-items:center;gap:.6rem;padding:.95rem 1.6rem;border:0;cursor:pointer;transition:all var(--t-fast)}
+.hero .btn-primary{background:var(--verde);color:#fff;box-shadow:0 8px 20px rgba(0,144,39,.32)}
+.hero .btn-primary:hover{background:var(--fucsia);box-shadow:0 12px 28px rgba(255,7,147,.4);transform:translateY(-2px)}
+.hero .btn-ghost{background:transparent;color:var(--negro);border:1.5px solid var(--negro)}
+.hero .btn-ghost:hover{background:var(--negro);color:#fff;transform:translateY(-2px)}
+.hero .arrow{transition:transform var(--t-fast)}.hero .btn:hover .arrow{transform:translateX(4px)}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;padding-top:2rem;border-top:1px solid var(--gris-300)}
+.stat-mini .num{font-weight:900;font-size:2.4rem;color:var(--verde);line-height:1;letter-spacing:-.03em}
+.stat-mini .num .pct{color:var(--fucsia);font-size:1.8rem}
+.stat-mini .lbl{font-size:.78rem;font-weight:500;color:var(--gris-700);margin-top:.5rem;line-height:1.4}
+.hero-visual{position:relative;height:520px}
+.hv-card{position:absolute;background:#fff;border-radius:var(--r);box-shadow:var(--shm);padding:1.4rem;display:flex;flex-direction:column;gap:.6rem}
+.hv-card .icn{width:48px;height:48px;border-radius:12px;display:grid;place-items:center;font-size:1.4rem}
+.hv-card .v{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.9rem;line-height:1;letter-spacing:-.02em}
+.hv-card .l{font-size:.78rem;color:var(--gris-700);font-weight:500}
+.hv-1{top:0;left:0;width:200px;animation:floatA 6s ease-in-out infinite}.hv-1 .icn{background:rgba(0,144,39,.12);color:var(--verde)}.hv-1 .v{color:var(--verde)}
+.hv-2{top:120px;right:0;width:220px;animation:floatB 7s ease-in-out infinite}.hv-2 .icn{background:rgba(255,7,147,.12);color:var(--fucsia)}.hv-2 .v{color:var(--fucsia)}
+.hv-3{bottom:60px;left:30px;width:240px;animation:floatA 8s ease-in-out infinite reverse}.hv-3 .icn{background:rgba(0,176,41,.14);color:var(--verde-claro)}.hv-3 .v{color:var(--verde-claro)}
+.hv-4{bottom:0;right:20px;width:180px;animation:floatB 6.5s ease-in-out infinite reverse}.hv-4 .icn{background:var(--negro);color:#fff}
+.hv-blob{position:absolute;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(0,144,39,.18) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);filter:blur(20px);z-index:-1;animation:pulse 4s ease-in-out infinite}
+@keyframes floatA{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@keyframes floatB{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes pulse{0%,100%{opacity:.6}50%{opacity:1}}
+@keyframes heroIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.hero .reveal{animation:heroIn .8s cubic-bezier(.4,0,.2,1) both}
+.hero .reveal[data-delay="100"]{animation-delay:.1s}.hero .reveal[data-delay="200"]{animation-delay:.2s}.hero .reveal[data-delay="300"]{animation-delay:.3s}.hero .reveal[data-delay="400"]{animation-delay:.4s}
+@media(max-width:980px){.hero-content{grid-template-columns:1fr;gap:2.5rem}.hero-visual{height:380px}}
+@media(max-width:720px){.hero{padding:110px 1.2rem 60px;background-attachment:scroll}.hero-stats{grid-template-columns:1fr;gap:1.5rem}.stat-mini{padding-bottom:1.5rem;border-bottom:1px solid var(--gris-300)}.stat-mini:last-child{border:0}}
+@media(prefers-reduced-motion:reduce){.hero .reveal,.hv-card,.hv-blob{animation:none}}
 </style>
 </head>
 <body>
@@ -162,7 +230,7 @@ footer{background:var(--negro);color:#fff9;text-align:center;padding:2.5rem 1.5r
 <div class="links"><a href="#cierre">1. Cierre 2026</a><a href="#gestion">2. Gestión</a><a href="#comercial">3. Comercial</a><a href="#ppto2027">4. Presupuesto 2027</a><a href="#financiera">4.1Proyección Financiera</a><a href="#poai">5. POAI 2027</a><a href="#tecno">6. Tecnología y Control</a></div></div></nav>
 
 
-<header class="hero" id="top" style="background-image: 'Imagenes/Portada/_MG_9712 (1).jpg'; background-size: cover; background-position: center;">
+<header class="hero" id="top">
   <div class="hero-content">
     <div class="hero-text">
       <div class="year-badge reveal"><span class="dot"></span> · Asamblea Departamental</div>
@@ -369,6 +437,103 @@ footer{background:var(--negro);color:#fff9;text-align:center;padding:2.5rem 1.5r
 <h3 class="sh3 rev">Evidencia en territorio: <span class="v">inversión en ejecución</span></h3>
 <div class="filters rev" id="flt"></div>
 <div class="gal" id="gal"></div>
+
+<!-- DETALLE TERRITORIAL · se muestra con "Todas" e "Ingeniería de Tránsito" -->
+<div id="muniDet">
+  <div class="muni-detail-head rev">
+    <div class="eyebrow">Detalle Territorial</div>
+    <h2>Señalización por <span class="v">municipio</span>.</h2>
+  </div>
+  <div class="muni-detail-grid">
+
+    <div class="muni-detail rev">
+      <div class="md-img-container"><img loading="lazy" src="Imagenes/Intervenciones a la infraestructura/El Copey/IMG_4215.JPG.jpeg" alt="Intervenciones en El Copey"></div>
+      <div class="md-head"><div class="md-flag" style="background:var(--verde)"></div>
+        <div><h4>El Copey</h4><span class="md-sub">Urbano · Rural · Corregimientos</span></div></div>
+      <div class="md-stats">
+        <div class="md-st"><div class="md-v">138</div><div class="md-l">ml Reductores</div></div>
+        <div class="md-st"><div class="md-v">82</div><div class="md-l">Señales vert.</div></div>
+        <div class="md-st"><div class="md-v">1.200</div><div class="md-l">m² demarcac.</div></div>
+        <div class="md-st"><div class="md-v">184</div><div class="md-l">ml demarcación</div></div>
+      </div>
+      <div class="md-ie"><strong>Sitios intervenidos (7 I.E. y 2 tramos):</strong>
+        <ul><li>I.E. Agrícola sedes El Sena, San Martín y Las Mercedes</li><li>Corregimientos: Caracolicito · Paloquemao · Chimila · San Francisco</li><li>2 Zonas residenciales</li></ul></div>
+    </div>
+
+    <div class="muni-detail rev">
+      <div class="md-img-container"><img loading="lazy" src="Imagenes/Intervenciones a la infraestructura/San Diego/TimePhoto_20251221_110117.jpeg" alt="Intervenciones en San Diego"></div>
+      <div class="md-head"><div class="md-flag" style="background:var(--fucsia)"></div>
+        <div><h4>San Diego</h4><span class="md-sub">Urbano · Corregimiento Nuevas Flores</span></div></div>
+      <div class="md-stats">
+        <div class="md-st"><div class="md-v">292</div><div class="md-l">ml Reductores</div></div>
+        <div class="md-st"><div class="md-v">249</div><div class="md-l">Señales vert.</div></div>
+        <div class="md-st"><div class="md-v">1428</div><div class="md-l">m² demarcac.</div></div>
+        <div class="md-st"><div class="md-v">1058</div><div class="md-l">ml demarcac.</div></div>
+        <div class="md-st"><div class="md-v">8</div><div class="md-l">m² urbanismo</div></div>
+      </div>
+      <div class="md-ie"><strong>Sitios intervenidos (7 I.E. y 9 tramos):</strong>
+        <ul><li>CDI Horas Felices · Sagrado Corazón de Jesús · Pasitos Felices</li><li>I.E. Nuevas Flores (Primaria y Bachillerato)</li><li>6 zonas residenciales</li></ul></div>
+    </div>
+
+    <div class="muni-detail rev">
+      <div class="md-img-container"><img loading="lazy" src="Imagenes/Intervenciones a la infraestructura/Pueblo Bello/TimePhoto_20251126_121939.jpg" alt="Intervenciones en Pueblo Bello"></div>
+      <div class="md-head"><div class="md-flag" style="background:var(--verde-claro)"></div>
+        <div><h4>Pueblo Bello</h4><span class="md-sub">Zona urbana e instituciones educativas</span></div></div>
+      <div class="md-stats">
+        <div class="md-st"><div class="md-v">65</div><div class="md-l">ml Reductores</div></div>
+        <div class="md-st"><div class="md-v">27</div><div class="md-l">Señales vert.</div></div>
+        <div class="md-st"><div class="md-v">659</div><div class="md-l">m² demarcac.</div></div>
+        <div class="md-st"><div class="md-v">590</div><div class="md-l">ml demarcación</div></div>
+      </div>
+      <div class="md-ie"><strong>Instituciones Educativas (4):</strong>
+        <ul><li>I.E. Magola Hernández Pardo</li><li>I.E. Dorotea Adamet</li><li>Instituto Agrícola</li><li>I.E. Jorge Eliezer</li></ul></div>
+    </div>
+
+    <div class="muni-detail rev">
+      <div class="md-img-container"><img loading="lazy" src="Imagenes/Intervenciones a la infraestructura/Manaure/Copia de IMG_9498.JPG" alt="Intervenciones en Manaure"></div>
+      <div class="md-head"><div class="md-flag" style="background:var(--fucsia)"></div>
+        <div><h4>Manaure</h4><span class="md-sub">Instituciones educativas y urbanismo táctico</span></div></div>
+      <div class="md-stats">
+        <div class="md-st"><div class="md-v">35</div><div class="md-l">ml Reductores</div></div>
+        <div class="md-st"><div class="md-v">72</div><div class="md-l">Señales vert.</div></div>
+        <div class="md-st"><div class="md-v">867</div><div class="md-l">m² demarcac.</div></div>
+        <div class="md-st"><div class="md-v">1470</div><div class="md-l">ml demarcac.</div></div>
+        <div class="md-st"><div class="md-v">11</div><div class="md-l">m² urbanismo</div></div>
+      </div>
+      <div class="md-ie"><strong>Instituciones Educativas (5):</strong>
+        <ul><li>I.E. Nuestra Señora del Carmen · Normal Superior</li><li>I.E. María Inmaculada · María Auxiliadora</li><li>Juan XXIII Coliseo</li></ul></div>
+    </div>
+
+    <div class="muni-detail rev">
+      <div class="md-img-container"><img loading="lazy" src="Imagenes/Intervenciones a la infraestructura/Pelaya/Pelaya1.jpeg" alt="Intervenciones en Pelaya"></div>
+      <div class="md-head"><div class="md-flag" style="background:var(--fucsia)"></div>
+        <div><h4>Pelaya</h4><span class="md-sub">Instituciones educativas y urbanismo táctico</span></div></div>
+      <div class="md-stats">
+        <div class="md-st"><div class="md-v">120</div><div class="md-l">ml Reductores</div></div>
+        <div class="md-st"><div class="md-v">74</div><div class="md-l">Señales vert.</div></div>
+        <div class="md-st"><div class="md-v">983</div><div class="md-l">m² demarcac.</div></div>
+        <div class="md-st"><div class="md-v">803</div><div class="md-l">ml demarcac.</div></div>
+      </div>
+      <div class="md-ie"><strong>Sitios intervenidos (7 I.E. y 1 Institución):</strong>
+        <ul><li>IE José Maria Torti Soriano Sede 1</li><li>I.E. Nacionalizada Integrada sede Principal</li><li>Escuela Francisco Canosa</li><li>CENPROT</li><li>Colegio Los Ángeles</li><li>Casa del Adulto Mayo</li></ul></div>
+    </div>
+
+    <div class="muni-detail rev">
+      <div class="md-img-container"><img loading="lazy" src="Imagenes/Intervenciones a la infraestructura/Pailitas/Pailitas1.jpeg" alt="Intervenciones en Pailitas"></div>
+      <div class="md-head"><div class="md-flag" style="background:var(--fucsia)"></div>
+        <div><h4>Pailitas</h4><span class="md-sub">Instituciones educativas y urbanismo táctico</span></div></div>
+      <div class="md-stats">
+        <div class="md-st"><div class="md-v">55</div><div class="md-l">ml Reductores</div></div>
+        <div class="md-st"><div class="md-v">32</div><div class="md-l">Señales vert.</div></div>
+        <div class="md-st"><div class="md-v">382</div><div class="md-l">m² demarcac.</div></div>
+        <div class="md-st"><div class="md-v">295</div><div class="md-l">ml demarcac.</div></div>
+      </div>
+      <div class="md-ie"><strong>Sitios intervenidos (7 I.E. y 1 Institución):</strong>
+        <ul><li>IE Rosa Jaimes Barrera</li><li>I.E. San José de Tunumá.</li></ul></div>
+    </div>
+
+  </div>
+</div>
 </div>
 
 <div class="quote rev" style="margin-top:3rem">Meta Cero: cero fallecidos, cero lesionados y cero imprudencias.</div>
@@ -412,8 +577,9 @@ const G=[
 ...['IMG_2839.JPG','IMG_1237.JPG','IMG_2990.JPG'].map(f=>['Patrulleritos Escolares','Patrulleritos Escolares',BC+'Patrulleritos Escolares/'+f])];
 const gal=document.getElementById('gal'),flt=document.getElementById('flt');
 gal.innerHTML=G.map(([c,t,s])=>`<figure data-c2="${c}"><img loading="lazy" src="${encodeURI(s)}" alt="${t}"><figcaption>${t}</figcaption></figure>`).join('');
-['Todas',...new Set(G.map(g=>g[0]))].forEach((c,i)=>{const b=document.createElement('button');b.textContent=c;if(!i)b.className='on';b.onclick=()=>{flt.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));gal.querySelectorAll('figure').forEach(f=>f.classList.toggle('hide',i&&f.dataset.c2!==c))};flt.appendChild(b)});
+['Todas',...new Set(G.map(g=>g[0]))].forEach((c,i)=>{const b=document.createElement('button');b.textContent=c;if(!i)b.className='on';b.onclick=()=>{flt.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));gal.querySelectorAll('figure').forEach(f=>f.classList.toggle('hide',i&&f.dataset.c2!==c));document.getElementById('muniDet').classList.toggle('hide',i>0&&c!=='Ingeniería de Tránsito')};flt.appendChild(b)});
 gal.onclick=e=>{const f=e.target.closest('figure');if(!f)return;mb.innerHTML=`<img src="${f.querySelector('img').src}" alt="">`;m.classList.add('on')};
+document.getElementById('muniDet').addEventListener('click',e=>{const im=e.target.closest('.md-img-container img');if(!im)return;mb.innerHTML=`<img src="${im.src}" alt="${im.alt}">`;m.classList.add('on')});
 
 window.addEventListener('load',()=>{
 Chart.register(ChartDataLabels);Chart.defaults.font.family='Poppins';
