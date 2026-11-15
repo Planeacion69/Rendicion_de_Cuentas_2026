@@ -60,11 +60,56 @@ summary:hover,details[open] summary{color:var(--verde)}
 .vid h4{position:absolute;bottom:0;left:0;right:0;padding:1rem 1.4rem;color:#fff;background:linear-gradient(transparent,#000c)}
 .modal{position:fixed;inset:0;background:#000e;z-index:1000;display:none;align-items:center;justify-content:center}
 .modal.on{display:flex}.modal .box{width:90%;max-width:1000px;aspect-ratio:16/9}.modal iframe{width:100%;height:100%;border:0;border-radius:12px}
+.modal .box img{width:100%;height:100%;object-fit:contain}
 .modal button{position:absolute;top:18px;right:28px;background:none;border:0;color:#fff;font-size:2.5rem;cursor:pointer}
 .eq{display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;margin-top:1.4rem}
 .eq span{font:900 2.4rem 'Montserrat';color:var(--verde)}
 footer{background:var(--negro);color:#fff9;text-align:center;padding:2.5rem 1.5rem;font-size:.85rem}
 .rev{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s}.rev.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rev{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+/* CARRUSEL INDICADORES */
+.car{position:relative;max-width:1100px;margin:auto;aspect-ratio:16/9;border-radius:var(--r);overflow:hidden;background:var(--negro);box-shadow:var(--shm)}
+.car img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity 1s ease}
+.car img.on{opacity:1}
+.car .bar{position:absolute;left:0;bottom:0;height:4px;width:0;background:var(--fucsia)}
+.car .bar.run{width:100%;transition:width 5s linear}
+.car .dots{position:absolute;bottom:14px;left:0;right:0;display:flex;justify-content:center;gap:8px}
+.car .dots button{width:10px;height:10px;border-radius:50%;border:0;background:#fff8;cursor:pointer;transition:.3s}
+.car .dots button.on{background:var(--fucsia);transform:scale(1.35)}
+@media(prefers-reduced-motion:reduce){.car img{transition:none}}
+/* POAI · TECNOLOGÍA Y GALERÍA */
+.sh3{margin:3.5rem 0 1.2rem;font-size:1.4rem}
+.card a.go{display:inline-block;margin-top:.8rem;font:700 .78rem 'Montserrat';color:var(--verde);text-decoration:none}
+.card a.go:hover{color:var(--fucsia)}
+.tl{list-style:none;border-left:3px solid var(--gris-300);margin:1rem 0 0 .5rem;padding-left:1.2rem}
+.tl li{position:relative;font-size:.82rem;padding:.35rem 0;color:var(--gris-700)}
+.tl li:before{content:"";position:absolute;left:-1.72rem;top:.8rem;width:11px;height:11px;border-radius:50%;background:var(--verde);border:2px solid #fff}
+.tl li.ok:before{background:var(--verde-claro)}.tl li.ex:before{background:var(--fucsia)}
+.tl b{font-family:'Montserrat';color:var(--negro);margin-right:.4rem}
+.chips{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem}
+.chip{font:600 .72rem 'Montserrat';padding:.35rem .8rem;border-radius:99px;background:#FF079314;color:var(--fucsia)}
+.chip.v{background:#00902714;color:var(--verde)}
+.ptag{display:inline-block;font:700 .66rem 'Montserrat';letter-spacing:.08em;text-transform:uppercase;padding:.2rem .7rem;border-radius:99px;margin-bottom:.8rem;background:#00902714;color:var(--verde)}
+.ptag.f{background:#FF079314;color:var(--fucsia)}
+.rank{margin-top:1rem}.rank div{display:flex;align-items:center;gap:.7rem;font-size:.8rem;margin:.35rem 0}
+.rank span{min-width:110px;font-weight:600}.rank i{display:block;height:8px;border-radius:9px;background:linear-gradient(90deg,var(--verde),var(--verde-claro));width:0;transition:width 1.2s ease}
+.rank .me span,.rank .me b{color:var(--fucsia)}.rank .me i{background:var(--fucsia)}.rank b{font-family:'Montserrat'}
+.alert{background:#FF079310;border:1px solid #FF079333;border-radius:var(--r);padding:1.2rem 1.4rem;margin-top:1rem;font-size:.88rem}
+.alert strong{color:var(--fucsia);font-family:'Montserrat'}
+.filters{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.4rem}
+.filters button{font:600 .78rem 'Montserrat';padding:.55rem 1.1rem;border-radius:99px;border:1px solid var(--gris-300);background:#fff;cursor:pointer;transition:.25s}
+.filters button:hover{border-color:var(--verde);color:var(--verde)}
+.filters button.on{background:var(--verde);border-color:var(--verde);color:#fff}
+.gal{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:900px){.gal{grid-template-columns:repeat(2,1fr)}}
+.gal figure{position:relative;overflow:hidden;border-radius:14px;aspect-ratio:4/3;cursor:zoom-in;background:var(--gris-100)}
+.gal figure:nth-child(7n+1){grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
+.gal img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.gal figure:hover img{transform:scale(1.08)}
+.gal figcaption{position:absolute;left:0;right:0;bottom:0;padding:1.4rem .8rem .6rem;color:#fff;font:600 .72rem 'Montserrat';background:linear-gradient(transparent,#000b);transform:translateY(100%);transition:transform .3s}
+.gal figure:hover figcaption{transform:none}
+.gal figure.hide{display:none}
 
 /* FINANCIERA SCOPED */
 #financiera{--radius:18px;--shadow-sm:var(--sh);--shadow-md:var(--shm);--gris-500:#777}
@@ -114,10 +159,10 @@ footer{background:var(--negro);color:#fff9;text-align:center;padding:2.5rem 1.5r
 </head>
 <body>
 <nav><div class="in"><a href="#top" class="logo">IDTRACESAR</a>
-<div class="links"><a href="#cierre">1. Cierre 2026</a><a href="#gestion">2. Gestión</a><a href="#comercial">3. Comercial</a><a href="#ppto2027">4. Presupuesto 2027</a><a href="#financiera">Proyección Financiera</a><a href="#poai">5. POAI 2027</a></div></div></nav>
+<div class="links"><a href="#cierre">1. Cierre 2026</a><a href="#gestion">2. Gestión</a><a href="#comercial">3. Comercial</a><a href="#ppto2027">4. Presupuesto 2027</a><a href="#financiera">Proyección Financiera</a><a href="#poai">5. POAI 2027</a><a href="#tecno">Tecnología y Control</a></div></div></nav>
 
 <header class="hero" id="top"><div class="wrap">
-<div class="eyebrow">Junta Directiva · Informe Institucional</div>
+<div class="eyebrow">Asamblea Departamental · Informe Institucional</div>
 <h1>Presupuesto 2026 y <span class="a">Proyección Estratégica</span> 2027</h1>
 <p class="l"><strong>Meta Cero:</strong> rendimos cuentas del uso de cada peso en seguridad vial y de la dinámica comercial que sostiene la entidad.</p>
 <a href="#cierre" class="btn">Ver resultados →</a></div></header>
@@ -231,14 +276,77 @@ footer{background:var(--negro);color:#fff9;text-align:center;padding:2.5rem 1.5r
 <p class="fin-note">Var. = variación porcentual frente al año anterior. TCAC = tasa de crecimiento anual compuesta 2024→2027. Fuente: Anexos Presupuesto de Gastos 2027, IDTRACESAR.</p>
 </div></section>
 
+<section id="indicadores" class="alt"><div class="wrap">
+<div class="head rev"><div class="eyebrow">Indicadores del Cesar</div><h2>El territorio en <span class="v">cifras</span>.</h2></div>
+<div class="car rev" id="car"><div class="dots" id="cdots"></div><div class="bar" id="cbar"></div></div>
+</div></section>
+
 <section id="poai"><div class="wrap">
 <div class="head rev"><div class="eyebrow">5 · POAI 2027</div><h2>Plan Operativo Anual de Inversiones: <span class="v">prioridades</span>.</h2></div>
 <div class="grid g4">
-<div class="card rev"><div class="ic"><i class="ph-fill ph-video-camera"></i></div><h4>Tecnología y Control</h4><p class="sub">Instalación de cámaras y nuevos puntos de fotodetección.</p></div>
-<div class="card rev"><div class="ic f"><i class="ph-fill ph-shield-check"></i></div><h4>Seguridad Vial</h4><p class="sub">Campañas y operación “Meta Cero”.</p></div>
-<div class="card rev"><div class="ic"><i class="ph-fill ph-signpost"></i></div><h4>Ingeniería de Tránsito</h4><p class="sub">Reductores, señalización y demarcación.</p></div>
+<div class="card rev"><div class="ic"><i class="ph-fill ph-video-camera"></i></div><h4>Tecnología y Control</h4><p class="sub">Instalación de cámaras y nuevos puntos de fotodetección.</p><a class="go" href="#tecno">Ver justificación →</a></div>
+<div class="card rev"><div class="ic f"><i class="ph-fill ph-shield-check"></i></div><h4>Seguridad Vial</h4><p class="sub">Campañas y operación “Meta Cero”.</p><a class="go" href="#galeria">Ver evidencia →</a></div>
+<div class="card rev"><div class="ic"><i class="ph-fill ph-signpost"></i></div><h4>Ingeniería de Tránsito</h4><p class="sub">Reductores, señalización y demarcación.</p><a class="go" href="#galeria">Ver evidencia →</a></div>
 <div class="card rev"><div class="ic f"><i class="ph-fill ph-building-office"></i></div><h4>Operación Institucional</h4><p class="sub">Fortalecimiento operativo y sedes.</p></div>
-</div></div></section>
+</div>
+
+<!-- TECNOLOGÍA Y CONTROL · JUSTIFICACIÓN -->
+<div id="tecno">
+<h3 class="sh3 rev">Tecnología y Control: <span class="v">justificación de la inversión</span></h3>
+<p class="sub rev" style="max-width:760px;margin:-.6rem 0 1.4rem">Sistemas Automáticos, Semiautomáticos y Otros Medios Tecnológicos (SAST) · IDTRACESAR.</p>
+
+<div class="grid g4">
+<div class="card rev"><div class="ic"><i class="ph-fill ph-shield-check"></i></div><div class="num" data-c="804">0</div><div class="lbl">Total autorizadas</div><div class="sub">Registro global de la ANSV</div></div>
+<div class="card rev"><div class="ic"><i class="ph-fill ph-video-camera"></i></div><div class="num v" data-c="370">0</div><div class="lbl">Operando</div><div class="sub">46% del total país</div></div>
+<div class="card rev"><div class="ic f"><i class="ph-fill ph-clock-counter-clockwise"></i></div><div class="num f" data-c="434">0</div><div class="lbl">Autorizadas a instalar</div><div class="sub">54% pendientes de montaje</div></div>
+<div class="card rev"><div class="ic"><i class="ph-fill ph-file-x"></i></div><div class="num" data-c="538">0</div><div class="lbl">Expiradas / vencidas</div><div class="sub">Requieren renovación formal</div></div>
+</div>
+<p class="sub rev" style="margin-top:.6rem">Panorama nacional de cámaras de fotodetección.</p>
+
+<div class="grid g2" style="margin-top:1.4rem">
+<div class="card rev"><h4>Autorizaciones vigentes en el Cesar</h4>
+<div class="grid g3" style="margin-top:1rem;gap:.8rem;text-align:center"><div><div class="num v" data-c="11">0</div><div class="sub">Operando (Registro ANSV)</div></div><div><div class="num f" data-c="25">0</div><div class="sub">Autorizadas a instalar</div></div><div><div class="num" data-c="36">0</div><div class="sub">Total vigentes</div></div></div>
+<ul class="tl"><li class="ok"><b>Casco urbano · 16 equipos</b>Operando 9 (Valledupar) · A instalar: 4 (Valledupar) + 2 (La Paz) + 1 punto (Aguachica)</li>
+<li class="ok"><b>Vía nacional · 20 equipos</b>Operando 2 (Agustín Codazzi · RN 4901) · A instalar 18 (El Copey, San Alberto, La Paz, El Paso, La Gloria, Valledupar, Aguachica)</li></ul>
+<p class="sub">Las autorizaciones vencidas o expiradas (Aguachica, San Alberto antiguo, Pailitas) se excluyen del censo vigente.</p></div>
+
+<div class="card rev"><h4>Posición del Cesar · SAST en operación</h4>
+<div class="rank" id="rank">
+<div><span>1. Bogotá D.C.</span><i data-w="91"></i><b>91</b></div><div><span>2. Antioquia</span><i data-w="78"></i><b>78</b></div><div><span>3. Valle del Cauca</span><i data-w="74"></i><b>74</b></div><div><span>4. Atlántico</span><i data-w="43"></i><b>43</b></div><div><span>7. Magdalena</span><i data-w="14"></i><b>14</b></div><div class="me"><span>8. CESAR</span><i data-w="11"></i><b>11</b></div></div>
+<p class="sub" style="margin-top:1rem"><strong>Registro oficial ANSV · 11 equipos</strong> categorizados como “Operando”: 9 en Valledupar urbano y 2 en paso urbano de RN 4901 en Agustín Codazzi.</p>
+<div class="alert"><strong>Realidad en terreno · sin operación activa en vía nacional.</strong> Actualmente los equipos de Agustín Codazzi no realizan fiscalización ni emisión efectiva de comparendos sancionatorios.</div></div>
+</div>
+
+<div class="grid g2" style="margin-top:1.4rem">
+<div class="card rev"><span class="ptag">SAST en San Alberto</span><h4>2 puntos (4 equipos) · Ruta Nacional 4514</h4><p class="sub">Tramo vial San Alberto – La Mata. En estos puntos operaron SAST entre noviembre de 2020 y febrero de 2026.</p>
+<div class="chips"><span class="chip">Exceso de velocidad: 90 km/h</span><span class="chip v">SOAT y Revisión Tecnicomecánica</span><span class="chip"><b data-c="7">0</b> víctimas ene–ago 2026</span></div>
+<ul class="tl"><li class="ok"><b>12 FEB 2026</b>Radicación ANSV (SOL0000015204, SOL0000015205)</li><li class="ok"><b>06 MAR 2026</b>Resolución 208 de 2026 (aceptada 2 SAST)</li><li class="ok"><b>30 MAR 2026</b>Resolución 294 de 2026 (aceptada 2 SAST)</li><li><b>16 ABR 2026</b>Inicio solicitud permiso ANI · ocupación franja de retiro</li><li><b>13 AGO 2026</b>Remisión concepto técnico favorable Concesión e interventoría</li><li><b>31 AGO 2026</b>Solicitud aclaración concepto técnico ANI</li><li><b>18 SEP 2026</b>Remisión concepto técnico favorable ajustado</li></ul>
+<p class="sub"><strong>Pasos pendientes:</strong> 1 · Resolución autorización ANI → 2 · Aprobación pólizas → 3 · Instalación de señales → 4 · Autorizar cambio de estado ANSV a “operando”.</p></div>
+
+<div class="card rev"><span class="ptag f">SAST en El Copey</span><h4>2 puntos (4 equipos) · Ruta Nacional 4517</h4><p class="sub">Tramo vial Bosconia – Río Ariguaní · PR 14+930 y PR 33+237.</p>
+<div class="chips"><span class="chip">Exceso de velocidad: 90 km/h</span><span class="chip v">SOAT y Revisión Tecnicomecánica</span></div>
+<ul class="tl"><li class="ok"><b>12 FEB 2026</b>Radicación ANSV</li><li class="ok"><b>17 MAR 2026</b>Resolución 242 de 2026 (aceptada PR 14+930)</li><li class="ok"><b>19 MAR 2026</b>Resolución 255 de 2026 (aceptada PR 33+237)</li><li><b>28 ABR 2026</b>Inicio solicitud permiso ANI · ocupación franja de retiro</li><li><b>28 JUL 2026</b>Remisión concepto técnico favorable Concesión Yuma e Interventoría</li><li class="ok"><b>06 AGO 2026</b>Resolución 20263040010625 · autorización ANI para instalar señales</li><li><b>07 OCT 2026</b>Radicación pólizas ante la ANI</li></ul>
+<p class="sub"><strong>Pasos pendientes:</strong> 1 · Aprobación pólizas → 2 · Instalación señales → 3 · Autorizar cambio a “operando”.</p></div>
+</div>
+<p class="sub rev" style="margin-top:1rem">Límite de velocidad determinado mediante la Metodología para establecimiento de velocidad límite según Resolución 20233040025995 de 2023.</p>
+
+<div class="grid g2" style="margin-top:1.4rem">
+<div class="card rev"><div class="ic f"><i class="ph-fill ph-road-horizon"></i></div><div class="num f">855,27 km</div><div class="lbl">Red vial de primer orden en el Cesar</div><div class="sub">Corredores estratégicos nacionales administrados por INVIAS o por la ANI, a cargo de la Nación.</div></div>
+<div class="card rev"><h4>Principales tramos</h4>
+<ul class="tl"><li><b>RN 45 · 278,50 km</b>San Alberto – El Copey</li><li><b>RN 8003 · 103,40 km</b>Valledupar – Bosconia</li><li><b>RN 4516 · 85,50 km</b>Bosconia – Cuatro Vientos – S. Roque</li><li><b>RN 4901 · 72,30 + 72,50 km</b>San Roque – La Jagua – Becerril · Becerril – Codazzi – La Paz</li><li><b>RN 45CS09 · 88,37 km</b>Codazzi – 4 Vientos – Arjona</li></ul>
+<p class="sub">Otros 6 tramos: RN 8004A, RN 8004 (×2), RN 43, RN 70.</p></div>
+</div>
+</div>
+
+<!-- GALERÍA -->
+<div id="galeria">
+<h3 class="sh3 rev">Evidencia en territorio: <span class="v">inversión en ejecución</span></h3>
+<div class="filters rev" id="flt"></div>
+<div class="gal" id="gal"></div>
+</div>
+
+<div class="quote rev" style="margin-top:3rem">Meta Cero: cero fallecidos, cero lesionados y cero imprudencias.</div>
+</div></section>
 
 <footer>IDTRACESAR · Instituto Departamental de Tránsito del Cesar · Meta Cero</footer>
 <div class="modal" id="m"><button id="x">&times;</button><div class="box" id="mb"></div></div>
@@ -252,6 +360,35 @@ const m=document.getElementById('m'),mb=document.getElementById('mb');
 document.querySelectorAll('[data-yt]').forEach(v=>v.onclick=()=>{mb.innerHTML=`<iframe src="https://www.youtube.com/embed/${v.dataset.yt}?autoplay=1&rel=0" allow="autoplay;encrypted-media" allowfullscreen></iframe>`;m.classList.add('on')});
 const cl=()=>{m.classList.remove('on');mb.innerHTML=''};
 document.getElementById('x').onclick=cl;m.onclick=e=>{if(e.target===m)cl()};document.onkeydown=e=>{if(e.key==='Escape')cl()};
+
+/* Carrusel indicadoresCesar · 5 s */
+const IND=['indicadoresCesar/1.jpg','indicadoresCesar/2.jpg','indicadoresCesar/3.jpg'];
+(()=>{const c=document.getElementById('car'),d=document.getElementById('cdots'),b=document.getElementById('cbar');let i=0,t;
+const im=IND.map((s,k)=>{const e=new Image();e.src=encodeURI(s);e.alt='Indicadores del Cesar '+(k+1);if(!k)e.className='on';c.insertBefore(e,d);return e});
+const ds=IND.map((_,k)=>{const x=document.createElement('button');x.setAttribute('aria-label','Imagen '+(k+1));x.onclick=()=>{go(k);play()};d.appendChild(x);return x});
+function go(k){i=k;im.forEach((e,j)=>e.classList.toggle('on',j===k));ds.forEach((e,j)=>e.classList.toggle('on',j===k));b.classList.remove('run');void b.offsetWidth;b.classList.add('run')}
+function play(){clearInterval(t);t=setInterval(()=>go((i+1)%IND.length),5000)}
+c.onmouseenter=()=>{clearInterval(t);b.classList.remove('run')};c.onmouseleave=()=>{go(i);play()};
+go(0);play()})();
+
+/* Ranking SAST */
+new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('i').forEach(b=>b.style.width=b.dataset.w/91*100*.78+'%');o.unobserve(e.target)}}),{threshold:.3}).observe(document.getElementById('rank'));
+
+/* Galería POAI (imágenes de la sección 2) */
+const BI='Imagenes/Intervenciones a la infraestructura/',BC='Imagenes/Campañas de Seguridad Vial/';
+const G=[
+['Ingeniería de Tránsito','Intervención San Diego',BI+'San Diego/TimePhoto_20251219_121918.jpeg'],
+['Ingeniería de Tránsito','Intervención El Copey',BI+'El Copey/IMG_4215.JPG.jpeg'],
+['Ingeniería de Tránsito','Intervención Pueblo Bello',BI+'Pueblo Bello/TimePhoto_20251126_121939.jpg'],
+...['Copia de IMG_2998.JPG','IMG_2981.JPG','IMG_2989.JPG'].map(f=>['Meta Cero','Meta Cero',BC+'Meta Cero/'+f]),
+...['Copia de IMG_1405.JPG','Copia de DVNE7327.JPG','Copia de IMG_1043.JPG'].map(f=>['Festival Vallenato','En Festival Vallenato Marcha Bacano y Seguro',BC+'En Festival Vallenato Marcha Bacano y Seguro/'+f]),
+...['IMG_2477.JPG','IMG_4395.JPG','IMG_4433.JPG'].map(f=>['Alguien espera por ti','Alguien espera por ti',BC+'Alguien espera por ti/'+f]),
+...['IMG_2839.JPG','IMG_1237.JPG','IMG_2990.JPG'].map(f=>['Patrulleritos Escolares','Patrulleritos Escolares',BC+'Patrulleritos Escolares/'+f])];
+const gal=document.getElementById('gal'),flt=document.getElementById('flt');
+gal.innerHTML=G.map(([c,t,s])=>`<figure data-c2="${c}"><img loading="lazy" src="${encodeURI(s)}" alt="${t}"><figcaption>${t}</figcaption></figure>`).join('');
+['Todas',...new Set(G.map(g=>g[0]))].forEach((c,i)=>{const b=document.createElement('button');b.textContent=c;if(!i)b.className='on';b.onclick=()=>{flt.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));gal.querySelectorAll('figure').forEach(f=>f.classList.toggle('hide',i&&f.dataset.c2!==c))};flt.appendChild(b)});
+gal.onclick=e=>{const f=e.target.closest('figure');if(!f)return;mb.innerHTML=`<img src="${f.querySelector('img').src}" alt="">`;m.classList.add('on')};
+
 window.addEventListener('load',()=>{
 Chart.register(ChartDataLabels);Chart.defaults.font.family='Poppins';
 const V='#009027',F='#FF0793',fmt=v=>'$'+v.toLocaleString('es-CO')+' M';
