@@ -4,10 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IDTRACESAR · Presupuesto 2026 y Proyección 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
+<script defer src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
+<noscript><style>.rev{opacity:1;transform:none}</style></noscript>
 <style>
 /* ===== ESCALA PANTALLA GRANDE: todo en rem; la raíz crece con el ancho del viewport ===== */
 :root{--verde:#009027;--verde-claro:#00B029;--fucsia:#FF0793;--negro:#0A0A0A;--gris-100:#F4F6F4;--gris-300:#D9D9D9;--gris-700:#333;--blanco:#fff;
@@ -23,7 +26,18 @@ section{padding:5rem 1.5rem}.wrap{max-width:75rem;margin:auto}.alt{background:va
 #ppto2027{padding-top:8rem}
 .eyebrow{font:700 .95rem 'Montserrat';letter-spacing:.2em;text-transform:uppercase;color:var(--verde-txt);margin-bottom:.8rem}
 .head{max-width:56rem;margin-bottom:2.5rem}.head p{color:var(--gris-700);margin-top:1rem;font-size:1.1rem}
+.head .btn{margin-top:1.4rem}
 .v{color:var(--verde)}.f{color:var(--fucsia)}
+
+/* Accesibilidad */
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip{position:fixed;left:1rem;top:-5rem;z-index:1100;padding:.7rem 1.2rem;border-radius:8px;background:var(--negro);color:var(--blanco);font:700 1rem 'Montserrat';text-decoration:none;transition:top .2s}
+.skip:focus{top:1rem}
+:focus-visible{outline:3px solid var(--verde-txt);outline-offset:3px}
+.modal :focus-visible{outline-color:var(--blanco)}
+main:focus{outline:none}
+[role="button"]{cursor:pointer}
+
 nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid #0001}
 nav .in{max-width:75rem;margin:auto;padding:.8rem 1.5rem;display:flex;justify-content:space-between;align-items:center;gap:1rem}
 .logo{font:800 1.2rem 'Montserrat';color:var(--negro);text-decoration:none}
@@ -64,14 +78,8 @@ summary:hover,details[open] summary{color:var(--verde-txt)}
 .modal.on{display:flex}.modal .box{width:90%;max-width:90rem;aspect-ratio:16/9}.modal iframe{width:100%;height:100%;border:0;border-radius:12px}
 .modal .box img{width:100%;height:100%;object-fit:contain}
 .modal button{position:absolute;top:18px;right:28px;background:none;border:0;color:#fff;font-size:3rem;cursor:pointer}
-.eq{display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;margin-top:1.4rem}
-.eq span{font:900 2.4rem 'Montserrat';color:var(--verde)}
 footer{background:var(--negro);color:#fff;text-align:center;padding:2.5rem 1.5rem;font-size:1rem}
 .rev{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s}.rev.in{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){.rev{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
-
-/* GESTIÓN · enlace al tablero */
-.head .btn{margin-top:1.4rem}
 
 /* INDICADORES · grilla con zoom */
 .ind-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,28rem),1fr));gap:1.4rem}
@@ -83,14 +91,13 @@ footer{background:var(--negro);color:#fff;text-align:center;padding:2.5rem 1.5re
 .ind-grid figure:hover .zm,.ind-grid figure:focus-visible .zm{opacity:1;transform:none}
 @media(hover:none){.ind-grid .zm{opacity:1;transform:none}}
 .ind-empty{padding:2rem;text-align:center;color:var(--gris-500);font-size:1rem}
+
 /* POAI · TECNOLOGÍA Y GALERÍA */
 .sh3{margin:3.5rem 0 1.2rem;font-size:1.7rem}
-.card a.go{display:inline-block;margin-top:.8rem;font:700 .95rem 'Montserrat';color:var(--verde-txt);text-decoration:none}
-.card a.go:hover{color:var(--fucsia-txt)}
 .tl{list-style:none;border-left:3px solid var(--gris-300);margin:1rem 0 0 .5rem;padding-left:1.2rem}
 .tl li{position:relative;font-size:.98rem;padding:.35rem 0;color:var(--gris-700)}
 .tl li:before{content:"";position:absolute;left:-1.72rem;top:.8rem;width:.7rem;height:.7rem;border-radius:50%;background:var(--verde);border:2px solid #fff}
-.tl li.ok:before{background:var(--verde-claro)}.tl li.ex:before{background:var(--fucsia)}
+.tl li.ok:before{background:var(--verde-claro)}
 .tl b{font-family:'Montserrat';color:var(--negro);margin-right:.4rem}
 .chips{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem}
 .chip{font:600 .88rem 'Montserrat';padding:.35rem .8rem;border-radius:99px;background:#FF079314;color:var(--fucsia-txt)}
@@ -113,7 +120,7 @@ footer{background:var(--negro);color:#fff;text-align:center;padding:2.5rem 1.5re
 .gal img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
 .gal figure:hover img{transform:scale(1.08)}
 .gal figcaption{position:absolute;left:0;right:0;bottom:0;padding:1.4rem .8rem .6rem;color:#fff;font:600 .9rem 'Montserrat';background:linear-gradient(transparent,#000d);transform:translateY(100%);transition:transform .3s}
-.gal figure:hover figcaption{transform:none}
+.gal figure:hover figcaption,.gal figure:focus-visible figcaption{transform:none}
 .gal figure.hide{display:none}
 
 /* FINANCIERA SCOPED */
@@ -130,9 +137,6 @@ footer{background:var(--negro);color:#fff;text-align:center;padding:2.5rem 1.5re
 #financiera thead th:first-child{text-align:left;border-radius:var(--radius) 0 0 0}#financiera thead th:last-child{border-radius:0 var(--radius) 0 0}
 #financiera tbody tr{border-bottom:1px solid var(--gris-100);transition:background .2s}#financiera tbody tr:hover{background:var(--gris-100)}#financiera tbody tr:last-child{border-bottom:none}
 #financiera td{padding:.85rem 1.1rem;text-align:right;color:#222}#financiera td:first-child{text-align:left;font-weight:500;color:var(--negro)}
-#financiera tfoot tr{background:var(--gris-100)}
-#financiera tfoot td{font-family:'Montserrat',sans-serif;font-weight:800;color:var(--negro);border-top:2px solid rgba(0,144,39,.2)}
-#financiera tfoot td:first-child{border-radius:0 0 0 var(--radius)}#financiera tfoot td:last-child{border-radius:0 0 var(--radius) 0}
 #financiera .fin-pill{display:inline-block;padding:.15rem .7rem;border-radius:100px;font-size:.85rem;font-weight:600}
 #financiera .fin-pill.pos{background:rgba(0,144,39,.1);color:var(--verde-txt)}#financiera .fin-pill.neg{background:rgba(255,7,147,.1);color:var(--fucsia-txt)}
 #financiera .fin-part-bar{display:flex;align-items:center;gap:.6rem;margin-top:.3rem;min-width:9.5rem}
@@ -147,8 +151,8 @@ footer{background:var(--negro);color:#fff;text-align:center;padding:2.5rem 1.5re
 #financiera .fin-gasto-icon{width:3.4rem;height:3.4rem;border-radius:.9rem;display:flex;align-items:center;justify-content:center;font-size:1.7rem;flex-shrink:0}
 #financiera .fin-gasto-icon.verde{background:rgba(0,144,39,.1)}#financiera .fin-gasto-icon.fucsia{background:rgba(255,7,147,.08)}
 #financiera .fin-gasto-info{flex:1}
-#financiera .fin-gasto-label{font-size:.9rem;text-transform:uppercase;letter-spacing:.06em;color:var(--gris-500);font-weight:600;margin-bottom:.4rem}
 #financiera .fin-gasto-value{font-family:'Montserrat',sans-serif;font-size:1.7rem;font-weight:800;color:var(--negro);margin-bottom:.7rem}
+#financiera .fin-gasto-label{font-size:.9rem;text-transform:uppercase;letter-spacing:.06em;color:var(--gris-500);font-weight:600;margin-bottom:.4rem}
 #financiera .fin-gasto-sub{font-size:.95rem;color:var(--gris-500)}
 #financiera .fin-chart-canvas{position:relative;height:22rem;width:100%}
 #financiera .fin-sub-list{display:grid;gap:.8rem;margin-top:.4rem}
@@ -157,9 +161,8 @@ footer{background:var(--negro);color:#fff;text-align:center;padding:2.5rem 1.5re
 #financiera td.yr{font-family:'Montserrat',sans-serif;font-weight:800}
 #financiera tr.proj td{background:rgba(255,7,147,.04)}
 #financiera .fin-tag-proj{display:inline-block;margin-left:.5rem;padding:.1rem .5rem;border-radius:100px;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:rgba(255,7,147,.1);color:var(--fucsia-txt)}
-#financiera .fin-note{font-size:.9rem;color:var(--gris-500);margin-top:-2rem;margin-bottom:.5rem}
 @media(max-width:980px){#financiera .fin-charts-grid,#financiera .fin-gastos-grid{grid-template-columns:1fr}}
-@media(max-width:720px){#financiera .fin-gasto-card{flex-direction:column}#financiera .fin-gasto-value{font-size:1.35rem}#financiera .fin-chart-canvas{height:18rem}#financiera .fin-note{margin-top:-1.5rem}}
+@media(max-width:720px){#financiera .fin-gasto-card{flex-direction:column}#financiera .fin-gasto-value{font-size:1.35rem}#financiera .fin-chart-canvas{height:18rem}}
 
 /* ===== DETALLE TERRITORIAL · adscrito a #galeria ===== */
 #muniDet{--tf:.25s cubic-bezier(.4,0,.2,1);margin-top:3.5rem}
@@ -190,14 +193,14 @@ footer{background:var(--negro);color:#fff;text-align:center;padding:2.5rem 1.5re
 @media(max-width:820px){#muniDet .muni-detail-grid{grid-template-columns:1fr}}
 @media(max-width:480px){#muniDet .md-stats{grid-template-columns:repeat(2,1fr)}}
 
-/* ===== HERO (ahora al final del documento) ===== */
+/* ===== HERO ===== */
 .hero{--t-fast:.25s cubic-bezier(.4,0,.2,1);min-height:100vh;position:relative;display:flex;align-items:center;padding:7.5rem 1.5rem 5rem;background-image:radial-gradient(circle at 85% 20%,rgba(255,7,147,.12) 0%,transparent 50%),radial-gradient(circle at 15% 80%,rgba(0,176,41,.15) 0%,transparent 55%),linear-gradient(rgba(255,255,255,.15),rgba(255,255,255,.85)),url('Imagenes/Portada/IMG_2686.JPG');background-size:cover;background-position:center;background-attachment:fixed;overflow:hidden}
 .hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(0,144,39,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,144,39,.04) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse at center,#000 30%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse at center,#000 30%,transparent 80%);pointer-events:none}
 .hero-content{max-width:75rem;margin:0 auto;display:grid;grid-template-columns:1.2fr .8fr;gap:4rem;align-items:center;position:relative;z-index:2;width:100%}
 .hero .year-badge{display:inline-flex;align-items:center;gap:.6rem;background:#fff;border:1px solid var(--gris-300);padding:.45rem 1rem;border-radius:999px;font-size:.95rem;font-weight:600;color:var(--gris-700);box-shadow:var(--sh);margin-bottom:1.4rem}
 .year-badge .dot{width:.5rem;height:.5rem;border-radius:50%;background:var(--verde);box-shadow:0 0 0 4px rgba(0,144,39,.18)}
 .hero h1{margin-bottom:1.4rem;font-size:clamp(2.4rem,4.5vw,3.8rem);line-height:1.1}
-.hero h1 .accent,.hero h1 .a{color:var(--fucsia-txt);position:relative;display:inline-block}
+.hero h1 .accent{color:var(--fucsia-txt);position:relative;display:inline-block}
 .hero h1 .accent::after{content:"";position:absolute;left:0;right:0;bottom:.05em;height:.16em;background:rgba(255,7,147,.35);z-index:-1;border-radius:4px}
 .hero-lead{max-width:40rem;margin-bottom:2rem;font-size:1.5rem;font-weight:700;color:#fff;text-shadow:0 3px 10px rgba(0,0,0,.85);background:rgba(0,0,0,.6);display:inline-block;padding:.65rem 1rem;border-radius:.65rem;backdrop-filter:blur(3px);line-height:1.6}
 .hero-cta{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:3rem}
@@ -229,21 +232,31 @@ footer{background:var(--negro);color:#fff;text-align:center;padding:2.5rem 1.5re
 .hero .reveal[data-delay="100"]{animation-delay:.1s}.hero .reveal[data-delay="200"]{animation-delay:.2s}.hero .reveal[data-delay="300"]{animation-delay:.3s}.hero .reveal[data-delay="400"]{animation-delay:.4s}
 @media(max-width:980px){.hero-content{grid-template-columns:1fr;gap:2.5rem}.hero-visual{height:26rem}}
 @media(max-width:720px){.hero{padding:6.5rem 1.2rem 4rem;background-attachment:scroll}.hero-stats{grid-template-columns:1fr;gap:1.5rem}.stat-mini{padding-bottom:1.5rem;border-bottom:1px solid var(--gris-300)}.stat-mini:last-child{border:0}}
-@media(prefers-reduced-motion:reduce){.hero .reveal,.hv-card,.hv-blob{animation:none}}
+
+/* ===== MOVIMIENTO REDUCIDO (consolidado) ===== */
+@media(prefers-reduced-motion:reduce){
+html{scroll-behavior:auto}
+.rev{opacity:1;transform:none;transition:none}
+.hero .reveal,.hv-card,.hv-blob{animation:none}
+.rank i,#financiera .fin-bar-fill,.gal img,.gal figcaption,#muniDet .md-img-container img{transition:none}
+}
 </style>
 </head>
 <body>
-<nav><div class="in"><a href="#ppto2027" class="logo">IDTRACESAR</a>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
+<nav aria-label="Navegación principal"><div class="in"><a href="#ppto2027" class="logo">IDTRACESAR</a>
 <div class="links"><a href="#ppto2027">1. Presupuesto 2027</a><a href="#financiera">1.1 Proyección Financiera</a><a href="#cierre">2. Cierre 2026</a><a href="#comercial">3. Comercial</a><a href="#gestion">4. Gestión</a><a href="#poai">5. Inversiones 2027</a></div></div></nav>
+
 <header class="hero" id="top">
   <div class="hero-content">
     <div class="hero-text">
-      <div class="year-badge reveal"><span class="dot"></span> · Asamblea Departamental</div>
+      <div class="year-badge reveal"><span class="dot" aria-hidden="true"></span> · Asamblea Departamental</div>
       <h1 class="reveal" data-delay="100">Hacia un tránsito <span class="accent">seguro</span> y una gestión transformadora.</h1>
       <p class="hero-lead reveal" data-delay="200"><strong>Meta Cero:</strong> prevenimos, educamos y construimos infraestructura que protege la vida.</p>
       <div class="hero-cta reveal" data-delay="300">
-        <a href="#contex" class="btn btn-primary">Explorar la gestión <span class="arrow">→</span></a>
-        <a href="https://transitocesar.gov.co" target="_blank" rel="noopener" class="btn btn-ghost">transitocesar.gov.co</a>
+        <a href="#contex" class="btn btn-primary">Explorar la gestión <span class="arrow" aria-hidden="true">→</span></a>
+        <a href="https://transitocesar.gov.co" target="_blank" rel="noopener" class="btn btn-ghost">transitocesar.gov.co<span class="sr-only"> (se abre en una pestaña nueva)</span></a>
       </div>
       <div class="hero-stats reveal" data-delay="400">
         <div class="stat-mini"><div class="num">161<span class="pct">%</span></div><div class="lbl">Cumplimiento meta matrículas vehiculares</div></div>
@@ -252,135 +265,128 @@ footer{background:var(--negro);color:#fff;text-align:center;padding:2.5rem 1.5re
       </div>
     </div>
     <div class="hero-visual reveal" data-delay="200">
-      <div class="hv-blob"></div>
-      <div class="hv-card hv-1"><div class="icn">🛡️</div><div class="v">+200</div><div class="l">Actividades de seguridad vial ejecutadas</div></div>
-      <div class="hv-card hv-2"><div class="icn">🪖</div><div class="v">1.100+</div><div class="l">Cascos certificados entregados</div></div>
-      <div class="hv-card hv-3"><div class="icn">🚨</div><div class="v">+500 ml</div><div class="l">de reductores instalados en municipios</div></div>
-      <div class="hv-card hv-4"><div class="icn">📍</div><div class="v">100%</div><div class="l">Sede San Alberto operativa</div></div>
+      <div class="hv-blob" aria-hidden="true"></div>
+      <div class="hv-card hv-1"><div class="icn" aria-hidden="true">🛡️</div><div class="v">+200</div><div class="l">Actividades de seguridad vial ejecutadas</div></div>
+      <div class="hv-card hv-2"><div class="icn" aria-hidden="true">🪖</div><div class="v">1.100+</div><div class="l">Cascos certificados entregados</div></div>
+      <div class="hv-card hv-3"><div class="icn" aria-hidden="true">🚨</div><div class="v">+500 ml</div><div class="l">de reductores instalados en municipios</div></div>
+      <div class="hv-card hv-4"><div class="icn" aria-hidden="true">📍</div><div class="v">100%</div><div class="l">Sede San Alberto operativa</div></div>
     </div>
   </div>
 </header>
 
+<main id="contenido" tabindex="-1">
 
-  
 <!-- 1 · PRESUPUESTO 2027 -->
-<section id="ppto2027" class="alt"><div class="wrap">
-<div class="head rev"><div class="eyebrow">1 · Presupuesto 2027</div><h2>Equilibrio financiero <span class="v">proyectado</span>.</h2></div>
+<section id="ppto2027" class="alt" aria-labelledby="t-ppto"><div class="wrap">
+<div class="head rev"><div class="eyebrow">1 · Presupuesto 2027</div><h2 id="t-ppto">Equilibrio financiero <span class="v">proyectado</span>.</h2></div>
 <div class="grid g2">
-<div class="card big rev"><div class="ic" style="margin:auto auto 1rem"><i class="ph-fill ph-chart-line-up"></i></div><div class="lbl">Total Ingresos Proyectados</div><div class="num v">$23.624.900.610</div></div>
-<div class="card big rev"><div class="ic f" style="margin:auto auto 1rem"><i class="ph-fill ph-wallet"></i></div><div class="lbl">Total Gastos Proyectados</div><div class="num f">$23.624.900.610</div></div>
+<div class="card big rev"><div class="ic" style="margin:auto auto 1rem"><i class="ph-fill ph-chart-line-up" aria-hidden="true"></i></div><div class="lbl">Total Ingresos Proyectados</div><div class="num v">$23.624.900.610</div></div>
+<div class="card big rev"><div class="ic f" style="margin:auto auto 1rem"><i class="ph-fill ph-wallet" aria-hidden="true"></i></div><div class="lbl">Total Gastos Proyectados</div><div class="num f">$23.624.900.610</div></div>
 </div></div></section>
 
-<section id="financiera"><div class="wrap">
+<section id="financiera" aria-labelledby="t-fin"><div class="wrap">
 <div class="head rev"><div class="eyebrow">Proyección Financiera 2027</div>
-<h2>Recursos para una movilidad <span class="v">más segura</span>.</h2>
+<h2 id="t-fin">Recursos para una movilidad <span class="v">más segura</span>.</h2>
 <p>Presupuesto de ingresos y gastos proyectado para la vigencia 2027: <strong>$23.624.900.610</strong> con equilibrio entre recaudo y apropiación, y el <strong>93,2%</strong> orientado a inversión en seguridad vial.</p></div>
 
 <div class="fin-gastos-grid">
-<div class="fin-gasto-card rev">
-<div class="fin-gasto-icon verde">📈</div>
+<article class="fin-gasto-card rev">
+<div class="fin-gasto-icon verde" aria-hidden="true">📈</div>
 <div class="fin-gasto-info">
 <div class="fin-gasto-label">Ingresos Proyectados 2027</div>
 <div class="fin-gasto-value">$23.624.900.610</div>
 <div class="fin-sub-list">
-<div><div class="fin-sub-row"><span>Multas de tránsito</span><strong>$20.009.612.274</strong></div><div class="fin-part-bar"><div class="fin-bar-track"><div class="fin-bar-fill" data-width="84.7" style="width:0"></div></div><span class="fin-bar-pct">84,7%</span></div></div>
-<div><div class="fin-sub-row"><span>Derechos de tránsito</span><strong>$2.167.823.863</strong></div><div class="fin-part-bar"><div class="fin-bar-track"><div class="fin-bar-fill" data-width="9.2" style="width:0"></div></div><span class="fin-bar-pct">9,2%</span></div></div>
-<div><div class="fin-sub-row"><span>Transferencias para funcionamiento</span><strong>$1.447.464.473</strong></div><div class="fin-part-bar"><div class="fin-bar-track"><div class="fin-bar-fill" data-width="6.1" style="width:0"></div></div><span class="fin-bar-pct">6,1%</span></div></div>
-</div></div></div>
+<div><div class="fin-sub-row"><span>Multas de tránsito</span><strong>$20.009.612.274</strong></div><div class="fin-part-bar"><div class="fin-bar-track" aria-hidden="true"><div class="fin-bar-fill" data-width="84.7" style="width:0"></div></div><span class="fin-bar-pct">84,7%</span></div></div>
+<div><div class="fin-sub-row"><span>Derechos de tránsito</span><strong>$2.167.823.863</strong></div><div class="fin-part-bar"><div class="fin-bar-track" aria-hidden="true"><div class="fin-bar-fill" data-width="9.2" style="width:0"></div></div><span class="fin-bar-pct">9,2%</span></div></div>
+<div><div class="fin-sub-row"><span>Transferencias para funcionamiento</span><strong>$1.447.464.473</strong></div><div class="fin-part-bar"><div class="fin-bar-track" aria-hidden="true"><div class="fin-bar-fill" data-width="6.1" style="width:0"></div></div><span class="fin-bar-pct">6,1%</span></div></div>
+</div></div></article>
 
-<div class="fin-gasto-card rev">
-<div class="fin-gasto-icon fucsia">🏗️</div>
+<article class="fin-gasto-card rev">
+<div class="fin-gasto-icon fucsia" aria-hidden="true">🏗️</div>
 <div class="fin-gasto-info">
 <div class="fin-gasto-label">Gastos Proyectados 2027</div>
 <div class="fin-gasto-value">$23.624.900.610</div>
 <div class="fin-sub-list">
-<div><div class="fin-sub-row"><span>Inversión (Multas + Trámites)</span><strong>$22.022.176.987</strong></div><div class="fin-part-bar"><div class="fin-bar-track"><div class="fin-bar-fill neg" data-width="93.2" style="width:0"></div></div><span class="fin-bar-pct">93,2%</span></div></div>
-<div><div class="fin-sub-row"><span>Gastos de funcionamiento</span><strong>$1.602.723.623</strong></div><div class="fin-part-bar"><div class="fin-bar-track"><div class="fin-bar-fill" data-width="6.8" style="width:0"></div></div><span class="fin-bar-pct">6,8%</span></div></div>
+<div><div class="fin-sub-row"><span>Inversión (Multas + Trámites)</span><strong>$22.022.176.987</strong></div><div class="fin-part-bar"><div class="fin-bar-track" aria-hidden="true"><div class="fin-bar-fill neg" data-width="93.2" style="width:0"></div></div><span class="fin-bar-pct">93,2%</span></div></div>
+<div><div class="fin-sub-row"><span>Gastos de funcionamiento</span><strong>$1.602.723.623</strong></div><div class="fin-part-bar"><div class="fin-bar-track" aria-hidden="true"><div class="fin-bar-fill" data-width="6.8" style="width:0"></div></div><span class="fin-bar-pct">6,8%</span></div></div>
 </div>
 <div class="fin-gasto-sub" style="margin-top:12px;">Funcionamiento: personal + bienes y servicios + tributos. Inversión: multas $20.001.825.270 · trámites $2.020.351.717.</div>
-</div></div>
+</div></article>
 </div>
 
 <div class="fin-charts-grid" style="margin-bottom:32px;">
-<div class="fin-chart-card rev"><div class="fin-chart-title">Composición de Ingresos 2027</div><div class="fin-chart-sub">Participación por fuente sobre $23.624.900.610</div><div class="fin-chart-canvas"><canvas id="chartIngresos2027"></canvas></div></div>
-<div class="fin-chart-card rev"><div class="fin-chart-title">Histórico de Recaudo por Multas</div><div class="fin-chart-sub">Millones de pesos (COP) · 2022–2027 · 2027 proyectado</div><div class="fin-chart-canvas"><canvas id="chartHistoricoRecaudo"></canvas></div></div>
+<div class="fin-chart-card rev"><div class="fin-chart-title">Composición de Ingresos 2027</div><div class="fin-chart-sub">Participación por fuente sobre $23.624.900.610</div><div class="fin-chart-canvas"><canvas id="chartIngresos2027" role="img" aria-label="Gráfico de dona de ingresos 2027: Multas de tránsito 84,7%, Derechos de tránsito 9,2%, Transferencias para funcionamiento 6,1%."></canvas></div></div>
+<div class="fin-chart-card rev"><div class="fin-chart-title">Histórico de Recaudo por Multas</div><div class="fin-chart-sub">Millones de pesos (COP) · 2022–2027 · 2027 proyectado</div><div class="fin-chart-canvas"><canvas id="chartHistoricoRecaudo" role="img" aria-label="Gráfico de barras del recaudo por multas en millones de pesos: 2022 $8.226 M, 2023 $12.889 M, 2024 $15.548 M, 2025 $17.753 M, 2026 $14.135 M, 2027 proyectado $20.009 M."></canvas></div></div>
 </div>
 
 <div class="fin-tabla-container rev">
 <table>
-<thead><tr><th>Año</th><th>Trámites</th><th>Var. Trámites</th><th>Multas</th><th>Var. Multas</th><th>Total recaudo</th><th>Var. Total</th></tr></thead>
+<caption class="sr-only">Recaudo por trámites y multas, 2024 a 2027, con variaciones anuales</caption>
+<thead><tr><th scope="col">Año</th><th scope="col">Trámites</th><th scope="col">Var. Trámites</th><th scope="col">Multas</th><th scope="col">Var. Multas</th><th scope="col">Total recaudo</th><th scope="col">Var. Total</th></tr></thead>
 <tbody>
-<tr><td class="yr">2024</td><td>$820.803.926</td><td><div class="fin-part-bar"><div class="fin-bar-track"><div class="fin-bar-fill" data-width="72.7" style="width:0"></div></div><span class="fin-bar-pct pos">+36,3%</span></div></td><td>$15.548.243.904</td><td><div class="fin-part-bar"><div class="fin-bar-track"><div class="fin-bar-fill" data-width="41.3" style="width:0"></div></div><span class="fin-bar-pct pos">+20,6%</span></div></td><td>$16.369.047.830</td><td><span class="fin-pill pos">▲ 21,3%</span></td></tr>
-<tr><td class="yr">2025</td><td>$1.088.143.572</td><td><div class="fin-part-bar"><div class="fin-bar-track"><div class="fin-bar-fill" data-width="65.1" style="width:0"></div></div><span class="fin-bar-pct pos">+32,6%</span></div></td><td>$17.753.287.684</td><td><div class="fin-part-bar"><div class="fin-bar-track"><div class="fin-bar-fill" data-width="28.4" style="width:0"></div></div><span class="fin-bar-pct pos">+14,2%</span></div></td><td>$18.841.431.256</td><td><span class="fin-pill pos">▲ 15,1%</span></td></tr>
-<tr><td class="yr">2026</td><td>$1.570.886.858</td><td><div class="fin-part-bar"><div class="fin-bar-track"><div class="fin-bar-fill" data-width="88.7" style="width:0"></div></div><span class="fin-bar-pct pos">+44,4%</span></div></td><td>$14.135.097.471</td><td><div class="fin-part-bar"><div class="fin-bar-track"><div class="fin-bar-fill neg" data-width="40.8" style="width:0"></div></div><span class="fin-bar-pct neg">−20,4%</span></div></td><td>$15.705.984.329</td><td><span class="fin-pill neg">▼ 16,6%</span></td></tr>
-<tr class="proj"><td class="yr">2027<span class="fin-tag-proj">Proyectado</span></td><td>$2.167.823.863</td><td><div class="fin-part-bar"><div class="fin-bar-track"><div class="fin-bar-fill" data-width="76" style="width:0"></div></div><span class="fin-bar-pct pos">+38,0%</span></div></td><td>$20.009.612.274</td><td><div class="fin-part-bar"><div class="fin-bar-track"><div class="fin-bar-fill" data-width="83.1" style="width:0"></div></div><span class="fin-bar-pct pos">+41,6%</span></div></td><td>$22.177.436.137</td><td><span class="fin-pill pos">▲ 41,2%</span></td></tr>
+<tr><td class="yr">2024</td><td>$820.803.926</td><td><div class="fin-part-bar"><div class="fin-bar-track" aria-hidden="true"><div class="fin-bar-fill" data-width="72.7" style="width:0"></div></div><span class="fin-bar-pct pos">+36,3%</span></div></td><td>$15.548.243.904</td><td><div class="fin-part-bar"><div class="fin-bar-track" aria-hidden="true"><div class="fin-bar-fill" data-width="41.3" style="width:0"></div></div><span class="fin-bar-pct pos">+20,6%</span></div></td><td>$16.369.047.830</td><td><span class="fin-pill pos">▲ 21,3%</span></td></tr>
+<tr><td class="yr">2025</td><td>$1.088.143.572</td><td><div class="fin-part-bar"><div class="fin-bar-track" aria-hidden="true"><div class="fin-bar-fill" data-width="65.1" style="width:0"></div></div><span class="fin-bar-pct pos">+32,6%</span></div></td><td>$17.753.287.684</td><td><div class="fin-part-bar"><div class="fin-bar-track" aria-hidden="true"><div class="fin-bar-fill" data-width="28.4" style="width:0"></div></div><span class="fin-bar-pct pos">+14,2%</span></div></td><td>$18.841.431.256</td><td><span class="fin-pill pos">▲ 15,1%</span></td></tr>
+<tr><td class="yr">2026</td><td>$1.570.886.858</td><td><div class="fin-part-bar"><div class="fin-bar-track" aria-hidden="true"><div class="fin-bar-fill" data-width="88.7" style="width:0"></div></div><span class="fin-bar-pct pos">+44,4%</span></div></td><td>$14.135.097.471</td><td><div class="fin-part-bar"><div class="fin-bar-track" aria-hidden="true"><div class="fin-bar-fill neg" data-width="40.8" style="width:0"></div></div><span class="fin-bar-pct neg">−20,4%</span></div></td><td>$15.705.984.329</td><td><span class="fin-pill neg">▼ 16,6%</span></td></tr>
+<tr class="proj"><td class="yr">2027<span class="fin-tag-proj">Proyectado</span></td><td>$2.167.823.863</td><td><div class="fin-part-bar"><div class="fin-bar-track" aria-hidden="true"><div class="fin-bar-fill" data-width="76" style="width:0"></div></div><span class="fin-bar-pct pos">+38,0%</span></div></td><td>$20.009.612.274</td><td><div class="fin-part-bar"><div class="fin-bar-track" aria-hidden="true"><div class="fin-bar-fill" data-width="83.1" style="width:0"></div></div><span class="fin-bar-pct pos">+41,6%</span></div></td><td>$22.177.436.137</td><td><span class="fin-pill pos">▲ 41,2%</span></td></tr>
 </tbody>
 </table>
 </div>
 </div></section>
 
 <!-- 2 · CIERRE PRESUPUESTAL 2026 -->
-<section id="cierre" class="alt"><div class="wrap">
-<div class="head rev"><div class="eyebrow">2 · Cierre y Modificación Presupuestal 2026</div><h2>Ajuste del presupuesto <span class="v">base</span>.</h2></div>
+<section id="cierre" class="alt" aria-labelledby="t-cierre"><div class="wrap">
+<div class="head rev"><div class="eyebrow">2 · Cierre y Modificación Presupuestal 2026</div><h2 id="t-cierre">Ajuste del presupuesto <span class="v">base</span>.</h2></div>
 <div class="grid g2">
-<div class="card rev"><div class="ic f"><i class="ph-fill ph-trend-down"></i></div><div class="num f">−26%</div><div class="lbl">Multas</div><div class="sub">Modificación de −$8.712 millones</div></div>
-<div class="card rev"><div class="ic"><i class="ph-fill ph-trend-up"></i></div><div class="num v">+44%</div><div class="lbl">Trámites</div><div class="sub">+$473,8 M en trámites y +$496,3 M en transferencias</div></div>
+<div class="card rev"><div class="ic f"><i class="ph-fill ph-trend-down" aria-hidden="true"></i></div><div class="num f">−26%</div><div class="lbl">Multas</div><div class="sub">Modificación de −$8.712 millones</div></div>
+<div class="card rev"><div class="ic"><i class="ph-fill ph-trend-up" aria-hidden="true"></i></div><div class="num v">+44%</div><div class="lbl">Trámites</div><div class="sub">+$473,8 M en trámites y +$496,3 M en transferencias</div></div>
 </div>
-<div class="quote rev">El recaudo por multas baja por un mejor comportamiento vial tras los controles. Los ingresos se diversifican gracias a la confianza ciudadana en los trámites institucionales.</div>
-<div class="card rev"><h4>Multas vs Trámites · 2025 vs 2026</h4><p class="sub" style="margin-bottom:1rem">Millones de pesos (COP)</p><div class="chartbox"><canvas id="cMT"></canvas></div></div>
+<blockquote class="quote rev">El recaudo por multas baja por un mejor comportamiento vial tras los controles. Los ingresos se diversifican gracias a la confianza ciudadana en los trámites institucionales.</blockquote>
+<div class="card rev"><h4>Multas vs Trámites · 2025 vs 2026</h4><p class="sub" style="margin-bottom:1rem">Millones de pesos (COP)</p><div class="chartbox"><canvas id="cMT" role="img" aria-label="Gráfico de barras agrupadas en millones de pesos. Multas: 2025 $17.753 M, 2026 $14.135 M. Trámites: 2025 $1.088 M, 2026 $1.571 M."></canvas></div></div>
 </div></section>
 
-  <!-- 3 · CRECIMIENTO Y COMPOSICIÓN DEL PARQUE AUTOMOTOR -->
-<section id="comercial" class="alt"><div class="wrap">
-<div class="head rev"><div class="eyebrow">3 · Dinámica Comercial</div><h2>Matrículas y <span class="v">participación de mercado</span>.</h2></div>
+<!-- 3 · CRECIMIENTO Y COMPOSICIÓN DEL PARQUE AUTOMOTOR -->
+<section id="comercial" class="alt" aria-labelledby="t-com"><div class="wrap">
+<div class="head rev"><div class="eyebrow">3 · Dinámica Comercial</div><h2 id="t-com">Matrículas y <span class="v">participación de mercado</span>.</h2></div>
 <div class="grid g2">
-<div class="card rev"><div class="ic"><i class="ph-fill ph-car-profile"></i></div><div class="num v">83%</div><div class="lbl">Crecimiento interanual en trámites</div><div class="sub">Vehículos matriculados: 2.645 (2025) → 2.213 (Oct 2026)</div></div>
-<div class="card rev"><div class="ic f"><i class="ph-fill ph-motorcycle"></i></div><div class="num f">63%</div><div class="lbl">Motocicletas, línea de mayor volumen</div><div class="sub">1.100 motos · 1.113 autos · 5 otros</div></div>
+<div class="card rev"><div class="ic"><i class="ph-fill ph-car-profile" aria-hidden="true"></i></div><div class="num v">83%</div><div class="lbl">Crecimiento interanual en trámites</div><div class="sub">Vehículos matriculados: 2.645 (2025) → 2.213 (Oct 2026)</div></div>
+<div class="card rev"><div class="ic f"><i class="ph-fill ph-motorcycle" aria-hidden="true"></i></div><div class="num f">63%</div><div class="lbl">Motocicletas, línea de mayor volumen</div><div class="sub">1.100 motos · 1.113 autos · 5 otros</div></div>
 </div>
 <div class="grid g2" style="margin-top:1.4rem">
-<div class="card rev"><h4>Tasa de Mercado · Autos</h4><p class="sub" style="margin-bottom:1rem">Matrículas en el Cesar 2026</p><div class="chartbox"><canvas id="cAu"></canvas></div></div>
+<div class="card rev"><h4>Tasa de Mercado · Autos</h4><p class="sub" style="margin-bottom:1rem">Matrículas en el Cesar 2026</p><div class="chartbox"><canvas id="cAu" role="img" aria-label="Gráfico de barras horizontales de matrículas de autos en el Cesar 2026: La Paz 64%, IDTRACESAR 21%, Valledupar 12%, Otros 3%."></canvas></div></div>
 </div></div></section>
-  
-<!-- 4 · ACTIVIDAD / TABLERO DE CONTROL DE ACCIÓN ANUAL -->
-<section id="gestion"><div class="wrap">
-  
-<div class="head rev"><div class="eyebrow">4 · Gestión Operativa</div><h2>Retorno de inversión: <span class="v">intervenciones que salvan vidas</span>.</h2>
-<a class="btn" href="https://datastudio.google.com/reporting/7ce2269e-8616-413c-974e-55e6fb86271b/page/p_tr3su0wqud" target="_blank" rel="noopener">Tablero de Control de Acción Anual →</a></div>
-<div class="grid g4">
-<div class="card rev"><div class="ic"><i class="ph-fill ph-traffic-cone"></i></div><div class="num" data-c="699">0</div><div class="lbl">Metros lineales de reductores</div></div>
-<div class="card rev"><div class="ic f"><i class="ph-fill ph-paint-brush"></i></div><div class="num" data-c="5830">0</div><div class="lbl">m² de demarcación vial</div></div>
-<div class="card rev"><div class="ic"><i class="ph-fill ph-graduation-cap"></i></div><div class="num" data-c="31">0</div><div class="lbl">Instituciones educativas acompañadas</div></div>
-<div class="card rev"><div class="ic f"><i class="ph-fill ph-megaphone"></i></div><div class="num">+<span data-c="+150">0</span></div><div class="lbl">Campañas de seguridad vial</div></div>
-<div class="card rev"><div class="ic f"><i class="ph-fill ph-megaphone"></i></div><div class="num">+<span data-c="489">0</span></div><div class="lbl">Señales Verticales Instaladas</div></div>
-<div class="card rev"><div class="ic f"><i class="ph-fill ph-megaphone"></i></div><div class="num">+<span data-c="11">0</span></div><div class="lbl">Zonas Residenciales Pacificadas</div></div>
-<div class="card rev"><div class="ic f"><i class="ph-fill ph-megaphone"></i></div><div class="num">+<span data-c="5">0</span></div><div class="lbl">Soluciones de Urbanismo Táctico</div></div>
 
+<!-- 4 · ACTIVIDAD / TABLERO DE CONTROL DE ACCIÓN ANUAL -->
+<section id="gestion" aria-labelledby="t-ges"><div class="wrap">
+
+<div class="head rev"><div class="eyebrow">4 · Gestión Operativa</div><h2 id="t-ges">Retorno de inversión: <span class="v">intervenciones que salvan vidas</span>.</h2>
+<a class="btn" href="https://datastudio.google.com/reporting/7ce2269e-8616-413c-974e-55e6fb86271b/page/p_tr3su0wqud" target="_blank" rel="noopener">Tablero de Control de Acción Anual →<span class="sr-only"> (se abre en una pestaña nueva)</span></a></div>
+<div class="grid g4">
+<div class="card rev"><div class="ic"><i class="ph-fill ph-traffic-cone" aria-hidden="true"></i></div><div class="num" data-c="699">0</div><div class="lbl">Metros lineales de reductores</div></div>
+<div class="card rev"><div class="ic f"><i class="ph-fill ph-paint-brush" aria-hidden="true"></i></div><div class="num" data-c="5830">0</div><div class="lbl">m² de demarcación vial</div></div>
+<div class="card rev"><div class="ic"><i class="ph-fill ph-graduation-cap" aria-hidden="true"></i></div><div class="num" data-c="31">0</div><div class="lbl">Instituciones educativas acompañadas</div></div>
+<div class="card rev"><div class="ic f"><i class="ph-fill ph-megaphone" aria-hidden="true"></i></div><div class="num">+<span data-c="+200">0</span></div><div class="lbl">Campañas de seguridad vial</div></div>
+<div class="card rev"><div class="ic f"><i class="ph-fill ph-megaphone" aria-hidden="true"></i></div><div class="num">+<span data-c="489">0</span></div><div class="lbl">Señales Verticales Instaladas</div></div>
+<div class="card rev"><div class="ic f"><i class="ph-fill ph-megaphone" aria-hidden="true"></i></div><div class="num">+<span data-c="11">0</span></div><div class="lbl">Zonas Residenciales Pacificadas</div></div>
+<div class="card rev"><div class="ic f"><i class="ph-fill ph-megaphone" aria-hidden="true"></i></div><div class="num">+<span data-c="5">0</span></div><div class="lbl">Soluciones de Urbanismo Táctico</div></div>
 </div>
 <div class="collage-heroe rev">
-<div class="img-grande"><img src="Imagenes/Intervenciones a la infraestructura/San Diego/TimePhoto_20251219_121918.jpeg" alt="Intervención San Diego"></div>
-<div><img src="Imagenes/Intervenciones a la infraestructura/El Copey/IMG_4215.JPG.jpeg" alt="El Copey"></div>
-<div><img src="Imagenes/Intervenciones a la infraestructura/Pueblo Bello/TimePhoto_20251126_121939.jpg" alt="Pueblo Bello"></div></div>
+<div class="img-grande"><img loading="lazy" decoding="async" src="Imagenes/Intervenciones a la infraestructura/San Diego/TimePhoto_20251219_121918.jpeg" alt="Intervención San Diego"></div>
+<div><img loading="lazy" decoding="async" src="Imagenes/Intervenciones a la infraestructura/El Copey/IMG_4215.JPG.jpeg" alt="El Copey"></div>
+<div><img loading="lazy" decoding="async" src="Imagenes/Intervenciones a la infraestructura/Pueblo Bello/TimePhoto_20251126_121939.jpg" alt="Pueblo Bello"></div></div>
 
 <h3 style="margin:3rem 0 1rem">Campañas de sensibilización</h3>
 
-  <section class="oc-campanas">
-  
+<div class="oc-campanas">
   <div class="oc-campanas-container reveal">
-    
+
     <details class="oc-accordion">
       <summary class="oc-campana-tag">Eres el mejor conductor</summary>
       <div class="oc-accordion-content">
         <h4>Enfocada en el reconocimiento positivo y el refuerzo de conductas responsables. Se incentivó a los conductores a mantener su documentación al día y a respetar las señales de tránsito.</h4>
         <div class="collage-heroe">
-          <div class="img-grande">
-            <img src="Imagenes/Campañas de Seguridad Vial/Eres el Mejor Conductor/Copia de IMG_4024.JPG" alt="Detalle 2">
-          </div>
-          <div class="img-pequena">
-            <img src="Imagenes/Campañas de Seguridad Vial/Eres el Mejor Conductor/Copia de IMG_4039.JPG" alt="Detalle 1">
-          </div>
-          <div class="img-pequena">
-            <img src="Imagenes/Campañas de Seguridad Vial/Eres el Mejor Conductor/Copia de IMG_4003.JPG" alt="Detalle 2">
-          </div>
+          <div class="img-grande"><img loading="lazy" decoding="async" src="Imagenes/Campañas de Seguridad Vial/Eres el Mejor Conductor/Copia de IMG_4024.JPG" alt="Detalle 2"></div>
+          <div class="img-pequena"><img loading="lazy" decoding="async" src="Imagenes/Campañas de Seguridad Vial/Eres el Mejor Conductor/Copia de IMG_4039.JPG" alt="Detalle 1"></div>
+          <div class="img-pequena"><img loading="lazy" decoding="async" src="Imagenes/Campañas de Seguridad Vial/Eres el Mejor Conductor/Copia de IMG_4003.JPG" alt="Detalle 2"></div>
         </div>
       </div>
     </details>
@@ -390,17 +396,11 @@ footer{background:var(--negro);color:#fff;text-align:center;padding:2.5rem 1.5re
       <div class="oc-accordion-content">
         <h4>Ejecutada durante la máxima festividad del departamento, esta iniciativa se centró en la prevención del consumo de alcohol al volante y el control de la fatiga, logrando canalizar el flujo de visitantes con seguridad y alegría.</h4>
         <div class="collage-heroe">
-          <div class="img-grande">
-            <img src="Imagenes/Campañas de Seguridad Vial/En Festival Vallenato Marcha Bacano y Seguro/Copia de IMG_1405.JPG" alt="Detalle 2">
-          </div>
-          <div class="img-pequena">
-            <img src="Imagenes/Campañas de Seguridad Vial/En Festival Vallenato Marcha Bacano y Seguro/Copia de DVNE7327.JPG" alt="Detalle 1">
-          </div>
-          <div class="img-pequena">
-            <img src="Imagenes/Campañas de Seguridad Vial/En Festival Vallenato Marcha Bacano y Seguro/Copia de IMG_1043.JPG" alt="Detalle 2">
-          </div>
+          <div class="img-grande"><img loading="lazy" decoding="async" src="Imagenes/Campañas de Seguridad Vial/En Festival Vallenato Marcha Bacano y Seguro/Copia de IMG_1405.JPG" alt="Detalle 2"></div>
+          <div class="img-pequena"><img loading="lazy" decoding="async" src="Imagenes/Campañas de Seguridad Vial/En Festival Vallenato Marcha Bacano y Seguro/Copia de DVNE7327.JPG" alt="Detalle 1"></div>
+          <div class="img-pequena"><img loading="lazy" decoding="async" src="Imagenes/Campañas de Seguridad Vial/En Festival Vallenato Marcha Bacano y Seguro/Copia de IMG_1043.JPG" alt="Detalle 2"></div>
         </div>
-        </div>
+      </div>
     </details>
 
     <details class="oc-accordion">
@@ -408,15 +408,9 @@ footer{background:var(--negro);color:#fff;text-align:center;padding:2.5rem 1.5re
       <div class="oc-accordion-content">
         <h4>Estrategia macro que busca la reducción drástica de la siniestralidad en el departamento del Cesar. Su mensaje central refuerza la única cifra aceptable en la gestión vial: cero fallecidos, cero lesionados y cero imprudencias.</h4>
         <div class="collage-heroe">
-          <div class="img-grande">
-            <img src="Imagenes/Campañas de Seguridad Vial/Meta Cero/Copia de IMG_2998.JPG" alt="Detalle 2">
-          </div>
-          <div class="img-pequena">
-            <img src="Imagenes/Campañas de Seguridad Vial/Meta Cero/IMG_2981.JPG" alt="Detalle 1">
-          </div>
-          <div class="img-pequena">
-            <img src="Imagenes/Campañas de Seguridad Vial/Meta Cero/IMG_2989.JPG" alt="Detalle 2">
-          </div>
+          <div class="img-grande"><img loading="lazy" decoding="async" src="Imagenes/Campañas de Seguridad Vial/Meta Cero/Copia de IMG_2998.JPG" alt="Detalle 2"></div>
+          <div class="img-pequena"><img loading="lazy" decoding="async" src="Imagenes/Campañas de Seguridad Vial/Meta Cero/IMG_2981.JPG" alt="Detalle 1"></div>
+          <div class="img-pequena"><img loading="lazy" decoding="async" src="Imagenes/Campañas de Seguridad Vial/Meta Cero/IMG_2989.JPG" alt="Detalle 2"></div>
         </div>
       </div>
     </details>
@@ -426,51 +420,33 @@ footer{background:var(--negro);color:#fff;text-align:center;padding:2.5rem 1.5re
       <div class="oc-accordion-content">
         <h4>Implementada durante el cierre de año para prevenir siniestros en las festividades decembrinas, motivando a la ciudadanía a disfrutar sin excesos que comprometan la seguridad en las vías.</h4>
         <div class="collage-heroe">
-          <div class="img-grande">
-            <img src="Imagenes/Campañas de Seguridad Vial/Que en Navidad Nada Detenga tu Marcha/IMG_8356.JPG" alt="Detalle 2">
-          </div>
-          <div class="img-pequena">
-            <img src="Imagenes/Campañas de Seguridad Vial/Que en Navidad Nada Detenga tu Marcha/IMG_8319.JPG" alt="Detalle 1">
-          </div>
-          <div class="img-pequena">
-            <img src="Imagenes/Campañas de Seguridad Vial/Que en Navidad Nada Detenga tu Marcha/CBGZ8835.JPG" alt="Detalle 2">
-          </div>
+          <div class="img-grande"><img loading="lazy" decoding="async" src="Imagenes/Campañas de Seguridad Vial/Que en Navidad Nada Detenga tu Marcha/IMG_8356.JPG" alt="Detalle 2"></div>
+          <div class="img-pequena"><img loading="lazy" decoding="async" src="Imagenes/Campañas de Seguridad Vial/Que en Navidad Nada Detenga tu Marcha/IMG_8319.JPG" alt="Detalle 1"></div>
+          <div class="img-pequena"><img loading="lazy" decoding="async" src="Imagenes/Campañas de Seguridad Vial/Que en Navidad Nada Detenga tu Marcha/CBGZ8835.JPG" alt="Detalle 2"></div>
         </div>
       </div>
     </details>
 
-      <details class="oc-accordion">
+    <details class="oc-accordion">
       <summary class="oc-campana-tag">Pacto por la Vida:</summary>
       <div class="oc-accordion-content">
         <h4> Iniciativa de sensibilización orientada a consolidar un compromiso corresponsable entre los ciudadanos y la autoridad de tránsito. El enfoque de esta campaña se centró en priorizar la vida en la vía como un valor supremo, motivando a los diferentes actores viales a adoptar conductas permanentemente responsables y preventivas en la vía.</h4>
         <div class="collage-heroe">
-          <div class="img-grande">
-            <img src="Imagenes/Campañas de Seguridad Vial/Pacto por la Vida/IMG_8062.JPG" alt="Detalle 2">
-          </div>
-          <div class="img-pequena">
-            <img src="Imagenes/Campañas de Seguridad Vial/Pacto por la Vida/IMG_8010.JPG" alt="Detalle 1">
-          </div>
-          <div class="img-pequena">
-            <img src="Imagenes/Campañas de Seguridad Vial/Pacto por la Vida/HLXO0100.JPG" alt="Detalle 2">
-          </div>
+          <div class="img-grande"><img loading="lazy" decoding="async" src="Imagenes/Campañas de Seguridad Vial/Pacto por la Vida/IMG_8062.JPG" alt="Detalle 2"></div>
+          <div class="img-pequena"><img loading="lazy" decoding="async" src="Imagenes/Campañas de Seguridad Vial/Pacto por la Vida/IMG_8010.JPG" alt="Detalle 1"></div>
+          <div class="img-pequena"><img loading="lazy" decoding="async" src="Imagenes/Campañas de Seguridad Vial/Pacto por la Vida/HLXO0100.JPG" alt="Detalle 2"></div>
         </div>
       </div>
     </details>
 
-      <details class="oc-accordion">
+    <details class="oc-accordion">
       <summary class="oc-campana-tag">¿Dónde está el verdadero Terror?</summary>
       <div class="oc-accordion-content">
         <h4> Campaña implementada durante la festividad de Halloween. A través de esta estrategia, se resignificó el concepto del temor festivo para recordar que el peligro real no se encuentra en los mitos, sino en las imprudencias viales, concientizando sobre las consecuencias fatales de conductas como el exceso de velocidad o el desuso de elementos de seguridad pasiva.</h4>
         <div class="collage-heroe">
-          <div class="img-grande">
-            <img src="Imagenes/Campañas de Seguridad Vial/¿Dónde está el verdadero Terror_/IMG_1247.jpg" alt="Detalle 2">
-          </div>
-          <div class="img-pequena">
-            <img src="Imagenes/Campañas de Seguridad Vial/¿Dónde está el verdadero Terror_/IMG_6911.JPG" alt="Detalle 1">
-          </div>
-          <div class="img-pequena">
-            <img src="Imagenes/Campañas de Seguridad Vial/¿Dónde está el verdadero Terror_/IMG_6854.JPG" alt="Detalle 2">
-          </div>
+          <div class="img-grande"><img loading="lazy" decoding="async" src="Imagenes/Campañas de Seguridad Vial/¿Dónde está el verdadero Terror_/IMG_1247.jpg" alt="Detalle 2"></div>
+          <div class="img-pequena"><img loading="lazy" decoding="async" src="Imagenes/Campañas de Seguridad Vial/¿Dónde está el verdadero Terror_/IMG_6911.JPG" alt="Detalle 1"></div>
+          <div class="img-pequena"><img loading="lazy" decoding="async" src="Imagenes/Campañas de Seguridad Vial/¿Dónde está el verdadero Terror_/IMG_6854.JPG" alt="Detalle 2"></div>
         </div>
       </div>
     </details>
@@ -480,65 +456,52 @@ footer{background:var(--negro);color:#fff;text-align:center;padding:2.5rem 1.5re
       <div class="oc-accordion-content">
         <h4> Estrategia de seguridad activa orientada a mitigar los riesgos asociados al microsueño y la fatiga al volante en los principales corredores del departamento. A través de este espacio, se incentivó a los conductores a realizar pausas activas obligatorias, ofreciendo un estímulo pedagógico que permitió reactivar sus niveles de alerta y promover un tránsito seguro durante trayectos prolongados.</h4>
         <div class="collage-heroe">
-          <div class="img-grande">
-            <img src="Imagenes/Campañas de Seguridad Vial/Un café por la vida en las vías del Cesar/IMG_0410.jpg" alt="Detalle 2">
-          </div>
-          <div class="img-pequena">
-            <img src="Imagenes/Campañas de Seguridad Vial/Un café por la vida en las vías del Cesar/IMG_0397.jpg" alt="Detalle 1">
-          </div>
-          <div class="img-pequena">
-            <img src="Imagenes/Campañas de Seguridad Vial/Un café por la vida en las vías del Cesar/IMG_0455.jpg" alt="Detalle 2">
-          </div>
+          <div class="img-grande"><img loading="lazy" decoding="async" src="Imagenes/Campañas de Seguridad Vial/Un café por la vida en las vías del Cesar/IMG_0410.jpg" alt="Detalle 2"></div>
+          <div class="img-pequena"><img loading="lazy" decoding="async" src="Imagenes/Campañas de Seguridad Vial/Un café por la vida en las vías del Cesar/IMG_0397.jpg" alt="Detalle 1"></div>
+          <div class="img-pequena"><img loading="lazy" decoding="async" src="Imagenes/Campañas de Seguridad Vial/Un café por la vida en las vías del Cesar/IMG_0455.jpg" alt="Detalle 2"></div>
         </div>
       </div>
     </details>
 
-
   </div>
-</section>
+</div>
 
-
-
-  
 <div class="ig">
 <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DV9Mu9UADKG/" data-instgrm-version="14" style="background:#FFF;border:0;margin:0;padding:0;width:100%"></blockquote>
 <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DTsZb8tgOTz/" data-instgrm-version="14" style="background:#FFF;border:0;margin:0;padding:0;width:100%"></blockquote>
 <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DKInmp-tv1x/" data-instgrm-version="14" style="background:#FFF;border:0;margin:0;padding:0;width:100%"></blockquote>
 </div>
-  
-<div class="vid" data-yt="MkTZDS5W2pU"><img src="Imagenes/Campañas de Seguridad Vial/Meta Cero/Copia de IMG_2998.JPG" alt="Video"><div class="p"><i class="ph-fill ph-play"></i></div><h4>¿Dejarías una silla vacía?</h4></div>
+
+<div class="vid" data-yt="MkTZDS5W2pU" role="button" tabindex="0" aria-haspopup="dialog" aria-label="Reproducir video: ¿Dejarías una silla vacía?"><img loading="lazy" decoding="async" src="Imagenes/Campañas de Seguridad Vial/Meta Cero/Copia de IMG_2998.JPG" alt="Video"><div class="p" aria-hidden="true"><i class="ph-fill ph-play"></i></div><h4>¿Dejarías una silla vacía?</h4></div>
 </div></section>
 
-<!-- 4 · ACTIVIDAD / TABLERO DE CONTROL DE ACCIÓN ANUAL -->
-<section id="gestion"><div class="wrap">
-  
+<!-- 5 · INVERSIONES 2027 · TABLERO, EVIDENCIA EN TERRITORIO Y TECNOLOGÍA -->
+<section id="poai" aria-labelledby="t-poai"><div class="wrap">
+
 <div class="head rev">
   <div class="eyebrow">5 · Gestión Operativa</div>
-  <h2>Retorno de inversión: <span class="v">intervenciones que salvan vidas</span>.</h2>
-  <!-- Botón opcional si quieres mantener el enlace externo además del iframe -->
-  <a class="btn" href="https://datastudio.google.com/reporting/7ce2269e-8616-413c-974e-55e6fb86271b/page/p_tr3su0wqud" target="_blank" rel="noopener">Abrir tablero en pantalla completa →</a>
+  <h2 id="t-poai">Retorno de inversión: <span class="v">intervenciones que salvan vidas</span>.</h2>
+  <a class="btn" href="https://datastudio.google.com/reporting/7ce2269e-8616-413c-974e-55e6fb86271b/page/p_tr3su0wqud" target="_blank" rel="noopener">Abrir tablero en pantalla completa →<span class="sr-only"> (se abre en una pestaña nueva)</span></a>
 </div>
 
 <!-- CONTENEDOR DEL TABLERO INTEGRADO -->
 <div class="card rev" style="margin-bottom: 2.5rem; padding: 0; overflow: hidden; height: 600px; border-radius: var(--r);">
-  <iframe 
-    width="100%" 
-    height="100%" 
-    src="https://datastudio.google.com/embed/reporting/331b20b7-8e4c-43ea-8396-fec08ad8f81b/page/p_tr3su0wqud" 
-    frameborder="0" 
-    style="border:0;" 
-    allowfullscreen 
+  <iframe
+    title="Tablero de Control de Acción Anual"
+    width="100%"
+    height="100%"
+    loading="lazy"
+    src="https://datastudio.google.com/embed/reporting/331b20b7-8e4c-43ea-8396-fec08ad8f81b/page/p_tr3su0wqud"
+    style="border:0;"
+    allowfullscreen
     sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox">
   </iframe>
 </div>
 
-<!-- Sigue tu código original con la grilla g4 -->
-
-
 <!-- GALERÍA -->
 <div id="galeria">
 <h3 class="sh3 rev">Evidencia en territorio: <span class="v">inversión en ejecución</span></h3>
-<div class="filters rev" id="flt"></div>
+<div class="filters rev" id="flt" role="group" aria-label="Filtrar galería por categoría"></div>
 <div class="gal" id="gal"></div>
 
 <!-- DETALLE TERRITORIAL · se muestra con "Todas" e "Ingeniería de Tránsito" -->
@@ -549,9 +512,9 @@ footer{background:var(--negro);color:#fff;text-align:center;padding:2.5rem 1.5re
   </div>
   <div class="muni-detail-grid">
 
-    <div class="muni-detail rev">
-      <div class="md-img-container"><img loading="lazy" src="Imagenes/Intervenciones a la infraestructura/El Copey/IMG_4215.JPG.jpeg" alt="Intervenciones en El Copey"></div>
-      <div class="md-head"><div class="md-flag" style="background:var(--verde)"></div>
+    <article class="muni-detail rev">
+      <div class="md-img-container"><img loading="lazy" decoding="async" src="Imagenes/Intervenciones a la infraestructura/El Copey/IMG_4215.JPG.jpeg" alt="Intervenciones en El Copey"></div>
+      <div class="md-head"><div class="md-flag" style="background:var(--verde)" aria-hidden="true"></div>
         <div><h4>El Copey</h4><span class="md-sub">Urbano · Rural · Corregimientos</span></div></div>
       <div class="md-stats">
         <div class="md-st"><div class="md-v">138</div><div class="md-l">ml Reductores</div></div>
@@ -561,11 +524,11 @@ footer{background:var(--negro);color:#fff;text-align:center;padding:2.5rem 1.5re
       </div>
       <div class="md-ie"><strong>Sitios intervenidos (7 I.E. y 2 tramos):</strong>
         <ul><li>I.E. Agrícola sedes El Sena, San Martín y Las Mercedes</li><li>Corregimientos: Caracolicito · Paloquemao · Chimila · San Francisco</li><li>2 Zonas residenciales</li></ul></div>
-    </div>
+    </article>
 
-    <div class="muni-detail rev">
-      <div class="md-img-container"><img loading="lazy" src="Imagenes/Intervenciones a la infraestructura/San Diego/TimePhoto_20251221_110117.jpeg" alt="Intervenciones en San Diego"></div>
-      <div class="md-head"><div class="md-flag" style="background:var(--fucsia)"></div>
+    <article class="muni-detail rev">
+      <div class="md-img-container"><img loading="lazy" decoding="async" src="Imagenes/Intervenciones a la infraestructura/San Diego/TimePhoto_20251221_110117.jpeg" alt="Intervenciones en San Diego"></div>
+      <div class="md-head"><div class="md-flag" style="background:var(--fucsia)" aria-hidden="true"></div>
         <div><h4>San Diego</h4><span class="md-sub">Urbano · Corregimiento Nuevas Flores</span></div></div>
       <div class="md-stats">
         <div class="md-st"><div class="md-v">292</div><div class="md-l">ml Reductores</div></div>
@@ -576,11 +539,11 @@ footer{background:var(--negro);color:#fff;text-align:center;padding:2.5rem 1.5re
       </div>
       <div class="md-ie"><strong>Sitios intervenidos (7 I.E. y 9 tramos):</strong>
         <ul><li>CDI Horas Felices · Sagrado Corazón de Jesús · Pasitos Felices</li><li>I.E. Nuevas Flores (Primaria y Bachillerato)</li><li>6 zonas residenciales</li></ul></div>
-    </div>
+    </article>
 
-    <div class="muni-detail rev">
-      <div class="md-img-container"><img loading="lazy" src="Imagenes/Intervenciones a la infraestructura/Pueblo Bello/TimePhoto_20251126_121939.jpg" alt="Intervenciones en Pueblo Bello"></div>
-      <div class="md-head"><div class="md-flag" style="background:var(--verde-claro)"></div>
+    <article class="muni-detail rev">
+      <div class="md-img-container"><img loading="lazy" decoding="async" src="Imagenes/Intervenciones a la infraestructura/Pueblo Bello/TimePhoto_20251126_121939.jpg" alt="Intervenciones en Pueblo Bello"></div>
+      <div class="md-head"><div class="md-flag" style="background:var(--verde-claro)" aria-hidden="true"></div>
         <div><h4>Pueblo Bello</h4><span class="md-sub">Zona urbana e instituciones educativas</span></div></div>
       <div class="md-stats">
         <div class="md-st"><div class="md-v">65</div><div class="md-l">ml Reductores</div></div>
@@ -590,11 +553,11 @@ footer{background:var(--negro);color:#fff;text-align:center;padding:2.5rem 1.5re
       </div>
       <div class="md-ie"><strong>Instituciones Educativas (4):</strong>
         <ul><li>I.E. Magola Hernández Pardo</li><li>I.E. Dorotea Adamet</li><li>Instituto Agrícola</li><li>I.E. Jorge Eliezer</li></ul></div>
-    </div>
+    </article>
 
-    <div class="muni-detail rev">
-      <div class="md-img-container"><img loading="lazy" src="Imagenes/Intervenciones a la infraestructura/Manaure/Copia de IMG_9498.JPG" alt="Intervenciones en Manaure"></div>
-      <div class="md-head"><div class="md-flag" style="background:var(--fucsia)"></div>
+    <article class="muni-detail rev">
+      <div class="md-img-container"><img loading="lazy" decoding="async" src="Imagenes/Intervenciones a la infraestructura/Manaure/Copia de IMG_9498.JPG" alt="Intervenciones en Manaure"></div>
+      <div class="md-head"><div class="md-flag" style="background:var(--fucsia)" aria-hidden="true"></div>
         <div><h4>Manaure</h4><span class="md-sub">Instituciones educativas y urbanismo táctico</span></div></div>
       <div class="md-stats">
         <div class="md-st"><div class="md-v">35</div><div class="md-l">ml Reductores</div></div>
@@ -605,11 +568,11 @@ footer{background:var(--negro);color:#fff;text-align:center;padding:2.5rem 1.5re
       </div>
       <div class="md-ie"><strong>Instituciones Educativas (5):</strong>
         <ul><li>I.E. Nuestra Señora del Carmen · Normal Superior</li><li>I.E. María Inmaculada · María Auxiliadora</li><li>Juan XXIII Coliseo</li></ul></div>
-    </div>
+    </article>
 
-    <div class="muni-detail rev">
-      <div class="md-img-container"><img loading="lazy" src="Imagenes/Intervenciones a la infraestructura/Pelaya/Pelaya1.jpeg" alt="Intervenciones en Pelaya"></div>
-      <div class="md-head"><div class="md-flag" style="background:var(--fucsia)"></div>
+    <article class="muni-detail rev">
+      <div class="md-img-container"><img loading="lazy" decoding="async" src="Imagenes/Intervenciones a la infraestructura/Pelaya/Pelaya1.jpeg" alt="Intervenciones en Pelaya"></div>
+      <div class="md-head"><div class="md-flag" style="background:var(--fucsia)" aria-hidden="true"></div>
         <div><h4>Pelaya</h4><span class="md-sub">Instituciones educativas y urbanismo táctico</span></div></div>
       <div class="md-stats">
         <div class="md-st"><div class="md-v">120</div><div class="md-l">ml Reductores</div></div>
@@ -619,11 +582,11 @@ footer{background:var(--negro);color:#fff;text-align:center;padding:2.5rem 1.5re
       </div>
       <div class="md-ie"><strong>Sitios intervenidos (7 I.E. y 1 Institución):</strong>
         <ul><li>IE José Maria Torti Soriano Sede 1</li><li>I.E. Nacionalizada Integrada sede Principal</li><li>Escuela Francisco Canosa</li><li>CENPROT</li><li>Colegio Los Ángeles</li><li>Casa del Adulto Mayo</li></ul></div>
-    </div>
+    </article>
 
-    <div class="muni-detail rev">
-      <div class="md-img-container"><img loading="lazy" src="Imagenes/Intervenciones a la infraestructura/Pailitas/Pailitas1.jpeg" alt="Intervenciones en Pailitas"></div>
-      <div class="md-head"><div class="md-flag" style="background:var(--fucsia)"></div>
+    <article class="muni-detail rev">
+      <div class="md-img-container"><img loading="lazy" decoding="async" src="Imagenes/Intervenciones a la infraestructura/Pailitas/Pailitas1.jpeg" alt="Intervenciones en Pailitas"></div>
+      <div class="md-head"><div class="md-flag" style="background:var(--fucsia)" aria-hidden="true"></div>
         <div><h4>Pailitas</h4><span class="md-sub">Instituciones educativas y urbanismo táctico</span></div></div>
       <div class="md-stats">
         <div class="md-st"><div class="md-v">55</div><div class="md-l">ml Reductores</div></div>
@@ -633,27 +596,24 @@ footer{background:var(--negro);color:#fff;text-align:center;padding:2.5rem 1.5re
       </div>
       <div class="md-ie"><strong>Sitios intervenidos (4 I.E.):</strong>
         <ul><li>IE Rosa Jaimes Barrera</li><li>I.E. San José de Tunumá.</li><li>IE Rosa Jaimes Barrera Sede 27 de Marzo</li><li>IE San Juan Bosco</li></ul></div>
-    </div>
+    </article>
 
   </div>
 </div>
 </div>
 
-</div></section>
+<blockquote class="quote rev" style="margin-top:3rem">Meta Cero: cero fallecidos, cero lesionados y cero imprudencias.</blockquote>
 
-  <div class="quote rev" style="margin-top:3rem">Meta Cero: cero fallecidos, cero lesionados y cero imprudencias.</div>
-
- 
 <!-- TECNOLOGÍA Y CONTROL · JUSTIFICACIÓN -->
 <div id="tecno">
 <h3 class="sh3 rev">Panorama Nacional en Inversión <span class="v">Tecnología y Control</span></h3>
 <p class="sub rev" style="max-width:56rem;margin:-.6rem 0 1.4rem">Panorama Nacional en Sistemas Automáticos, Semiautomáticos y Otros Medios Tecnológicos (SAST)</p>
 
 <div class="grid g4">
-<div class="card rev"><div class="ic"><i class="ph-fill ph-shield-check"></i></div><div class="num" data-c="804">0</div><div class="lbl">Total autorizadas</div><div class="sub">Registro global de la ANSV</div></div>
-<div class="card rev"><div class="ic"><i class="ph-fill ph-video-camera"></i></div><div class="num v" data-c="370">0</div><div class="lbl">Operando</div><div class="sub">46% del total país</div></div>
-<div class="card rev"><div class="ic f"><i class="ph-fill ph-clock-counter-clockwise"></i></div><div class="num f" data-c="434">0</div><div class="lbl">Autorizadas a instalar</div><div class="sub">54% pendientes de montaje</div></div>
-<div class="card rev"><div class="ic"><i class="ph-fill ph-file-x"></i></div><div class="num" data-c="538">0</div><div class="lbl">Expiradas / vencidas</div><div class="sub">Requieren renovación formal</div></div>
+<div class="card rev"><div class="ic"><i class="ph-fill ph-shield-check" aria-hidden="true"></i></div><div class="num" data-c="804">0</div><div class="lbl">Total autorizadas</div><div class="sub">Registro global de la ANSV</div></div>
+<div class="card rev"><div class="ic"><i class="ph-fill ph-video-camera" aria-hidden="true"></i></div><div class="num v" data-c="370">0</div><div class="lbl">Operando</div><div class="sub">46% del total país</div></div>
+<div class="card rev"><div class="ic f"><i class="ph-fill ph-clock-counter-clockwise" aria-hidden="true"></i></div><div class="num f" data-c="434">0</div><div class="lbl">Autorizadas a instalar</div><div class="sub">54% pendientes de montaje</div></div>
+<div class="card rev"><div class="ic"><i class="ph-fill ph-file-x" aria-hidden="true"></i></div><div class="num" data-c="538">0</div><div class="lbl">Expiradas / vencidas</div><div class="sub">Requieren renovación formal</div></div>
 </div>
 <p class="sub rev" style="margin-top:.6rem">Panorama nacional de cámaras de fotodetección.</p>
 
@@ -666,99 +626,305 @@ footer{background:var(--negro);color:#fff;text-align:center;padding:2.5rem 1.5re
 
 <div class="card rev"><h4>Posición del Cesar · SAST en operación</h4>
 <div class="rank" id="rank">
-<div><span>1. Bogotá D.C.</span><i data-w="91"></i><b>91</b></div><div><span>2. Antioquia</span><i data-w="78"></i><b>78</b></div><div><span>3. Valle del Cauca</span><i data-w="74"></i><b>74</b></div><div><span>4. Atlántico</span><i data-w="43"></i><b>43</b></div><div><span>7. Magdalena</span><i data-w="14"></i><b>14</b></div><div class="me"><span>8. CESAR</span><i data-w="11"></i><b>11</b></div></div>
+<div><span>1. Bogotá D.C.</span><i aria-hidden="true" data-w="91"></i><b>91</b></div><div><span>2. Antioquia</span><i aria-hidden="true" data-w="78"></i><b>78</b></div><div><span>3. Valle del Cauca</span><i aria-hidden="true" data-w="74"></i><b>74</b></div><div><span>4. Atlántico</span><i aria-hidden="true" data-w="43"></i><b>43</b></div><div><span>7. Magdalena</span><i aria-hidden="true" data-w="14"></i><b>14</b></div><div class="me"><span>8. CESAR</span><i aria-hidden="true" data-w="11"></i><b>11</b></div></div>
 <p class="sub" style="margin-top:1rem"><strong>Registro oficial ANSV · 11 equipos</strong> categorizados como “Operando”: 9 en Valledupar urbano y 2 en paso urbano de RN 4901 en Agustín Codazzi.</p>
-<div class="alert"><strong>Realidad en terreno · sin operación activa en vía nacional.</strong> Actualmente los equipos de Agustín Codazzi no realizan fiscalización ni emisión efectiva de comparendos sancionatorios.</div></div>
+<div class="alert" role="note"><strong>Realidad en terreno · sin operación activa en vía nacional.</strong> Actualmente los equipos de Agustín Codazzi no realizan fiscalización ni emisión efectiva de comparendos sancionatorios.</div></div>
 </div>
 
 <div class="grid g2" style="margin-top:1.4rem">
-<div class="card rev"><span class="ptag">SAST en San Alberto</span><h4>2 puntos (4 equipos) · Ruta Nacional 4514</h4><p class="sub">Tramo vial San Alberto – La Mata. En estos puntos operaron SAST entre noviembre de 2020 y febrero de 2026.</p>
+<article class="card rev"><span class="ptag">SAST en San Alberto</span><h4>2 puntos (4 equipos) · Ruta Nacional 4514</h4><p class="sub">Tramo vial San Alberto – La Mata. En estos puntos operaron SAST entre noviembre de 2020 y febrero de 2026.</p>
 <div class="chips"><span class="chip">Exceso de velocidad: 90 km/h</span><span class="chip v">SOAT y Revisión Tecnicomecánica</span><span class="chip"><b data-c="7">0</b> víctimas ene–ago 2026</span></div>
 <ul class="tl"><li class="ok"><b>12 FEB 2026</b>Radicación ANSV (SOL0000015204, SOL0000015205)</li><li class="ok"><b>06 MAR 2026</b>Resolución 208 de 2026 (aceptada 2 SAST)</li><li class="ok"><b>30 MAR 2026</b>Resolución 294 de 2026 (aceptada 2 SAST)</li><li><b>16 ABR 2026</b>Inicio solicitud permiso ANI · ocupación franja de retiro</li><li><b>13 AGO 2026</b>Remisión concepto técnico favorable Concesión e interventoría</li><li><b>31 AGO 2026</b>Solicitud aclaración concepto técnico ANI</li><li><b>18 SEP 2026</b>Remisión concepto técnico favorable ajustado</li></ul>
-<p class="sub"><strong>Pasos pendientes:</strong> 1 · Resolución autorización ANI → 2 · Aprobación pólizas → 3 · Instalación de señales → 4 · Autorizar cambio de estado ANSV a “operando”.</p></div>
+<p class="sub"><strong>Pasos pendientes:</strong> 1 · Resolución autorización ANI → 2 · Aprobación pólizas → 3 · Instalación de señales → 4 · Autorizar cambio de estado ANSV a “operando”.</p></article>
 
-<div class="card rev"><span class="ptag f">SAST en El Copey</span><h4>2 puntos (4 equipos) · Ruta Nacional 4517</h4><p class="sub">Tramo vial Bosconia – Río Ariguaní · PR 14+930 y PR 33+237.</p>
+<article class="card rev"><span class="ptag f">SAST en El Copey</span><h4>2 puntos (4 equipos) · Ruta Nacional 4517</h4><p class="sub">Tramo vial Bosconia – Río Ariguaní · PR 14+930 y PR 33+237.</p>
 <div class="chips"><span class="chip">Exceso de velocidad: 90 km/h</span><span class="chip v">SOAT y Revisión Tecnicomecánica</span></div>
 <ul class="tl"><li class="ok"><b>12 FEB 2026</b>Radicación ANSV</li><li class="ok"><b>17 MAR 2026</b>Resolución 242 de 2026 (aceptada PR 14+930)</li><li class="ok"><b>19 MAR 2026</b>Resolución 255 de 2026 (aceptada PR 33+237)</li><li><b>28 ABR 2026</b>Inicio solicitud permiso ANI · ocupación franja de retiro</li><li><b>28 JUL 2026</b>Remisión concepto técnico favorable Concesión Yuma e Interventoría</li><li class="ok"><b>06 AGO 2026</b>Resolución 20263040010625 · autorización ANI para instalar señales</li><li><b>07 OCT 2026</b>Radicación pólizas ante la ANI</li></ul>
-<p class="sub"><strong>Pasos pendientes:</strong> 1 · Aprobación pólizas → 2 · Instalación señales → 3 · Autorizar cambio a “operando”.</p></div>
+<p class="sub"><strong>Pasos pendientes:</strong> 1 · Aprobación pólizas → 2 · Instalación señales → 3 · Autorizar cambio a “operando”.</p></article>
 </div>
 <p class="sub rev" style="margin-top:1rem">Límite de velocidad determinado mediante la Metodología para establecimiento de velocidad límite según Resolución 20233040025995 de 2023.</p>
 </div>
 
+</div></section>
+
+</main>
+
 <footer>IDTRACESAR · Instituto Departamental de Tránsito del Cesar · Meta Cero</footer>
-<div class="modal" id="m"><button id="x">&times;</button><div class="box" id="mb"></div></div>
-  
-<script>
-/* Factor de escala para Chart.js (sus fuentes van en px; la raíz CSS crece con el viewport) */
-const S=parseFloat(getComputedStyle(document.documentElement).fontSize)/16;
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
-document.querySelectorAll('.rev').forEach(e=>io.observe(e));
-const co=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;co.unobserve(e.target);const t=+e.target.dataset.c,s=performance.now();(function f(n){const p=Math.min((n-s)/1600,1);e.target.textContent=Math.round(t*(1-Math.pow(1-p,3))).toLocaleString('es-CO');if(p<1)requestAnimationFrame(f)})(s)}),{threshold:.5});
-document.querySelectorAll('[data-c]').forEach(e=>co.observe(e));
-const m=document.getElementById('m'),mb=document.getElementById('mb');
-document.querySelectorAll('[data-yt]').forEach(v=>v.onclick=()=>{mb.innerHTML=`<iframe src="https://www.youtube.com/embed/${v.dataset.yt}?autoplay=1&rel=0" allow="autoplay;encrypted-media" allowfullscreen></iframe>`;m.classList.add('on')});
-const cl=()=>{m.classList.remove('on');mb.innerHTML=''};
-document.getElementById('x').onclick=cl;m.onclick=e=>{if(e.target===m)cl()};document.onkeydown=e=>{if(e.key==='Escape')cl()};
 
-/* Indicadores · grilla con zoom (omite imágenes inexistentes) */
-const IND=[
- ['Imagenes/Portada/SineistralidadCesar1.jpg','Imagenes/Portada/SiniestralidadCesar1.jpg','Imagenes/Portada/sineistralidadCesar1.jpg','Imagenes/Portada/siniestralidadCesar1.jpg'],
- ['Imagenes/Portada/SineistralidadCesar2.jpg','Imagenes/Portada/SiniestralidadCesar2.jpg','Imagenes/Portada/sineistralidadCesar2.jpg','Imagenes/Portada/siniestralidadCesar2.jpg'],
- ['Imagenes/Portada/SineistralidadCesar3.jpg','Imagenes/Portada/SiniestralidadCesar3.jpg','Imagenes/Portada/sineistralidadCesar3.jpg','Imagenes/Portada/siniestralidadCesar3.jpg']
-];
-(()=>{
-const g=document.getElementById('ind');
-const probe=cands=>new Promise(res=>{let n=0;const e=new Image();e.onload=()=>res(e.src);e.onerror=()=>{++n<cands.length?e.src=encodeURI(cands[n]):res(null)};e.src=encodeURI(cands[0])});
-Promise.all(IND.map(probe)).then(urls=>{
- const ok=urls.filter(Boolean);
- if(!ok.length){console.warn('Indicadores: no se encontró ninguna imagen. Rutas probadas:',IND);g.innerHTML='<p class="ind-empty">No se encontraron las imágenes de indicadores (Imagenes/Portada/).</p>';return}
- g.innerHTML=ok.map((s,k)=>`<figure class="rev" tabindex="0" role="button" aria-label="Ampliar indicador ${k+1}"><img loading="lazy" src="${s}" alt="Indicadores del Cesar ${k+1}"><span class="zm"><i class="ph-fill ph-arrows-out"></i> Ampliar</span></figure>`).join('');
- const open=f=>{mb.innerHTML=`<img src="${f.querySelector('img').src}" alt="${f.querySelector('img').alt}">`;m.classList.add('on')};
- g.querySelectorAll('figure').forEach(f=>{io.observe(f);f.onclick=()=>open(f);f.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open(f)}}});
-});
+<div class="modal" id="m" role="dialog" aria-modal="true" aria-label="Vista ampliada" aria-hidden="true">
+  <button type="button" id="x" aria-label="Cerrar">&times;</button>
+  <div class="box" id="mb"></div>
+</div>
+
+<script>
+(() => {
+'use strict';
+
+const $  = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* Observa elementos una sola vez: ejecuta cb, deja de observar y desconecta al terminar. */
+const observeOnce = (els, cb, opts) => {
+  const list = [...els];
+  if (!list.length) return;
+  if (!('IntersectionObserver' in window)) { list.forEach(cb); return; }
+  let pending = list.length;
+  const io = new IntersectionObserver((entries, obs) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      obs.unobserve(e.target);
+      cb(e.target);
+      if (--pending === 0) obs.disconnect();
+    });
+  }, opts);
+  list.forEach(el => io.observe(el));
+};
+
+/* Activa un elemento con clic, Enter o Espacio */
+const activate = (el, fn) => {
+  el.addEventListener('click', fn);
+  el.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fn(e); }
+  });
+};
+
+/* ===== Modal accesible (foco, inert, Escape, restauración de foco) ===== */
+const modal = $('#m'), box = $('#mb'), closeBtn = $('#x');
+const background = $$('body > a, body > nav, body > header, body > main, body > footer');
+let lastFocus = null;
+
+const openModal = (node, trigger, label = 'Vista ampliada') => {
+  if (!modal || !box) return;
+  lastFocus = trigger || document.activeElement;
+  box.replaceChildren(node);
+  modal.setAttribute('aria-label', label);
+  modal.setAttribute('aria-hidden', 'false');
+  background.forEach(el => { el.inert = true; });
+  modal.classList.add('on');
+  closeBtn?.focus();
+};
+const closeModal = () => {
+  if (!modal || !modal.classList.contains('on')) return;
+  modal.classList.remove('on');
+  modal.setAttribute('aria-hidden', 'true');
+  box.replaceChildren();
+  background.forEach(el => { el.inert = false; });
+  lastFocus?.focus?.();
+  lastFocus = null;
+};
+closeBtn?.addEventListener('click', closeModal);
+modal?.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+const openImage = (img, trigger) => {
+  const z = new Image();
+  z.src = img.src; z.alt = img.alt || '';
+  openModal(z, trigger);
+};
+/* Imagen ampliable por teclado y ratón */
+const bindZoom = (el, label) => {
+  const img = $('img', el);
+  if (!img) return;
+  el.tabIndex = 0;
+  el.setAttribute('role', 'button');
+  el.setAttribute('aria-haspopup', 'dialog');
+  el.setAttribute('aria-label', label || `Ampliar imagen: ${img.alt}`);
+  activate(el, () => openImage(img, el));
+};
+
+/* ===== Video (YouTube bajo demanda) ===== */
+$$('[data-yt]').forEach(v => activate(v, () => {
+  const f = document.createElement('iframe');
+  f.src = `https://www.youtube.com/embed/${v.dataset.yt}?autoplay=1&rel=0`;
+  f.allow = 'autoplay;encrypted-media';
+  f.allowFullscreen = true;
+  f.title = $('h4', v)?.textContent || 'Video';
+  openModal(f, v, f.title);
+}));
+
+/* ===== Revelado, contadores, barras y ranking ===== */
+observeOnce($$('.rev'), el => el.classList.add('in'), { threshold: .12 });
+
+const animateCount = el => {
+  const target = +el.dataset.c;
+  if (Number.isNaN(target)) return;
+  const fmt = n => n.toLocaleString('es-CO');
+  if (reduceMotion) { el.textContent = fmt(target); return; }
+  const t0 = performance.now();
+  const step = now => {
+    const p = Math.min((now - t0) / 1600, 1);
+    el.textContent = fmt(Math.round(target * (1 - Math.pow(1 - p, 3))));
+    if (p < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+};
+observeOnce($$('[data-c]'), animateCount, { threshold: .5 });
+
+observeOnce($$('.fin-gasto-card, .fin-tabla-container'), el => {
+  $$('.fin-bar-fill', el).forEach(b => {
+    const set = () => { b.style.width = b.dataset.width + '%'; };
+    reduceMotion ? set() : setTimeout(set, 200);
+  });
+}, { threshold: .2 });
+
+const rank = $('#rank');
+if (rank) observeOnce([rank], r => {
+  $$('i[data-w]', r).forEach(b => { b.style.width = b.dataset.w / 91 * 100 * .78 + '%'; });
+}, { threshold: .3 });
+
+/* ===== Indicadores · grilla con zoom (solo si existe #ind; omite imágenes inexistentes) ===== */
+const ind = $('#ind');
+if (ind) {
+  const IND = [
+    ['Imagenes/Portada/SineistralidadCesar1.jpg','Imagenes/Portada/SiniestralidadCesar1.jpg','Imagenes/Portada/sineistralidadCesar1.jpg','Imagenes/Portada/siniestralidadCesar1.jpg'],
+    ['Imagenes/Portada/SineistralidadCesar2.jpg','Imagenes/Portada/SiniestralidadCesar2.jpg','Imagenes/Portada/sineistralidadCesar2.jpg','Imagenes/Portada/siniestralidadCesar2.jpg'],
+    ['Imagenes/Portada/SineistralidadCesar3.jpg','Imagenes/Portada/SiniestralidadCesar3.jpg','Imagenes/Portada/sineistralidadCesar3.jpg','Imagenes/Portada/siniestralidadCesar3.jpg']
+  ];
+  const probe = cands => new Promise(res => {
+    let n = 0;
+    const e = new Image();
+    e.onload = () => res(e.src);
+    e.onerror = () => { ++n < cands.length ? (e.src = encodeURI(cands[n])) : res(null); };
+    e.src = encodeURI(cands[0]);
+  });
+  Promise.all(IND.map(probe)).then(urls => {
+    const ok = urls.filter(Boolean);
+    if (!ok.length) {
+      console.warn('Indicadores: no se encontró ninguna imagen. Rutas probadas:', IND);
+      ind.innerHTML = '<p class="ind-empty">No se encontraron las imágenes de indicadores (Imagenes/Portada/).</p>';
+      return;
+    }
+    ind.innerHTML = ok.map((s, k) => `<figure class="rev"><img loading="lazy" decoding="async" src="${s}" alt="Indicadores del Cesar ${k + 1}"><span class="zm"><i class="ph-fill ph-arrows-out" aria-hidden="true"></i> Ampliar</span></figure>`).join('');
+    $$('figure', ind).forEach((f, k) => bindZoom(f, `Ampliar indicador ${k + 1}`));
+    observeOnce($$('figure', ind), f => f.classList.add('in'), { threshold: .12 });
+  }).catch(err => console.warn('Indicadores:', err));
+}
+
+/* ===== Galería POAI ===== */
+const gal = $('#gal'), flt = $('#flt'), muni = $('#muniDet');
+if (gal && flt) {
+  const BI = 'Imagenes/Intervenciones a la infraestructura/', BC = 'Imagenes/Campañas de Seguridad Vial/';
+  const G = [
+    ['Ingeniería de Tránsito', 'Intervención San Diego', BI + 'San Diego/TimePhoto_20251219_121918.jpeg'],
+    ['Ingeniería de Tránsito', 'Intervención El Copey', BI + 'El Copey/IMG_4215.JPG.jpeg'],
+    ['Ingeniería de Tránsito', 'Intervención Pueblo Bello', BI + 'Pueblo Bello/TimePhoto_20251126_121939.jpg'],
+    ...['Copia de IMG_2998.JPG', 'IMG_2981.JPG', 'IMG_2989.JPG'].map(f => ['Meta Cero', 'Meta Cero', BC + 'Meta Cero/' + f]),
+    ...['Copia de IMG_1405.JPG', 'Copia de DVNE7327.JPG', 'Copia de IMG_1043.JPG'].map(f => ['Festival Vallenato', 'En Festival Vallenato Marcha Bacano y Seguro', BC + 'En Festival Vallenato Marcha Bacano y Seguro/' + f]),
+    ...['IMG_2839.JPG', 'IMG_1237.JPG', 'IMG_2990.JPG'].map(f => ['Patrulleritos Escolares', 'Patrulleritos Escolares', BC + 'Patrulleritos Escolares/' + f])
+  ];
+  gal.innerHTML = G.map(([c, t, s]) => `<figure data-c2="${c}"><img loading="lazy" decoding="async" src="${encodeURI(s)}" alt="${t}"><figcaption>${t}</figcaption></figure>`).join('');
+  $$('figure', gal).forEach(f => bindZoom(f));
+
+  const buttons = ['Todas', ...new Set(G.map(g => g[0]))].map((c, i) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.textContent = c;
+    b.setAttribute('aria-pressed', String(i === 0));
+    if (i === 0) b.className = 'on';
+    b.addEventListener('click', () => {
+      buttons.forEach(x => {
+        const on = x === b;
+        x.classList.toggle('on', on);
+        x.setAttribute('aria-pressed', String(on));
+      });
+      $$('figure', gal).forEach(f => f.classList.toggle('hide', i > 0 && f.dataset.c2 !== c));
+      muni?.classList.toggle('hide', i > 0 && c !== 'Ingeniería de Tránsito');
+    });
+    flt.appendChild(b);
+    return b;
+  });
+}
+$$('.md-img-container', muni || document).forEach(c => bindZoom(c));
+
+/* ===== Chart.js (inicialización diferida: cada gráfico se crea al entrar en pantalla) ===== */
+const initCharts = () => {
+  if (typeof Chart === 'undefined') { console.warn('Chart.js no está disponible.'); return; }
+  if (typeof ChartDataLabels !== 'undefined') Chart.register(ChartDataLabels);
+
+  const S = parseFloat(getComputedStyle(document.documentElement).fontSize) / 16; // escala por viewport
+  const px = n => Math.round(n * S);
+  Chart.defaults.font.family = 'Poppins';
+  Chart.defaults.font.size = px(13);
+  if (reduceMotion) Chart.defaults.animation = false;
+
+  const V = '#009027', VC = '#00B029', F = '#FF0793', N = '#0A0A0A', GRID = '#e6e6e6';
+  const fmtM = v => '$' + v.toLocaleString('es-CO') + ' M';
+  const cop = n => '$' + Math.round(n).toLocaleString('es-CO');
+  const pct = n => n.toFixed(1).replace('.', ',') + '%';
+  const tip = { backgroundColor: 'rgba(10,10,10,.92)', padding: 10, cornerRadius: 8 };
+
+  const charts = {
+    cMT: () => ({
+      type: 'bar',
+      data: { labels: ['Multas', 'Trámites'], datasets: [
+        { label: '2025', data: [17753, 1088], backgroundColor: V, borderRadius: 8 },
+        { label: '2026', data: [14135, 1571], backgroundColor: F, borderRadius: 8 }] },
+      options: { responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { position: 'bottom' }, datalabels: { anchor: 'end', align: 'top', formatter: fmtM, font: { weight: '700', size: px(13) } } },
+        scales: { y: { beginAtZero: true, grace: '12%' }, x: { grid: { display: false } } } }
+    }),
+    cMo: () => ({
+      type: 'doughnut',
+      data: { labels: ['La Paz', 'IDTRACESAR', 'Otros'], datasets: [{ data: [56, 35, 8], backgroundColor: [F, V, '#777'], borderWidth: 0 }] },
+      options: { responsive: true, maintainAspectRatio: false, cutout: '60%',
+        plugins: { legend: { position: 'bottom' }, datalabels: { color: '#fff', font: { weight: '800', size: px(16) }, formatter: v => v > 3 ? v + '%' : '' } } }
+    }),
+    cAu: () => ({
+      type: 'bar',
+      data: { labels: ['La Paz', 'IDTRACESAR', 'Valledupar', 'Otros'], datasets: [{ data: [64, 21, 12, 3], backgroundColor: [F, V, VC, '#777'], borderRadius: 6 }] },
+      options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false }, datalabels: { anchor: 'end', align: 'right', formatter: v => v + '%', font: { weight: '700', size: px(14) } } },
+        scales: { x: { display: false, max: 75 }, y: { grid: { display: false } } } }
+    }),
+    chartIngresos2027: () => {
+      const ing = [20009612274, 2167823863, 1447464473], tot = ing.reduce((a, b) => a + b, 0);
+      return {
+        type: 'doughnut',
+        data: { labels: ['Multas de tránsito', 'Derechos de tránsito', 'Transferencias funcionamiento'], datasets: [{ data: ing, backgroundColor: [F, V, VC], borderWidth: 0, hoverOffset: 8 }] },
+        options: { responsive: true, maintainAspectRatio: false, cutout: '62%',
+          plugins: {
+            legend: { position: 'bottom', labels: { usePointStyle: true, font: { family: 'Poppins', size: px(13) } } },
+            tooltip: { ...tip, callbacks: { label: c => ` ${cop(c.raw)} (${pct(c.raw / tot * 100)})` } },
+            datalabels: { color: '#fff', font: { family: 'Montserrat', weight: '800', size: px(16) }, formatter: v => { const p = v / tot * 100; return p >= 5 ? pct(p) : ''; } } } }
+      };
+    },
+    chartHistoricoRecaudo: () => {
+      const yrs = ['2022', '2023', '2024', '2025', '2026', '2027 (Proy.)'];
+      const m = [8226.173, 12889.366, 15548.244, 17753.288, 14135.097, 20009.612];
+      return {
+        type: 'bar',
+        data: { labels: yrs, datasets: [
+          { type: 'bar', label: 'Recaudo multas', data: m, backgroundColor: m.map((_, i) => i === m.length - 1 ? F : V), borderRadius: 10, maxBarThickness: 64 * S, order: 2 },
+          { type: 'line', label: 'Tendencia', data: m, borderColor: N, borderWidth: 2, borderDash: [6, 4], tension: .3, pointBackgroundColor: N, pointRadius: 4, fill: false, order: 1, datalabels: { display: false } }] },
+        options: { responsive: true, maintainAspectRatio: false, layout: { padding: { top: px(34) } },
+          plugins: {
+            legend: { display: false },
+            tooltip: { ...tip, callbacks: { label: c => ` $${Math.round(c.raw).toLocaleString('es-CO')} M` } },
+            datalabels: { display: c => c.datasetIndex === 0, anchor: 'end', align: 'top', color: N, font: { family: 'Montserrat', weight: '800', size: px(13) }, formatter: v => '$' + Math.round(v).toLocaleString('es-CO') + ' M' } },
+          scales: {
+            x: { grid: { display: false }, ticks: { font: { family: 'Poppins', size: px(13) } } },
+            y: { beginAtZero: true, grid: { color: GRID }, border: { display: false }, ticks: { font: { family: 'Poppins', size: px(12) }, callback: v => '$' + v.toLocaleString('es-CO') } } },
+          animation: reduceMotion ? false : { duration: 1000, easing: 'easeOutQuart' } }
+      };
+    }
+  };
+
+  Object.entries(charts).forEach(([id, build]) => {
+    const canvas = document.getElementById(id);
+    if (!canvas) return; // p. ej. #cMo no existe en el DOM actual
+    observeOnce([canvas], el => {
+      try { new Chart(el, build()); } catch (err) { console.error(`No se pudo crear el gráfico ${id}:`, err); }
+    }, { rootMargin: '200px' });
+  });
+};
+
+/* Los scripts con defer se ejecutan antes de DOMContentLoaded */
+document.readyState === 'loading'
+  ? document.addEventListener('DOMContentLoaded', initCharts)
+  : initCharts();
 })();
-
-/* Ranking SAST */
-new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('i').forEach(b=>b.style.width=b.dataset.w/91*100*.78+'%');o.unobserve(e.target)}}),{threshold:.3}).observe(document.getElementById('rank'));
-
-/* Galería POAI (imágenes de la sección 2) */
-const BI='Imagenes/Intervenciones a la infraestructura/',BC='Imagenes/Campañas de Seguridad Vial/';
-const G=[
-['Ingeniería de Tránsito','Intervención San Diego',BI+'San Diego/TimePhoto_20251219_121918.jpeg'],
-['Ingeniería de Tránsito','Intervención El Copey',BI+'El Copey/IMG_4215.JPG.jpeg'],
-['Ingeniería de Tránsito','Intervención Pueblo Bello',BI+'Pueblo Bello/TimePhoto_20251126_121939.jpg'],
-...['Copia de IMG_2998.JPG','IMG_2981.JPG','IMG_2989.JPG'].map(f=>['Meta Cero','Meta Cero',BC+'Meta Cero/'+f]),
-...['Copia de IMG_1405.JPG','Copia de DVNE7327.JPG','Copia de IMG_1043.JPG'].map(f=>['Festival Vallenato','En Festival Vallenato Marcha Bacano y Seguro',BC+'En Festival Vallenato Marcha Bacano y Seguro/'+f]),
-...['IMG_2839.JPG','IMG_1237.JPG','IMG_2990.JPG'].map(f=>['Patrulleritos Escolares','Patrulleritos Escolares',BC+'Patrulleritos Escolares/'+f])];
-const gal=document.getElementById('gal'),flt=document.getElementById('flt');
-gal.innerHTML=G.map(([c,t,s])=>`<figure data-c2="${c}"><img loading="lazy" src="${encodeURI(s)}" alt="${t}"><figcaption>${t}</figcaption></figure>`).join('');
-['Todas',...new Set(G.map(g=>g[0]))].forEach((c,i)=>{const b=document.createElement('button');b.textContent=c;if(!i)b.className='on';b.onclick=()=>{flt.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));gal.querySelectorAll('figure').forEach(f=>f.classList.toggle('hide',i&&f.dataset.c2!==c));document.getElementById('muniDet').classList.toggle('hide',i>0&&c!=='Ingeniería de Tránsito')};flt.appendChild(b)});
-gal.onclick=e=>{const f=e.target.closest('figure');if(!f)return;mb.innerHTML=`<img src="${f.querySelector('img').src}" alt="">`;m.classList.add('on')};
-document.getElementById('muniDet').addEventListener('click',e=>{const im=e.target.closest('.md-img-container img');if(!im)return;mb.innerHTML=`<img src="${im.src}" alt="${im.alt}">`;m.classList.add('on')});
-
-window.addEventListener('load',()=>{
-Chart.register(ChartDataLabels);Chart.defaults.font.family='Poppins';Chart.defaults.font.size=Math.round(13*S);
-const V='#009027',F='#FF0793',fmt=v=>'$'+v.toLocaleString('es-CO')+' M';
-new Chart('cMT',{type:'bar',data:{labels:['Multas','Trámites'],datasets:[{label:'2025',data:[17753,1088],backgroundColor:V,borderRadius:8},{label:'2026',data:[14135,1571],backgroundColor:F,borderRadius:8}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'},datalabels:{anchor:'end',align:'top',formatter:fmt,font:{weight:'700',size:Math.round(13*S)}}},scales:{y:{beginAtZero:true,grace:'12%'},x:{grid:{display:false}}}}});
-new Chart('cMo',{type:'doughnut',data:{labels:['La Paz','IDTRACESAR','Otros'],datasets:[{data:[56,35,8],backgroundColor:[F,V,'#777'],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,cutout:'60%',plugins:{legend:{position:'bottom'},datalabels:{color:'#fff',font:{weight:'800',size:Math.round(16*S)},formatter:v=>v>3?v+'%':''}}}});
-new Chart('cAu',{type:'bar',data:{labels:['La Paz','IDTRACESAR','Valledupar','Otros'],datasets:[{data:[64,21,12,3],backgroundColor:[F,V,'#00B029','#777'],borderRadius:6}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},datalabels:{anchor:'end',align:'right',formatter:v=>v+'%',font:{weight:'700',size:Math.round(14*S)}}},scales:{x:{display:false,max:75},y:{grid:{display:false}}}}});
-});
 </script>
-<script>
-/* Financiera: barras de progreso + gráficos */
-const progObs=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.querySelectorAll('.fin-bar-fill').forEach(b=>setTimeout(()=>{b.style.width=b.dataset.width+'%'},200));progObs.unobserve(en.target)}}),{threshold:.2});
-document.querySelectorAll('.fin-gasto-card,.fin-tabla-container').forEach(e=>progObs.observe(e));
-window.addEventListener('load',()=>{
-const C={verde:'#009027',verdeClaro:'#00B029',fucsia:'#FF0793',negro:'#0A0A0A',grid:'#e6e6e6'};
-const fmtCOP=n=>'$'+Math.round(n).toLocaleString('es-CO');
-const elDona=document.getElementById('chartIngresos2027');
-if(elDona){const ing=[20009612274,2167823863,1447464473],tot=ing.reduce((a,b)=>a+b,0);
-new Chart(elDona,{type:'doughnut',data:{labels:['Multas de tránsito','Derechos de tránsito','Transferencias funcionamiento'],datasets:[{data:ing,backgroundColor:[C.fucsia,C.verde,C.verdeClaro],borderWidth:0,hoverOffset:8}]},options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{position:'bottom',labels:{usePointStyle:true,font:{family:'Poppins',size:Math.round(13*S)}}},tooltip:{backgroundColor:'rgba(10,10,10,.92)',padding:10,cornerRadius:8,callbacks:{label:c=>` ${fmtCOP(c.raw)} (${(c.raw/tot*100).toFixed(1).replace('.',',')}%)`}},datalabels:{color:'#fff',font:{family:'Montserrat',weight:'800',size:Math.round(16*S)},formatter:v=>{const p=v/tot*100;return p>=5?p.toFixed(1).replace('.',',')+'%':''}}}}});}
-const elHist=document.getElementById('chartHistoricoRecaudo');
-if(elHist){const yrs=['2022','2023','2024','2025','2026','2027 (Proy.)'],m=[8226.173,12889.366,15548.244,17753.288,14135.097,20009.612];
-new Chart(elHist,{data:{labels:yrs,datasets:[{type:'bar',label:'Recaudo multas',data:m,backgroundColor:m.map((_,i)=>i===m.length-1?C.fucsia:C.verde),borderRadius:10,maxBarThickness:64*S,order:2},{type:'line',label:'Tendencia',data:m,borderColor:C.negro,borderWidth:2,borderDash:[6,4],tension:.3,pointBackgroundColor:C.negro,pointRadius:4,fill:false,order:1,datalabels:{display:false}}]},options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:Math.round(34*S)}},plugins:{legend:{display:false},tooltip:{backgroundColor:'rgba(10,10,10,.92)',padding:10,cornerRadius:8,callbacks:{label:c=>` $${Math.round(c.raw).toLocaleString('es-CO')} M`}},datalabels:{display:c=>c.datasetIndex===0,anchor:'end',align:'top',color:C.negro,font:{family:'Montserrat',weight:'800',size:Math.round(13*S)},formatter:v=>'$'+Math.round(v).toLocaleString('es-CO')+' M'}},scales:{x:{grid:{display:false},ticks:{font:{family:'Poppins',size:Math.round(13*S)}}},y:{beginAtZero:true,grid:{color:C.grid},border:{display:false},ticks:{font:{family:'Poppins',size:Math.round(12*S)},callback:v=>'$'+v.toLocaleString('es-CO')}}},animation:{duration:1000,easing:'easeOutQuart'}}});}
-});
-</script>
-<script async src="//www.instagram.com/embed.js"></script>
+<script async defer src="//www.instagram.com/embed.js"></script>
 </body>
 </html>
