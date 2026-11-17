@@ -298,7 +298,7 @@ html{scroll-behavior:auto}
 <div class="fin-sub-list">
 <div><div class="fin-sub-row"><span>Multas de tránsito</span><strong>$20.009.612.274</strong></div><div class="fin-part-bar"><div class="fin-bar-track" aria-hidden="true"><div class="fin-bar-fill" data-width="84.7" style="width:0"></div></div><span class="fin-bar-pct">84,7%</span></div></div>
 <div><div class="fin-sub-row"><span>Derechos de tránsito</span><strong>$2.167.823.863</strong></div><div class="fin-part-bar"><div class="fin-bar-track" aria-hidden="true"><div class="fin-bar-fill" data-width="9.2" style="width:0"></div></div><span class="fin-bar-pct">9,2%</span></div></div>
-<div><div class="fin-sub-row"><span>Transferencias para funcionamiento</span><strong>$1.447.464.473</strong></div><div class="fin-part-bar"><div class="fin-bar-track" aria-hidden="true"><div class="fin-bar-fill" data-width="6.1" style="width:0"></div></div><span class="fin-bar-pct">6,1%</span></div></div>
+<div><div class="fin-sub-row"><span>Transferencias Gob-Cesar Salarios</span><strong>$1.447.464.473</strong></div><div class="fin-part-bar"><div class="fin-bar-track" aria-hidden="true"><div class="fin-bar-fill" data-width="6.1" style="width:0"></div></div><span class="fin-bar-pct">6,1%</span></div></div>
 </div></div></article>
 
 <article class="fin-gasto-card rev">
@@ -845,7 +845,7 @@ const initCharts = () => {
   const S = parseFloat(getComputedStyle(document.documentElement).fontSize) / 16; // escala por viewport
   const px = n => Math.round(n * S);
   Chart.defaults.font.family = 'Poppins';
-  Chart.defaults.font.size = px(13);
+  Chart.defaults.font.size = px(16);
   if (reduceMotion) Chart.defaults.animation = false;
 
   const V = '#009027', VC = '#00B029', F = '#FF0793', N = '#0A0A0A', GRID = '#e6e6e6';
@@ -861,20 +861,20 @@ const initCharts = () => {
         { label: '2025', data: [17753, 1088], backgroundColor: V, borderRadius: 8 },
         { label: '2026', data: [14135, 1571], backgroundColor: F, borderRadius: 8 }] },
       options: { responsive: true, maintainAspectRatio: false,
-        plugins: { legend: { position: 'bottom' }, datalabels: { anchor: 'end', align: 'top', formatter: fmtM, font: { weight: '700', size: px(13) } } },
+        plugins: { legend: { position: 'bottom' }, datalabels: { anchor: 'end', align: 'top', formatter: fmtM, font: { weight: '700', size: px(16) } } },
         scales: { y: { beginAtZero: true, grace: '12%' }, x: { grid: { display: false } } } }
     }),
     cMo: () => ({
       type: 'doughnut',
       data: { labels: ['La Paz', 'IDTRACESAR', 'Otros'], datasets: [{ data: [56, 35, 8], backgroundColor: [F, V, '#777'], borderWidth: 0 }] },
       options: { responsive: true, maintainAspectRatio: false, cutout: '60%',
-        plugins: { legend: { position: 'bottom' }, datalabels: { color: '#fff', font: { weight: '800', size: px(16) }, formatter: v => v > 3 ? v + '%' : '' } } }
+        plugins: { legend: { position: 'bottom' }, datalabels: { color: '#fff', font: { weight: '800', size: px(20) }, formatter: v => v > 3 ? v + '%' : '' } } }
     }),
     cAu: () => ({
       type: 'bar',
       data: { labels: ['La Paz', 'IDTRACESAR', 'Valledupar', 'Otros'], datasets: [{ data: [64, 21, 12, 3], backgroundColor: [F, V, VC, '#777'], borderRadius: 6 }] },
       options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
-        plugins: { legend: { display: false }, datalabels: { anchor: 'end', align: 'right', formatter: v => v + '%', font: { weight: '700', size: px(14) } } },
+        plugins: { legend: { display: false }, datalabels: { anchor: 'end', align: 'right', formatter: v => v + '%', font: { weight: '700', size: px(20) } } },
         scales: { x: { display: false, max: 75 }, y: { grid: { display: false } } } }
     }),
     chartIngresos2027: () => {
@@ -884,7 +884,7 @@ const initCharts = () => {
         data: { labels: ['Multas de tránsito', 'Derechos de tránsito', 'Transferencias funcionamiento'], datasets: [{ data: ing, backgroundColor: [F, V, VC], borderWidth: 0, hoverOffset: 8 }] },
         options: { responsive: true, maintainAspectRatio: false, cutout: '62%',
           plugins: {
-            legend: { position: 'bottom', labels: { usePointStyle: true, font: { family: 'Poppins', size: px(13) } } },
+            legend: { position: 'bottom', labels: { usePointStyle: true, font: { family: 'Poppins', size: px(17) } } },
             tooltip: { ...tip, callbacks: { label: c => ` ${cop(c.raw)} (${pct(c.raw / tot * 100)})` } },
             datalabels: { color: '#fff', font: { family: 'Montserrat', weight: '800', size: px(16) }, formatter: v => { const p = v / tot * 100; return p >= 5 ? pct(p) : ''; } } } }
       };
