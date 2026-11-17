@@ -317,7 +317,6 @@ footer{background:var(--negro);color:#fff;text-align:center;padding:2.5rem 1.5re
 </tbody>
 </table>
 </div>
-<p class="fin-note">Var. = variación porcentual frente al año anterior. TCAC = tasa de crecimiento anual compuesta 2024→2027. Fuente: Anexos Presupuesto de Gastos 2027, IDTRACESAR.</p>
 </div></section>
 
 <!-- 2 · CIERRE PRESUPUESTAL 2026 -->
@@ -821,7 +820,7 @@ window.addEventListener('load',()=>{
 Chart.register(ChartDataLabels);Chart.defaults.font.family='Poppins';Chart.defaults.font.size=Math.round(13*S);
 const V='#009027',F='#FF0793',fmt=v=>'$'+v.toLocaleString('es-CO')+' M';
 new Chart('cMT',{type:'bar',data:{labels:['Multas','Trámites'],datasets:[{label:'2025',data:[17753,1088],backgroundColor:V,borderRadius:8},{label:'2026',data:[14135,1571],backgroundColor:F,borderRadius:8}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'},datalabels:{anchor:'end',align:'top',formatter:fmt,font:{weight:'700',size:Math.round(13*S)}}},scales:{y:{beginAtZero:true,grace:'12%'},x:{grid:{display:false}}}}});
-new Chart('cMo',{type:'doughnut',data:{labels:['La Paz','IDTRACESAR','Otros'],datasets:[{data:[64,26,10],backgroundColor:[F,V,'#777'],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,cutout:'60%',plugins:{legend:{position:'bottom'},datalabels:{color:'#fff',font:{weight:'800',size:Math.round(16*S)},formatter:v=>v>3?v+'%':''}}}});
+new Chart('cMo',{type:'doughnut',data:{labels:['La Paz','IDTRACESAR','Otros'],datasets:[{data:[56,35,8],backgroundColor:[F,V,'#777'],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,cutout:'60%',plugins:{legend:{position:'bottom'},datalabels:{color:'#fff',font:{weight:'800',size:Math.round(16*S)},formatter:v=>v>3?v+'%':''}}}});
 new Chart('cAu',{type:'bar',data:{labels:['La Paz','IDTRACESAR','Valledupar','Otros'],datasets:[{data:[64,21,12,3],backgroundColor:[F,V,'#00B029','#777'],borderRadius:6}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},datalabels:{anchor:'end',align:'right',formatter:v=>v+'%',font:{weight:'700',size:Math.round(14*S)}}},scales:{x:{display:false,max:75},y:{grid:{display:false}}}}});
 });
 </script>
