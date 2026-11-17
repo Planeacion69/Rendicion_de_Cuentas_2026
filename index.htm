@@ -374,17 +374,19 @@ html{scroll-behavior:auto}
 <section id="comercial" class="alt"><div class="wrap">
 <div class="head rev"><div class="eyebrow">3 · Dinámica Comercial</div><h2>Matrículas y <span class="v">participación de mercado</span>.</h2></div>
 
-<!-- PEGAR AQUÍ LA ESTRUCTURA QUE COMPARTISTE -->
 <div class="tramites-hero">
   <div class="com-chart-card rev" data-delay="100">
     <div class="cc-head">
       <div><h4>Evolución de Matrículas por Vigencia</h4><p class="cc-sub">Comportamiento comparativo · San Diego</p></div>
       <div class="cc-pills">
+        <span class="cc-pill" style="background:rgba(0,144,39,.10);color:var(--verde)">+47% vs 2024</span>
+        <span class="cc-pill" style="background:rgba(255,7,147,.10);color:var(--fucsia)">Récord histórico</span>
       </div>
     </div>
     <div class="cc-canvas-wrap" style="height:340px; position:relative;"><canvas id="comHistorico"></canvas></div>
     <div class="com-kpi rev" data-delay="200">
       <div class="ck-icon" style="background:rgba(255,7,147,.10);color:var(--fucsia)"><i class="ph-fill ph-trend-up"></i></div>
+      <div><div class="ck-label">Variación Interanual</div><div class="ck-value" style="color:var(--fucsia)">+47%</div><div class="ck-sub">2024 → 2025</div></div>
     </div>
   </div>
     
@@ -408,15 +410,8 @@ html{scroll-behavior:auto}
     </div>
   </div>  
 </div>
-<!-- FIN DE LA NUEVA ESTRUCTURA -->
 
-<!-- Aquí continúan las demás tarjetas de la sección Comercial (Tasa de Mercado, etc.) -->
-    <!-- <div class="com-kpi-grid">
-      <div class="com-kpi reveal" data-delay="100"><div class="ck-icon" style="background:rgba(0,144,39,.10);color:var(--verde)"><i class="ph-fill ph-car-profile"></i></div><div class="ck-label">Total Matrículas Acumuladas</div><div class="ck-value">10.512</div><div class="ck-sub">Histórico 2021 — 2026</div></div>
-      <div class="com-kpi reveal" data-delay="200"><div class="ck-icon" style="background:rgba(255,7,147,.10);color:var(--fucsia)"><i class="ph-fill ph-trend-up"></i></div><div class="ck-label">Variación Interanual</div><div class="ck-value" style="color:var(--fucsia)">+47%</div><div class="ck-sub">2024 → 2025</div></div>
-      <div class="com-kpi reveal" data-delay="300"><div class="ck-icon" style="background:rgba(0,176,41,.14);color:var(--verde-claro)"><i class="ph-fill ph-motorcycle"></i></div><div class="ck-label">Línea de mayor volumen</div><div class="ck-value" style="font-size:1.9rem;margin-top:.4rem">Motocicletas</div><div class="ck-sub">63% del parque automotor matriculado</div></div>
-    </div> -->
-
+</div></section>
 
 <!-- 4 · ACTIVIDAD / TABLERO DE CONTROL DE ACCIÓN ANUAL -->
 <section id="gestion" aria-labelledby="t-ges"><div class="wrap">
@@ -931,7 +926,7 @@ const initCharts = () => {
       type: 'doughnut',
       data: { labels: ['La Paz', 'IDTRACESAR', 'Otros'], datasets: [{ data: [56, 35, 8], backgroundColor: [F, V, '#777'], borderWidth: 0 }] },
       options: { responsive: true, maintainAspectRatio: false, cutout: '60%',
-        plugins: { legend: { position: 'bottom' }, datalabels: { color: '#fff', font: { weight: '800', size: px(20) }, formatter: v => v > 3 ? v + '%' : '' } } }
+        plugins: { legend: { position: 'bottom' }, datalabels: { color: '#fff', font: { weight: '800', size: px(24) }, formatter: v => v > 3 ? v + '%' : '' } } }
     }),
     cAu: () => ({
       type: 'bar',
@@ -947,9 +942,9 @@ const initCharts = () => {
         data: { labels: ['Multas de tránsito', 'Derechos de tránsito', 'Transferencias Gob-Cesar Salarios'], datasets: [{ data: ing, backgroundColor: [F, V, VC], borderWidth: 0, hoverOffset: 8 }] },
         options: { responsive: true, maintainAspectRatio: false, cutout: '62%',
           plugins: {
-            legend: { position: 'bottom', labels: { usePointStyle: true, font: { family: 'Poppins', size: px(17) } } },
+            legend: { position: 'bottom', labels: { usePointStyle: true, font: { family: 'Poppins', size: px(16) } } },
             tooltip: { ...tip, callbacks: { label: c => ` ${cop(c.raw)} (${pct(c.raw / tot * 100)})` } },
-            datalabels: { color: '#fff', font: { family: 'Montserrat', weight: '800', size: px(16) }, formatter: v => { const p = v / tot * 100; return p >= 5 ? pct(p) : ''; } } } }
+            datalabels: { color: '#fff', font: { family: 'Montserrat', weight: '800', size: px(20) }, formatter: v => { const p = v / tot * 100; return p >= 5 ? pct(p) : ''; } } } }
       };
     },
     
@@ -965,30 +960,68 @@ const initCharts = () => {
           plugins: {
             legend: { display: false },
             tooltip: { ...tip, callbacks: { label: c => ` $${Math.round(c.raw).toLocaleString('es-CO')} M` } },
-            datalabels: { display: c => c.datasetIndex === 0, anchor: 'end', align: 'top', color: N, font: { family: 'Montserrat', weight: '800', size: px(13) }, formatter: v => '$' + Math.round(v).toLocaleString('es-CO') + ' M' } },
+            datalabels: { display: c => c.datasetIndex === 0, anchor: 'end', align: 'top', color: N, font: { family: 'Montserrat', weight: '800', size: px(16) }, formatter: v => '$' + Math.round(v).toLocaleString('es-CO') + ' M' } },
           scales: {
-            x: { grid: { display: false }, ticks: { font: { family: 'Poppins', size: px(13) } } },
-            y: { beginAtZero: true, grid: { color: GRID }, border: { display: false }, ticks: { font: { family: 'Poppins', size: px(12) }, callback: v => '$' + v.toLocaleString('es-CO') } } },
+            x: { grid: { display: false }, ticks: { font: { family: 'Poppins', size: px(16) } } },
+            y: { beginAtZero: true, grid: { color: GRID }, border: { display: false }, ticks: { font: { family: 'Poppins', size: px(15) }, callback: v => '$' + v.toLocaleString('es-CO') } } },
           animation: reduceMotion ? false : { duration: 1000, easing: 'easeOutQuart' } }
       };
-    }
+    },
+    
+    comHistorico: () => ({
+      type: 'bar',
+      data: {
+        labels: ['2023', '2024', '2025', '2026 (Meta)'],
+        datasets: [{
+          label: 'Matrículas',
+          data: [1500, 1800, 2645, 3108], 
+          backgroundColor: [GRID, GRID, V, F], 
+          borderRadius: 8
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          datalabels: {
+            anchor: 'end', align: 'top', color: N,
+            font: { family: 'Montserrat', weight: '800', size: px(16) },
+            formatter: v => v.toLocaleString('es-CO')
+          }
+        },
+        scales: {
+          y: { beginAtZero: true, grace: '10%', grid: { color: GRID }, border: { display: false } },
+          x: { grid: { display: false }, ticks: { font: { family: 'Poppins', size: px(14) } } }
+        }
+      }
+    })
   };
 
-  }; // <-- Aquí termina tu const charts = { ... }
+  /* ===== Animación del anillo de Avance (SVG) ===== */
+  const ringObs = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) {
+      const circle = e.target.querySelector('#ringFillCom');
+      if (circle) {
+        setTimeout(() => {
+          circle.style.transition = 'stroke-dashoffset 1.5s ease-out';
+          circle.style.strokeDashoffset = '319.59'; 
+        }, 300);
+      }
+      ringObs.unobserve(e.target);
+    }
+  }), { threshold: 0.3 });
+  document.querySelectorAll('.com-avance').forEach(el => ringObs.observe(el));
 
-
-// Aquí está la línea que ya tienes en tu código:
-Object.entries(charts).forEach(([id, build]) => {
-  const canvas = document.getElementById(id);
-  // ... resto de tu código
-  
+  /* ===== Bucle que renderiza los gráficos ===== */
   Object.entries(charts).forEach(([id, build]) => {
     const canvas = document.getElementById(id);
-    if (!canvas) return; // p. ej. #cMo no existe en el DOM actual
+    if (!canvas) return;
     observeOnce([canvas], el => {
       try { new Chart(el, build()); } catch (err) { console.error(`No se pudo crear el gráfico ${id}:`, err); }
     }, { rootMargin: '200px' });
   });
+
 };
 
 /* Los scripts con defer se ejecutan antes de DOMContentLoaded */
