@@ -315,7 +315,7 @@ html{scroll-behavior:auto}
 </div>
 
 <div class="fin-charts-grid" style="margin-bottom:32px;">
-<div class="fin-chart-card rev"><div class="fin-chart-title">Composición de Ingresos 2027</div><div class="fin-chart-sub">Participación por fuente sobre $23.624.900.610</div><div class="fin-chart-canvas"><canvas id="chartIngresos2027" role="img" aria-label="Gráfico de dona de ingresos 2027: Multas de tránsito 84,7%, Derechos de tránsito 9,2%, Transferencias para funcionamiento 6,1%."></canvas></div></div>
+<div class="fin-chart-card rev"><div class="fin-chart-title">Composición de Ingresos 2027</div><div class="fin-chart-sub">Participación por fuente sobre $23.624.900.610</div><div class="fin-chart-canvas"><canvas id="chartIngresos2027" role="img" aria-label="Gráfico de dona de ingresos 2027: Multas de tránsito 84,7%, Derechos de tránsito 9,2%, Transferencias Gob-Cesar Salarios 6,1%."></canvas></div></div>
 <div class="fin-chart-card rev"><div class="fin-chart-title">Histórico de Recaudo por Multas</div><div class="fin-chart-sub">Millones de pesos (COP) · 2022–2027 · 2027 proyectado</div><div class="fin-chart-canvas"><canvas id="chartHistoricoRecaudo" role="img" aria-label="Gráfico de barras del recaudo por multas en millones de pesos: 2022 $8.226 M, 2023 $12.889 M, 2024 $15.548 M, 2025 $17.753 M, 2026 $14.135 M, 2027 proyectado $20.009 M."></canvas></div></div>
 </div>
 
@@ -324,6 +324,8 @@ html{scroll-behavior:auto}
 <caption class="sr-only">Recaudo por trámites y multas, 2024 a 2027, con variaciones anuales</caption>
 <thead><tr><th scope="col">Año</th><th scope="col">Trámites</th><th scope="col">Var. Trámites</th><th scope="col">Multas</th><th scope="col">Var. Multas</th><th scope="col">Total recaudo</th><th scope="col">Var. Total</th></tr></thead>
 <tbody>
+
+<tr><td class="yr">2023</td><td>$602.090.856</td><td><div class="fin-part-bar"><div class="fin-bar-track" aria-hidden="true"><div class="fin-bar-fill" data-width="72.7" style="width:0"></div></div><span class="fin-bar-pct pos">+38,67%</span></div></td><td>$12.889.366.447</td><td><div class="fin-part-bar"><div class="fin-bar-track" aria-hidden="true"><div class="fin-bar-fill" data-width="41.3" style="width:0"></div></div><span class="fin-bar-pct pos">+56,69%</span></div></td><td>$13.491.457.303</td><td><span class="fin-pill pos">▲ 55,7%</span></td></tr>  
 <tr><td class="yr">2024</td><td>$820.803.926</td><td><div class="fin-part-bar"><div class="fin-bar-track" aria-hidden="true"><div class="fin-bar-fill" data-width="72.7" style="width:0"></div></div><span class="fin-bar-pct pos">+36,3%</span></div></td><td>$15.548.243.904</td><td><div class="fin-part-bar"><div class="fin-bar-track" aria-hidden="true"><div class="fin-bar-fill" data-width="41.3" style="width:0"></div></div><span class="fin-bar-pct pos">+20,6%</span></div></td><td>$16.369.047.830</td><td><span class="fin-pill pos">▲ 21,3%</span></td></tr>
 <tr><td class="yr">2025</td><td>$1.088.143.572</td><td><div class="fin-part-bar"><div class="fin-bar-track" aria-hidden="true"><div class="fin-bar-fill" data-width="65.1" style="width:0"></div></div><span class="fin-bar-pct pos">+32,6%</span></div></td><td>$17.753.287.684</td><td><div class="fin-part-bar"><div class="fin-bar-track" aria-hidden="true"><div class="fin-bar-fill" data-width="28.4" style="width:0"></div></div><span class="fin-bar-pct pos">+14,2%</span></div></td><td>$18.841.431.256</td><td><span class="fin-pill pos">▲ 15,1%</span></td></tr>
 <tr><td class="yr">2026</td><td>$1.570.886.858</td><td><div class="fin-part-bar"><div class="fin-bar-track" aria-hidden="true"><div class="fin-bar-fill" data-width="88.7" style="width:0"></div></div><span class="fin-bar-pct pos">+44,4%</span></div></td><td>$14.135.097.471</td><td><div class="fin-part-bar"><div class="fin-bar-track" aria-hidden="true"><div class="fin-bar-fill neg" data-width="40.8" style="width:0"></div></div><span class="fin-bar-pct neg">−20,4%</span></div></td><td>$15.705.984.329</td><td><span class="fin-pill neg">▼ 16,6%</span></td></tr>
@@ -881,7 +883,7 @@ const initCharts = () => {
       const ing = [20009612274, 2167823863, 1447464473], tot = ing.reduce((a, b) => a + b, 0);
       return {
         type: 'doughnut',
-        data: { labels: ['Multas de tránsito', 'Derechos de tránsito', 'Transferencias funcionamiento'], datasets: [{ data: ing, backgroundColor: [F, V, VC], borderWidth: 0, hoverOffset: 8 }] },
+        data: { labels: ['Multas de tránsito', 'Derechos de tránsito', 'Transferencias Gob-Cesar Salarios'], datasets: [{ data: ing, backgroundColor: [F, V, VC], borderWidth: 0, hoverOffset: 8 }] },
         options: { responsive: true, maintainAspectRatio: false, cutout: '62%',
           plugins: {
             legend: { position: 'bottom', labels: { usePointStyle: true, font: { family: 'Poppins', size: px(17) } } },
