@@ -953,37 +953,6 @@ const initCharts = () => {
       };
     },
     
-    comHistorico: () => ({
-    type: 'bar',
-    data: {
-      labels: ['2023', '2024', '2025', '2026 (Oct)'],
-      datasets: [{
-        label: 'Matrículas',
-        data: [1796, 1796, 2645, 2873], 
-        backgroundColor: ['#e6e6e6', '#e6e6e6', V, F], /* Usando V (verde) y F (fucsia) de tus variables */
-        borderRadius: 8
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false },
-        datalabels: {
-          anchor: 'end',
-          align: 'top',
-          color: '#0A0A0A',
-          font: { family: 'Montserrat', weight: '800', size: px(16) },
-          formatter: v => v.toLocaleString('es-CO')
-        }
-      },
-      scales: {
-        y: { beginAtZero: true, grace: '10%', grid: { color: '#e6e6e6' }, border: { display: false } },
-        x: { grid: { display: false }, ticks: { font: { family: 'Poppins', size: px(14) } } }
-      }
-    }
-  }),
-    
     chartHistoricoRecaudo: () => {
       const yrs = ['2022', '2023', '2024', '2025', '2026', '2027 (Proy.)'];
       const m = [8226.173, 12889.366, 15548.244, 17753.288, 14135.097, 20009.612];
@@ -1007,20 +976,6 @@ const initCharts = () => {
 
   }; // <-- Aquí termina tu const charts = { ... }
 
-/* Animación del anillo de Avance (SVG) */
-const ringObs = new IntersectionObserver(es => es.forEach(e => {
-  if (e.isIntersecting) {
-    const circle = e.target.querySelector('#ringFillCom');
-    if (circle) {
-      setTimeout(() => {
-        circle.style.transition = 'stroke-dashoffset 1.5s ease-out';
-        circle.style.strokeDashoffset = '319.59'; 
-      }, 300);
-    }
-    ringObs.unobserve(e.target);
-  }
-}), { threshold: 0.3 });
-document.querySelectorAll('.com-avance').forEach(el => ringObs.observe(el));
 
 // Aquí está la línea que ya tienes en tu código:
 Object.entries(charts).forEach(([id, build]) => {
